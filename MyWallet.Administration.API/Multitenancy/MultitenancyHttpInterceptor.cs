@@ -5,15 +5,14 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using SaasKit.Multitenancy;
 using Microsoft.AspNetCore.Http;
-using MyWallet.Administration.API.Models;
 
 namespace MyWallet.Administration.API.Multitenancy
 {
-    public class MultitenancyHttpContext : ITenantResolver<MultitenancyModel>
+    public class MultitenancyHttpInterceptor : ITenantResolver<TenancyContext>
     {
-        private static readonly MultitenancyModel[] tenancyConfig;
-        static MultitenancyHttpContext() => tenancyConfig =
-              JsonSerializer.Deserialize<MultitenancyModel[]>(
+        private static readonly TenancyContext[] tenancyConfig;
+        static MultitenancyHttpInterceptor() => tenancyConfig =
+              JsonSerializer.Deserialize<TenancyContext[]>(
                   File.ReadAllText("apptenancy.json"));
 
         /// <summary>
@@ -21,7 +20,7 @@ namespace MyWallet.Administration.API.Multitenancy
         /// </summary>
         /// <param name="func"></param>
         /// <returns></returns>
-        private MultitenancyModel Condition(Func<MultitenancyModel, bool> func)
+        private TenancyContext Condition(Func<TenancyContext, bool> func)
         {
             return tenancyConfig.SingleOrDefault(func);
         }
@@ -31,7 +30,7 @@ namespace MyWallet.Administration.API.Multitenancy
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        public Task<TenantContext<MultitenancyModel>> ResolveAsync(HttpContext context)
+        public Task<TenantContext<TenancyContext>> ResolveAsync(HttpContext context)
         {
             /*
             var host = request.Host.Value.ToLower();
@@ -40,11 +39,10 @@ namespace MyWallet.Administration.API.Multitenancy
 
             var request = context.Request;
             string prefix = request.Path.Value.ToLower().Trim('/').Split('/').FirstOrDefault();
-            MultitenancyModel tenancy = Condition(tenancy => tenancy.Prefix.Equals(prefix));
+            TenancyContext tenancy = Condition(tenancy => tenancy.Prefix.Equals(prefix));
 
-            TenantContext<MultitenancyModel> tenant =
-                !(tenancy is null) ?
-                new TenantContext<MultitenancyModel>(tenancy)
+            TenantContext<TenancyContext> tenant = !(tenancy is null) ?
+                new TenantContext<TenancyContext>(tenancy)
                     : null;
 
             return Task.FromResult(tenant);
