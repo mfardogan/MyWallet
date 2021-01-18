@@ -1,5 +1,7 @@
 ﻿using Autofac;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using MyWallet.Administration.Infrastructure.Persistence;
 
 namespace MyWallet.Administration.Infrastructure.IoC
@@ -8,12 +10,15 @@ namespace MyWallet.Administration.Infrastructure.IoC
     {
         protected override void Load(ContainerBuilder builder)
         {
-            const string connectionString = "User ID=postgres;Password=admin;Server=localhost;Port=5432;Database=myWallet;Integrated Security=true;Pooling=true;";
+            var configurationRoot = new ConfigurationBuilder()
+                   .SetBasePath(Directory.GetCurrentDirectory())
+                   .AddJsonFile("appsettings.json")
+                   .Build();
 
             builder.Register(x =>
             {
                 var optsBuilder = new DbContextOptionsBuilder<MyDbContext>();
-                optsBuilder.UseNpgsql(connectionString);
+                optsBuilder.UseNpgsql(configurationRoot.GetConnectionString("MyWalletLocal"));
                 return new MyDbContext(optsBuilder.Options);
             }).InstancePerLifetimeScope();
 

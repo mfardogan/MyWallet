@@ -1,18 +1,30 @@
 ﻿using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
+using MyWallet.Administration.Domain.Abstraction;
 
 namespace MyWallet.Administration.Application.Service
 {
-    using MyWallet.Administration.Domain.Abstraction;
-
-    public class Rfc2898 : IPasswordHasher
+    public sealed class Rfc2898 : IPasswordHasher
     {
+        /// <summary>
+        /// Compare
+        /// </summary>
+        /// <param name="password"></param>
+        /// <param name="correct"></param>
+        /// <param name="salt"></param>
+        /// <returns></returns>
         public bool Check(string password, byte[] correct, byte[] salt)
         {
             return Compute(password, salt).SequenceEqual(correct);
         }
 
+        /// <summary>
+        /// Generate has
+        /// </summary>
+        /// <param name="password"></param>
+        /// <param name="salt"></param>
+        /// <returns></returns>
         public byte[] Compute(string password, byte[] salt)
         {
             const int SIZEOFRESULT = 24;

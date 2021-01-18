@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MyWallet.Administration.Domain.Aggregation.Common
@@ -11,5 +12,11 @@ namespace MyWallet.Administration.Domain.Aggregation.Common
         [Key]
         [Column("id", Order = 0)]
         public virtual TPk Id { get; set; }
+
+        /// <summary>
+        /// Row guid
+        /// </summary>
+        [Column(TypeName = "uuid", Order = 1)]
+        public Guid? RowGuid { get; set; }
     }
 }
