@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace MyWallet.Administration.API
 {
+    using MyWallet.Administration.API.Models;
+    using MyWallet.Administration.API.Multitenancy;
     using MyWallet.Administration.Domain;
 
     public class Startup
@@ -24,6 +26,7 @@ namespace MyWallet.Administration.API
         public IConfigurationRoot Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMultitenancy<MultitenancyModel, MultitenancyHttpContext>();
             services.AddOptions();
             services.AddControllers();
         }
@@ -71,6 +74,7 @@ namespace MyWallet.Administration.API
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            app.UseMultitenancy<MultitenancyModel>();
             ILifetimeScope lifetimeScope = app.ApplicationServices.GetAutofacRoot();
             Dependency.Instance.SetLifetimeScope(lifetimeScope);
         }

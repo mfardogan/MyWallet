@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyWallet.Administration.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20210118060013_Initial")]
-    partial class Initial
+    [Migration("20210118090651_InitialCustomer2")]
+    partial class InitialCustomer2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

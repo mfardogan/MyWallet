@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "tenant-1",
+    "prefix": "customer-1",
+    "persistenceConnectionString": "User ID=postgres;Password=admin;Server=localhost;Port=5432;Database=myWalletCustomer1;Integrated Security=true;Pooling=true;",
+    "auditLogConnectionString": "",
+    "host": "localhost:5001",
+    "disabled": 0
+  },
+  {
+    "id": 2,
+    "name": "tenant-2",
+    "prefix": "customer-2",
+    "persistenceConnectionString": "User ID=postgres;Password=admin;Server=localhost;Port=5432;Database=myWalletCustomer2;Integrated Security=true;Pooling=true;",
+    "auditLogConnectionString": "",
+    "host": "localhost:5002",
+    "disabled": 0
+  }
+]

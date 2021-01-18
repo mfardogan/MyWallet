@@ -16,6 +16,7 @@ namespace MyWallet.Administration.API
                     webHostBuilder
                     .UseContentRoot(Directory.GetCurrentDirectory())
                     .UseIISIntegration()
+                    .UseUrls("http://*:5001;http://*:5002")
                     .UseStartup<Startup>();
                 })
                 .Build();
