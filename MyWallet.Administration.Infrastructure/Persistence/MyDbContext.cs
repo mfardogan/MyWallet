@@ -2,10 +2,13 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using MyWallet.Administration.Domain.Aggregation.Administrator;
 
 namespace MyWallet.Administration.Infrastructure.Persistence
 {
+    using MyWallet.Administration.Domain;
+    using MyWallet.Administration.Domain.Aggregation.Administrator;
+    using MyWallet.Administration.Infrastructure.Multitenancy;
+
     public partial class MyDbContext : DbContext
     {
         public MyDbContext()
@@ -22,14 +25,19 @@ namespace MyWallet.Administration.Infrastructure.Persistence
         /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            var accessor = Dependency.Get<IMultitenancyAccessor>();
+            var connectionString = accessor.GetTenancy().ConnectionStrings.Persistence;
             if (!optionsBuilder.IsConfigured)
             {
                 IConfigurationRoot configuration = new ConfigurationBuilder()
                    .SetBasePath(Directory.GetCurrentDirectory())
                    .AddJsonFile("appsettings.json")
                    .Build();
+                
                 optionsBuilder.UseNpgsql(configuration.GetConnectionString("MyWalletLocal"));
             }
+
+            optionsBuilder.UseNpgsql(connectionString);
             base.OnConfiguring(optionsBuilder);
         }
 

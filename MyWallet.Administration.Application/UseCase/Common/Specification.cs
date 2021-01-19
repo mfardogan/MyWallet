@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace MyWallet.Administration.Domain.Aggregation.Common
+namespace MyWallet.Administration.Application.UseCase
 {
     public abstract class Specification<TEntity,TViewModel>
     {

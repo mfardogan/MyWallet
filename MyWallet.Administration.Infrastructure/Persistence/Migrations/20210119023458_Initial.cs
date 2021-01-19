@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyWallet.Administration.Infrastructure.Persistence.Migrations
 {
-    public partial class InitialCustomer2 : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,7 +31,7 @@ namespace MyWallet.Administration.Infrastructure.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "administratorPassword",
+                name: "administrator_password",
                 schema: "user",
                 columns: table => new
                 {
@@ -42,9 +42,9 @@ namespace MyWallet.Administration.Infrastructure.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_administratorPassword", x => x.id);
+                    table.PrimaryKey("PK_administrator_password", x => x.id);
                     table.ForeignKey(
-                        name: "FK_administratorPassword_administrator_id",
+                        name: "FK_administrator_password_administrator_id",
                         column: x => x.id,
                         principalSchema: "user",
                         principalTable: "administrator",
@@ -56,7 +56,7 @@ namespace MyWallet.Administration.Infrastructure.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "administratorPassword",
+                name: "administrator_password",
                 schema: "user");
 
             migrationBuilder.DropTable(

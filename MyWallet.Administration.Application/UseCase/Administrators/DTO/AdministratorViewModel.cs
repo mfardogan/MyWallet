@@ -1,8 +1,8 @@
 ﻿using System;
-using MyWallet.Administration.Domain.Aggregation.Common;
 
-namespace MyWallet.Administration.Domain.Aggregation.Administrator
+namespace MyWallet.Administration.Application.UseCase.Administrators.DTO
 {
+    using MyWallet.Administration.Application.UseCase;
     public class AdministratorViewModel : EntityViewModel<Guid>
     {
         public string Name { get; set; }

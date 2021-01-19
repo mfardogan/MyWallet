@@ -1,11 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using MyWallet.Administration.Domain.Aggregation.Common;
 
 namespace MyWallet.Administration.Domain.Aggregation.Administrator
 {
-    [Table(name: "administratorPassword", Schema = Schamas.USERS)]
+    using MyWallet.Administration.Domain.Aggregation.Common;
+
+    [Table(name: "administrator_password", Schema = Schamas.USERS)]
     public class AdministratorPassword : Entity<Guid>
     {
         /// <summary>

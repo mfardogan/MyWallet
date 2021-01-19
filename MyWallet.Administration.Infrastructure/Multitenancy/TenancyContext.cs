@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace MyWallet.Administration.API.Multitenancy
+namespace MyWallet.Administration.Infrastructure.Multitenancy
 {
     public sealed class TenancyContext
     {
@@ -17,9 +17,9 @@ namespace MyWallet.Administration.API.Multitenancy
         public string Prefix { get; set; }
 
         /// <summary>
-        /// Tenant persistence connection string
+        /// Tenant persistence connection strings
         /// </summary>
-        [JsonPropertyName("persistenceConnection")] 
-        public string PersistenceConnectionString { get; set; }
+        [JsonPropertyName("connectionStrings")] 
+        public TenancyConnectionString ConnectionStrings { get; set; }
     }
 }

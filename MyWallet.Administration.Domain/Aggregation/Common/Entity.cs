@@ -6,6 +6,9 @@ namespace MyWallet.Administration.Domain.Aggregation.Common
 {
     public abstract class Entity<TPk> : DbObject
     {
+        public Entity() { }
+        public Entity(TPk id) => Id = id;
+
         /// <summary>
         /// Primary key column
         /// </summary>

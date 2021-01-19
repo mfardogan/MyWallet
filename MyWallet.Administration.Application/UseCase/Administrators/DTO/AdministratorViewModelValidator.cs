@@ -1,11 +1,10 @@
 ﻿using FluentValidation;
-using MyWallet.Administration.Domain.Aggregation.Common;
 
-namespace MyWallet.Administration.Domain.Aggregation.Administrator
+namespace MyWallet.Administration.Application.UseCase.Administrators.DTO
 {
-    public sealed class ViewModelValidator : Validator<AdministratorViewModel>
+    public sealed class AdministratorViewModelValidator : AbstractValidator<AdministratorViewModel>
     {
-        public override void ConfigureValidationOptions()
+        public AdministratorViewModelValidator()
         {
             RuleFor(x => x.Name).NotNull().NotEmpty().MaximumLength(40);
             RuleFor(x => x.Surname).NotNull().NotEmpty().MaximumLength(40);

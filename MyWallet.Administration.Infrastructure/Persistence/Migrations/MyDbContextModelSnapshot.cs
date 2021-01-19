@@ -81,7 +81,7 @@ namespace MyWallet.Administration.Infrastructure.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("administratorPassword", "user");
+                    b.ToTable("administrator_password", "user");
                 });
 
             modelBuilder.Entity("MyWallet.Administration.Domain.Aggregation.Administrator.AdministratorPassword", b =>
