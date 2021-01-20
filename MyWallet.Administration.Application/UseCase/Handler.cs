@@ -1,10 +1,22 @@
 ﻿using MediatR;
+using System;
 using System.Threading.Tasks;
 
 namespace MyWallet.Administration.Application.UseCase
 {
+    using MyWallet.Administration.Domain;
+    using MyWallet.Administration.Domain.Abstraction;
     public class Handler
     {
+        private readonly Lazy<IIdentity> lazyIdentity = 
+            new Lazy<IIdentity>(()=> Dependency.Get<IIdentity>(),
+                isThreadSafe: false);
+
+        /// <summary>
+        /// User
+        /// </summary>
+        public IIdentity Identity => lazyIdentity.Value;
+
         /// <summary>
         /// Completed task with data
         /// </summary>

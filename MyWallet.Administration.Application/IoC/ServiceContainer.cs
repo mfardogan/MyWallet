@@ -1,7 +1,5 @@
 ﻿using Autofac;
 using AutoMapper;
-using MediatR;
-using MediatR.Extensions.Autofac;
 using MediatR.Extensions.Autofac.DependencyInjection;
 
 namespace MyWallet.Administration.Application.IoC
@@ -18,7 +16,9 @@ namespace MyWallet.Administration.Application.IoC
               .AsSelf()
               .SingleInstance();
 
+#pragma warning disable CS0612 // Type or member is obsolete
             builder.AddMediatR(typeof(ViewModel).Assembly);
+#pragma warning restore CS0612 // Type or member is obsolete
 
             builder.Register(x =>
             {
@@ -29,9 +29,10 @@ namespace MyWallet.Administration.Application.IoC
             .As<IMapper>()
             .InstancePerLifetimeScope();
 
-
             builder.RegisterType<Rfc2898>().As<IPasswordHasher>().SingleInstance();
             builder.RegisterType<SaltFactory>().As<ISaltFactory>().SingleInstance();
+            builder.RegisterType<Identity>().As<IIdentity>().InstancePerLifetimeScope();
+
             base.Load(builder);
         }
     }

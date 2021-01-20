@@ -1,9 +1,10 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using MyWallet.Administration.Domain.Aggregation.Common;
 
 namespace MyWallet.Administration.Infrastructure.Persistence
 {
+    using MyWallet.Administration.Domain.Aggregation.Common;
+
     public partial class MyDbContext
     {
         protected override void OnModelCreating(ModelBuilder modelBuilder)

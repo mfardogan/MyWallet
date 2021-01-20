@@ -23,7 +23,7 @@ namespace MyWallet.Administration.Application.UseCase.Administrators
         /// <returns></returns>
         public Task<AdministratorViewModel> Handle(GetAdministratorByIdQuery request, CancellationToken cancellationToken)
         {
-            Administrator administrator = serviceHandler.Service.Get(request.Id);
+            Administrator administrator = serviceHandler.AggregationService.Get(request.Id);
             return serviceHandler.Success(administrator.Map<AdministratorViewModel>());
         }
     }

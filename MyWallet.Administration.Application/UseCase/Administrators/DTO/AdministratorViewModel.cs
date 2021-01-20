@@ -10,5 +10,6 @@ namespace MyWallet.Administration.Application.UseCase.Administrators.DTO
         public string FullName { get; set; }
         public DateTime? CreationAt { get; set; }
         public string Password { get; set; }
+        public byte[] RowVersion { get; set; }
     }
 }

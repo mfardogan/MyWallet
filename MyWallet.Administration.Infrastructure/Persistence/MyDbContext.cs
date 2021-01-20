@@ -27,6 +27,7 @@ namespace MyWallet.Administration.Infrastructure.Persistence
 
                 optionsBuilder.UseNpgsql(configuration.GetConnectionString("MyWalletLocal"));
             }
+
             base.OnConfiguring(optionsBuilder);
         }
 

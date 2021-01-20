@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MyWallet.Administration.Infrastructure.Persistence.Migrations
+namespace MyWallet.Administration.Infrastructure.Migrations
 {
     public partial class Initial : Migration
     {
@@ -23,6 +23,7 @@ namespace MyWallet.Administration.Infrastructure.Persistence.Migrations
                     surname = table.Column<string>(type: "text", nullable: false),
                     fullName = table.Column<string>(type: "text", nullable: true),
                     creationAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "bytea", rowVersion: true, nullable: true),
                     RowGuid = table.Column<Guid>(type: "uuid", nullable: true, defaultValueSql: "uuid_generate_v4()")
                 },
                 constraints: table =>
@@ -38,6 +39,7 @@ namespace MyWallet.Administration.Infrastructure.Persistence.Migrations
                     id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "uuid_generate_v4()"),
                     hash = table.Column<byte[]>(type: "bytea", nullable: false),
                     salt = table.Column<byte[]>(type: "bytea", nullable: false),
+                    RowVersion = table.Column<byte[]>(type: "bytea", rowVersion: true, nullable: true),
                     RowGuid = table.Column<Guid>(type: "uuid", nullable: true, defaultValueSql: "uuid_generate_v4()")
                 },
                 constraints: table =>

@@ -7,7 +7,7 @@ namespace MyWallet.Administration.Domain.Aggregation.Administrator
     using MyWallet.Administration.Domain.Aggregation.Common;
 
     [Table(name: "administrator_password", Schema = Schamas.USERS)]
-    public class AdministratorPassword : Entity<Guid>
+    public class AdministratorPassword : Entity<Guid>, IHasConcurrency
     {
         /// <summary>
         /// Fk
@@ -23,5 +23,9 @@ namespace MyWallet.Administration.Domain.Aggregation.Administrator
         [Required]
         [Column(name: "salt")]
         public byte[] Salt { get; set; }
+
+        [Timestamp]
+        [Column(name: "row_version", Order = 2)]
+        public byte[] RowVersion { get; set; }
     }
 }

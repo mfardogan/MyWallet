@@ -8,7 +8,7 @@ namespace MyWallet.Administration.Domain.Aggregation.Administrator
     using MyWallet.Administration.Domain.Aggregation.Common;
 
     [Table(name: "administrator", Schema = Schamas.USERS)]
-    public class Administrator : Entity<Guid>, IAggregateRoot, ICreationAt
+    public class Administrator : Entity<Guid>, IAggregationRoot, ICreationAt, IHasConcurrency
     {
         [Required]
         [Column(name: "name")]
@@ -23,6 +23,10 @@ namespace MyWallet.Administration.Domain.Aggregation.Administrator
 
         [Column(name: "creationAt")]
         public DateTime? CreationAt { get; set; }
+
+        [Timestamp]
+        [Column(name: "row_version", Order = 2)]
+        public byte[] RowVersion { get; set; }
 
         /// <summary>
         /// Password

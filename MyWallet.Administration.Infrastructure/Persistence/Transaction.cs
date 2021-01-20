@@ -1,25 +1,24 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace MyWallet.Administration.Infrastructure.Persistence
 {
-    using MyWallet.Administration.Domain;
     using MyWallet.Administration.Domain.Abstraction;
-    using System.Diagnostics;
 
     public sealed class Transaction : ITransaction
     {
         private readonly IDbContextTransaction _transaction;
-        public Transaction(MyDbContext myDbContext)
+        public Transaction([NotNull] MyDbContext context)
         {
-            _transaction = myDbContext.Database.BeginTransaction();
-            Debug.WriteLine(((object)myDbContext).GetHashCode());
+            _transaction = context.Database.BeginTransaction();
         }
 
-        public void Dispose()
-        {
-            _transaction.Dispose();
-        }
+        /// <summary>
+        /// Dispose currenct transaction
+        /// </summary>
+        void IDisposable.Dispose() => _transaction.Dispose();
 
         /// <summary>
         /// Commit

@@ -1,5 +1,5 @@
 ﻿Step-0) Right Click "MyWallet.Administration.API" on solution folder and "Set as Startup project"
 Step-1) Open Nuget Pakcage Manager Console
 Step-2) Set Default Project to "MyWallet.Administration.Infrastructure"
-Step-3) PM> add-migration <Name> -OutputDir "Persistence/Migrations"
+Step-3) PM> add-migration <Name> -OutputDir "Migrations"
 Step-4) PM> update-database
