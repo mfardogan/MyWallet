@@ -6,8 +6,10 @@ using Microsoft.Extensions.Configuration;
 namespace MyWallet.Administration.Infrastructure.IoC
 {
     using MyWallet.Administration.Domain.Abstraction;
+    using MyWallet.Administration.Domain.Aggregation.Administrator;
     using MyWallet.Administration.Infrastructure.Multitenancy;
     using MyWallet.Administration.Infrastructure.Persistence;
+    using MyWallet.Administration.Infrastructure.Persistence.Repository;
 
     public class ServiceContainer : Module
     {
@@ -25,13 +27,9 @@ namespace MyWallet.Administration.Infrastructure.IoC
                 return new MyDbContext(optsBuilder.Options);
             }).InstancePerLifetimeScope();
 
-            builder.RegisterType<MultitenancyHttpInterceptor>()
-                .As<IMultitenancyAccessor>()
-                .InstancePerLifetimeScope();
-
-            builder.RegisterType<Transaction>()
-                .As<ITransaction>();
-
+            builder.RegisterType<MultitenancyHttpInterceptor>().As<IMultitenancyAccessor>().InstancePerLifetimeScope();
+            builder.RegisterType<AdministratorRepository>().As<IAdministratorService>().InstancePerLifetimeScope();
+            builder.RegisterType<UoW>().As<UnitOfWork>().InstancePerLifetimeScope();
             base.Load(builder);
         }
     }

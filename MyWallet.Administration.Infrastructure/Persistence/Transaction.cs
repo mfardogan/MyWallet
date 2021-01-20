@@ -5,14 +5,20 @@ namespace MyWallet.Administration.Infrastructure.Persistence
 {
     using MyWallet.Administration.Domain;
     using MyWallet.Administration.Domain.Abstraction;
+    using System.Diagnostics;
 
     public sealed class Transaction : ITransaction
     {
         private readonly IDbContextTransaction _transaction;
-        public Transaction()
+        public Transaction(MyDbContext myDbContext)
         {
-            var context = Dependency.Get<MyDbContext>();
-            _transaction = context.Database.BeginTransaction();
+            _transaction = myDbContext.Database.BeginTransaction();
+            Debug.WriteLine(((object)myDbContext).GetHashCode());
+        }
+
+        public void Dispose()
+        {
+            _transaction.Dispose();
         }
 
         /// <summary>

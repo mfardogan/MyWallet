@@ -4,7 +4,8 @@ using System.Text;
 
 namespace MyWallet.Administration.Application.UseCase.Administrators
 {
-    class AdministratorSpecification
+    public class AdministratorSpecification
     {
+
     }
 }

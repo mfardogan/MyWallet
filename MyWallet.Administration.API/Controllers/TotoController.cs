@@ -1,24 +1,27 @@
-﻿using System.Linq;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MyWallet.Administration.Infrastructure.Persistence;
+
 
 namespace MyWallet.Administration.API.Controllers
 {
-    [Route("/api/[controller]")]
-    [ApiController]
-    public class TotoController : ControllerBase
-    {
-        MyDbContext my;
+    using MyWallet.Administration.Domain.Aggregation.Administrator;
+    using MyWallet.Administration.Application.UseCase.Administrators.CQ;
+    using MyWallet.Administration.Application.UseCase.Administrators.DTO;
 
-        public TotoController(MyDbContext my)
+    [Route("/api/[controller]")]
+    public class TotoController : CQRSBase
+    {
+        [HttpPut]
+        public async Task<Administrator[]> Get([FromBody] GetAdministratorsQuery administratorsQuery)
         {
-            this.my = my;
+            return await ExecuteQueryAsync(administratorsQuery);
         }
 
-        [HttpGet("get")]
-        public string Get()
+        [HttpGet("{id}")]
+        public async Task<AdministratorViewModel> Get(Guid id)
         {
-            return my.Administrators.First().Name;
+            return await ExecuteQueryAsync(new GetAdministratorByIdQuery(id));
         }
     }
 }

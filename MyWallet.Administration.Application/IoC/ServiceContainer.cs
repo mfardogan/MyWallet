@@ -1,5 +1,8 @@
 ﻿using Autofac;
 using AutoMapper;
+using MediatR;
+using MediatR.Extensions.Autofac;
+using MediatR.Extensions.Autofac.DependencyInjection;
 
 namespace MyWallet.Administration.Application.IoC
 {
@@ -14,6 +17,8 @@ namespace MyWallet.Administration.Application.IoC
             builder.Register(x => new MapperConfiguration(x => x.AddMaps(typeof(ViewModel).Assembly)))
               .AsSelf()
               .SingleInstance();
+
+            builder.AddMediatR(typeof(ViewModel).Assembly);
 
             builder.Register(x =>
             {
