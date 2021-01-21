@@ -5,17 +5,17 @@ namespace MyWallet.Administration.Application.UseCase
     using MyWallet.Administration.Domain;
     using MyWallet.Administration.Domain.Abstraction;
 
-    public class ServiceHandler<T> : Handler where T : IDbService
+    public class ServiceHandler<TDao> : Handler where TDao : IDAO
     {
         private readonly Lazy<UnitOfWork> lazyUoW;
-        public ServiceHandler() => (AggregationService, lazyUoW) =
-            (Dependency.Get<T>(), new Lazy<UnitOfWork>(
+        public ServiceHandler() => (DataAccessObject, lazyUoW) =
+            (Dependency.Get<TDao>(), new Lazy<UnitOfWork>(
                 () => Dependency.Get<UnitOfWork>()));
 
         /// <summary>
         /// Aggregation service
         /// </summary>
-        public T AggregationService { get; }
+        public TDao DataAccessObject { get; }
 
         /// <summary>
         /// Unit of work

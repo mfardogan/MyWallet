@@ -7,7 +7,7 @@ namespace MyWallet.Administration.Infrastructure.Persistence.Repository
     using MyWallet.Administration.Domain.Aggregation.Administrator;
     using MyWallet.Administration.Domain.Aggregation.Common;
 
-    public class AdministratorRepository : BaseService, IAdministratorService
+    public class AdministratorRepository : BaseService, IAdministratorDAO
     {
         public Administrator Delete(Administrator entity)
         {

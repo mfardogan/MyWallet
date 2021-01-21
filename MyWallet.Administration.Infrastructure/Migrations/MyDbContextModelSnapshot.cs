@@ -34,7 +34,7 @@ namespace MyWallet.Administration.Infrastructure.Migrations
 
                     b.Property<string>("FullName")
                         .HasColumnType("text")
-                        .HasColumnName("fullName");
+                        .HasColumnName("full_name");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -44,6 +44,7 @@ namespace MyWallet.Administration.Infrastructure.Migrations
                     b.Property<Guid?>("RowGuid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
+                        .HasColumnName("row_guid")
                         .HasDefaultValueSql("uuid_generate_v4()");
 
                     b.Property<byte[]>("RowVersion")
@@ -78,6 +79,7 @@ namespace MyWallet.Administration.Infrastructure.Migrations
                     b.Property<Guid?>("RowGuid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
+                        .HasColumnName("row_guid")
                         .HasDefaultValueSql("uuid_generate_v4()");
 
                     b.Property<byte[]>("RowVersion")

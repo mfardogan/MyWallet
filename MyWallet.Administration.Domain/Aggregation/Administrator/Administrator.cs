@@ -8,7 +8,7 @@ namespace MyWallet.Administration.Domain.Aggregation.Administrator
     using MyWallet.Administration.Domain.Aggregation.Common;
 
     [Table(name: "administrator", Schema = Schamas.USERS)]
-    public class Administrator : Entity<Guid>, IAggregationRoot, ICreationAt, IHasConcurrency
+    public class Administrator : Entity<Guid>, IAggregateRoot, ICreationAt, IHasConcurrency
     {
         [Required]
         [Column(name: "name")]
@@ -18,7 +18,7 @@ namespace MyWallet.Administration.Domain.Aggregation.Administrator
         [Column(name: "surname")]
         public string Surname { get; set; }
 
-        [Column(name: "fullName")]
+        [Column(name: "full_name")]
         public string FullName { get; set; }
 
         [Column(name: "creationAt")]
@@ -32,5 +32,14 @@ namespace MyWallet.Administration.Domain.Aggregation.Administrator
         /// Password
         /// </summary>
         public virtual AdministratorPassword Password { get; set; }
+
+        public void AddPassword(byte[] salt, byte[] hash)
+        {
+            Password = new AdministratorPassword()
+            {
+                Hash = hash,
+                Salt = salt
+            };
+        }
     }
 }

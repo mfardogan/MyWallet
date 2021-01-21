@@ -29,6 +29,6 @@ namespace MyWallet.Administration.Domain.Abstraction
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public abstract T GetService<T>() where T : IDbService;
+        public abstract T GetService<T>() where T : IDAO;
     }
 }

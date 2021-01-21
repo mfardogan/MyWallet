@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyWallet.Administration.Infrastructure.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Prepare : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,10 +21,10 @@ namespace MyWallet.Administration.Infrastructure.Migrations
                     id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "uuid_generate_v4()"),
                     name = table.Column<string>(type: "text", nullable: false),
                     surname = table.Column<string>(type: "text", nullable: false),
-                    fullName = table.Column<string>(type: "text", nullable: true),
+                    full_name = table.Column<string>(type: "text", nullable: true),
                     creationAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    RowVersion = table.Column<byte[]>(type: "bytea", rowVersion: true, nullable: true),
-                    RowGuid = table.Column<Guid>(type: "uuid", nullable: true, defaultValueSql: "uuid_generate_v4()")
+                    row_version = table.Column<byte[]>(type: "bytea", rowVersion: true, nullable: true),
+                    row_guid = table.Column<Guid>(type: "uuid", nullable: true, defaultValueSql: "uuid_generate_v4()")
                 },
                 constraints: table =>
                 {
@@ -39,8 +39,8 @@ namespace MyWallet.Administration.Infrastructure.Migrations
                     id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "uuid_generate_v4()"),
                     hash = table.Column<byte[]>(type: "bytea", nullable: false),
                     salt = table.Column<byte[]>(type: "bytea", nullable: false),
-                    RowVersion = table.Column<byte[]>(type: "bytea", rowVersion: true, nullable: true),
-                    RowGuid = table.Column<Guid>(type: "uuid", nullable: true, defaultValueSql: "uuid_generate_v4()")
+                    row_version = table.Column<byte[]>(type: "bytea", rowVersion: true, nullable: true),
+                    row_guid = table.Column<Guid>(type: "uuid", nullable: true, defaultValueSql: "uuid_generate_v4()")
                 },
                 constraints: table =>
                 {

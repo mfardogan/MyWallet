@@ -1,6 +1,6 @@
 ﻿namespace MyWallet.Administration.Domain.Abstraction
 {
-    public interface IDbService
+    public interface IDAO
     {
     }
 }

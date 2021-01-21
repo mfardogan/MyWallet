@@ -19,7 +19,7 @@ namespace MyWallet.Administration.Domain.Aggregation.Common
         /// <summary>
         /// Row guid
         /// </summary>
-        [Column(TypeName = "uuid", Order = 1)]
+        [Column("row_guid",TypeName = "uuid", Order = 1)]
         public Guid? RowGuid { get; set; }
     }
 }

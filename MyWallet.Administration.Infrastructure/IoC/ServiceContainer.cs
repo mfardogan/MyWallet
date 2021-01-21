@@ -28,7 +28,7 @@ namespace MyWallet.Administration.Infrastructure.IoC
             }).InstancePerLifetimeScope();
 
             builder.RegisterType<MultitenancyHttpInterceptor>().As<IMultitenancyAccessor>().InstancePerLifetimeScope();
-            builder.RegisterType<AdministratorRepository>().As<IAdministratorService>().InstancePerLifetimeScope();
+            builder.RegisterType<AdministratorRepository>().As<IAdministratorDAO>().InstancePerLifetimeScope();
             builder.RegisterType<UoW>().As<UnitOfWork>().InstancePerLifetimeScope();
             base.Load(builder);
         }
