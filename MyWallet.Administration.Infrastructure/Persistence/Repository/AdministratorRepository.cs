@@ -9,9 +9,11 @@ namespace MyWallet.Administration.Infrastructure.Persistence.Repository
 
     public class AdministratorRepository : BaseService, IAdministratorDAO
     {
-        public Administrator Delete(Administrator entity)
+        public Administrator Delete(Guid id)
         {
-            throw new NotImplementedException();
+            Administrator administrator = DbContext.Administrators.Single(e => e.Id == id);
+            DbContext.Administrators.Remove(administrator);
+            return administrator;
         }
 
         public Administrator Get(Guid id)
@@ -21,7 +23,12 @@ namespace MyWallet.Administration.Infrastructure.Persistence.Repository
 
         public Administrator[] Get(Expression<Func<Administrator, bool>> expression = null, Pagination pagination = null)
         {
-            return DbContext.Administrators.ToArray();
+            var (skip, rows) = ((pagination.Page - 1) * pagination.Rows, pagination.Rows);
+            return DbContext.Administrators
+                .Where(expression)
+                .Skip(skip)
+                .Take(rows)
+                .ToArray();
         }
 
         public Administrator Insert(Administrator entity)

@@ -5,10 +5,10 @@ namespace MyWallet.Administration.Application.UseCase
     using MyWallet.Administration.Domain;
     using MyWallet.Administration.Domain.Abstraction;
 
-    public class ServiceHandler<TDao> : Handler where TDao : IDAO
+    public class ServiceStub<TDao> : Stub where TDao : IDAO
     {
         private readonly Lazy<UnitOfWork> lazyUoW;
-        public ServiceHandler() => (DataAccessObject, lazyUoW) =
+        public ServiceStub() => (DataAccessObject, lazyUoW) =
             (Dependency.Get<TDao>(), new Lazy<UnitOfWork>(
                 () => Dependency.Get<UnitOfWork>()));
 

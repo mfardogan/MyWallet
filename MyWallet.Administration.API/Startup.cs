@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace MyWallet.Administration.API
 {
+    using Microsoft.OpenApi.Models;
     using MyWallet.Administration.Domain;
+    using System.Collections.Generic;
 
     public class Startup
     {
@@ -27,6 +29,39 @@ namespace MyWallet.Administration.API
             services.AddHttpContextAccessor();
             services.AddOptions();
             services.AddControllers();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "DEMO API",
+                    Version = "v1",
+                    Description = "API"
+                });
+
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "Jwt Authentication (Use \"Bearer\" <Your token>)",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    {
+                          new OpenApiSecurityScheme
+                          {
+                              Reference = new OpenApiReference{Type = ReferenceType.SecurityScheme,  Id = "Bearer"  },
+                              Scheme = "oauth2",
+                              Name = "Bearer",
+                              In = ParameterLocation.Header,
+                            },
+                            new List<string>()
+                    }
+                 });
+            });
         }
 
         /// <summary>
@@ -65,6 +100,12 @@ namespace MyWallet.Administration.API
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => endpoints.MapControllers());
+
+            app.UseSwagger();
+            app.UseSwaggerUI(x =>
+            {
+                x.SwaggerEndpoint("/swagger/v1/swagger.json", "DEMO API");
+            });
 
             ILifetimeScope lifetimeScope = app.ApplicationServices.GetAutofacRoot();
             Dependency.Instance.SetLifetimeScope(lifetimeScope);

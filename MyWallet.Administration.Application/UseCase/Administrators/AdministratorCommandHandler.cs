@@ -5,29 +5,45 @@ using System.Threading.Tasks;
 namespace MyWallet.Administration.Application.UseCase.Administrators
 {
     using MyWallet.Administration.Domain.Aggregation.Administrator;
-    using MyWallet.Administration.Application.UseCase.Administrators.CQ;
+    using MyWallet.Administration.Application.UseCase.Administrators.Request;
 
-    public class AdministratorCommandHandler : IRequestHandler<GetAdministratorsQuery, Administrator[]>
+    public class AdministratorCommandHandler :
+        IRequestHandler<InsertAdministratorCommand>,
+        IRequestHandler<UpdateAdministratorCommand>,
+        IRequestHandler<DeleteAdministratorCommand>
     {
         private readonly IAdministratorDAO dAO;
-        private readonly ServiceHandler<IAdministratorDAO> serviceHandler =
-            new ServiceHandler<IAdministratorDAO>();
+        private readonly ServiceStub<IAdministratorDAO> serviceStub =
+            new ServiceStub<IAdministratorDAO>();
 
         public AdministratorCommandHandler()
         {
-            dAO = serviceHandler.DataAccessObject;
+            dAO = serviceStub.DataAccessObject;
         }
 
-        /// <summary>
-        /// Test
-        /// </summary>
-        /// <param name="request"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        public Task<Administrator[]> Handle(GetAdministratorsQuery request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(InsertAdministratorCommand request, CancellationToken cancellationToken)
         {
-            Administrator[] administrators = dAO.Get(_ => true);
-            return serviceHandler.Success(administrators);
+            Administrator administrator = request.AdministratorViewModel.Map<Administrator>();
+            dAO.Insert(administrator);
+
+            await serviceStub.UoW.SaveAsync();
+            return serviceStub.Success();
+        }
+
+        public async Task<Unit> Handle(DeleteAdministratorCommand request, CancellationToken cancellationToken)
+        {
+            dAO.Delete(request.AdministratorId);
+            await serviceStub.UoW.SaveAsync();
+            return serviceStub.Success();
+        }
+
+        public async Task<Unit> Handle(UpdateAdministratorCommand request, CancellationToken cancellationToken)
+        {
+            Administrator administrator = request.AdministratorViewModel.Map<Administrator>();
+            dAO.Update(administrator);
+
+            await serviceStub.UoW.SaveAsync();
+            return serviceStub.Success();
         }
     }
 }

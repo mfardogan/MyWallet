@@ -8,8 +8,8 @@ namespace MyWallet.Administration.Infrastructure.Multitenancy
     public class MultitenancyHttpInterceptor : IMultitenancyAccessor
     {
         private readonly IHttpContextAccessor httpContext;
-        public MultitenancyHttpInterceptor(IHttpContextAccessor httContext)
-            => this.httpContext = httContext;
+        public MultitenancyHttpInterceptor(IHttpContextAccessor httpContext)
+            => this.httpContext = httpContext;
 
         static readonly TenancyContext[] _tenancies;
         static MultitenancyHttpInterceptor() => _tenancies =

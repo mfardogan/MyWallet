@@ -4,6 +4,6 @@
     {
         TEntity Insert(TEntity entity);
         TEntity Update(TEntity entity);
-        TEntity Delete(TEntity entity);
+        TEntity Delete(TPk id);
     }
 }

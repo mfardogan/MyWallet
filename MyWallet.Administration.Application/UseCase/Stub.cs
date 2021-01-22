@@ -6,7 +6,7 @@ namespace MyWallet.Administration.Application.UseCase
 {
     using MyWallet.Administration.Domain;
     using MyWallet.Administration.Domain.Abstraction;
-    public class Handler
+    public class Stub
     {
         private readonly Lazy<IIdentity> lazyIdentity = 
             new Lazy<IIdentity>(()=> Dependency.Get<IIdentity>(),

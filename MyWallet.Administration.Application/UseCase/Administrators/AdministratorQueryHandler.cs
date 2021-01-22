@@ -1,22 +1,25 @@
 ﻿using MediatR;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace MyWallet.Administration.Application.UseCase.Administrators
 {
     using MyWallet.Administration.Domain.Aggregation.Administrator;
-    using MyWallet.Administration.Application.UseCase.Administrators.CQ;
     using MyWallet.Administration.Application.UseCase.Administrators.DTO;
+    using MyWallet.Administration.Application.UseCase.Administrators.Request;
 
-    public class AdministratorQueryHandler : IRequestHandler<GetAdministratorByIdQuery, AdministratorViewModel>
+    public class AdministratorQueryHandler :
+        IRequestHandler<GetAdministratorByIdQuery, AdministratorViewModel>,
+        IRequestHandler<GetAdministratorsQuery, AdministratorViewModel[]>
     {
         private readonly IAdministratorDAO dAO;
-        private readonly ServiceHandler<IAdministratorDAO> serviceHandler =
-            new ServiceHandler<IAdministratorDAO>();
+        private readonly ServiceStub<IAdministratorDAO> serviceStub =
+            new ServiceStub<IAdministratorDAO>();
 
         public AdministratorQueryHandler()
         {
-            dAO = serviceHandler.DataAccessObject;
+            dAO = serviceStub.DataAccessObject;
         }
 
         /// <summary>
@@ -28,7 +31,23 @@ namespace MyWallet.Administration.Application.UseCase.Administrators
         public Task<AdministratorViewModel> Handle(GetAdministratorByIdQuery request, CancellationToken cancellationToken)
         {
             Administrator administrator = dAO.Get(request.Id);
-            return serviceHandler.Success(administrator.Map<AdministratorViewModel>());
+            return serviceStub.Success(administrator.Map<AdministratorViewModel>());
+        }
+
+        /// <summary>
+        /// Get page
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<AdministratorViewModel[]> Handle(GetAdministratorsQuery request, CancellationToken cancellationToken)
+        {
+            AdministratorViewModel[] administrators =
+                dAO.Get(_ => true, request.Pagination)
+                .Map<AdministratorViewModel>()
+                .ToArray();
+
+            return serviceStub.Success(administrators);
         }
     }
 }
