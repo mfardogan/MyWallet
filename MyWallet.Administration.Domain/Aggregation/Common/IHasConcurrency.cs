@@ -2,6 +2,6 @@
 {
     public interface IHasConcurrency
     {
-        byte[] RowVersion { get; set; }
+        uint ConcurrencyToken { get; set; }
     }
 }

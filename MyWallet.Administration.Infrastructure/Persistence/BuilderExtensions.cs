@@ -14,12 +14,11 @@ namespace MyWallet.Administration.Infrastructure.Persistence
                 .Where(e => e.ClrType.GetInterfaces().Contains(typeof(IHasConcurrency)))
                 .Select(e => e.ClrType)
                 .ToList()
-                .ForEach(e =>
-                {
-                    modelBuilder.Entity(e)
-                    .Property(nameof(IHasConcurrency.RowVersion))
-                    .IsRowVersion();
-                });
+                .ForEach(e => modelBuilder.Entity(e).Property(nameof(IHasConcurrency.ConcurrencyToken))
+                     .HasColumnName("xmin")
+                         .HasColumnType("xid")
+                              .ValueGeneratedOnAddOrUpdate()
+                                     .IsConcurrencyToken());
         }
 
         public static void DefaultSqlValues(this ModelBuilder modelBuilder, Func<IMutableEntityType, bool> filter, string propertyName, string defaultSqlValue)

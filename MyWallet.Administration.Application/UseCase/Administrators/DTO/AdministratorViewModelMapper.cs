@@ -8,7 +8,9 @@ namespace MyWallet.Administration.Application.UseCase.Administrators.DTO
         public AdministratorViewModelMapper()
         {
             CreateMap<Administrator, AdministratorViewModel>();
-            CreateMap<AdministratorViewModel, Administrator>().ForMember(config => config.CreationAt, options => options.Ignore());
+            CreateMap<AdministratorViewModel, Administrator>()
+                .ForMember(config => config.CreationAt, options => options.Ignore())
+                .ForMember(config => config.Password, options => options.Ignore());
         }
     }
 }

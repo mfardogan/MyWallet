@@ -28,6 +28,12 @@ namespace MyWallet.Administration.Infrastructure.Migrations
                         .HasColumnName("id")
                         .HasDefaultValueSql("uuid_generate_v4()");
 
+                    b.Property<uint>("ConcurrencyToken")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("xid")
+                        .HasColumnName("xmin");
+
                     b.Property<DateTime?>("CreationAt")
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("creationAt");
@@ -46,12 +52,6 @@ namespace MyWallet.Administration.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("row_guid")
                         .HasDefaultValueSql("uuid_generate_v4()");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("bytea")
-                        .HasColumnName("row_version");
 
                     b.Property<string>("Surname")
                         .IsRequired()
@@ -81,12 +81,6 @@ namespace MyWallet.Administration.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("row_guid")
                         .HasDefaultValueSql("uuid_generate_v4()");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("bytea")
-                        .HasColumnName("row_version");
 
                     b.Property<byte[]>("Salt")
                         .IsRequired()

@@ -24,9 +24,10 @@ namespace MyWallet.Administration.Domain.Aggregation.Administrator
         [Column(name: "creationAt")]
         public DateTime? CreationAt { get; set; }
 
-        [Timestamp]
-        [Column(name: "row_version", Order = 2)]
-        public byte[] RowVersion { get; set; }
+        [ConcurrencyCheck]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [Column(name: "xmin", TypeName = "xid", Order = 2)]
+        public uint ConcurrencyToken { get; set; }
 
         /// <summary>
         /// Password

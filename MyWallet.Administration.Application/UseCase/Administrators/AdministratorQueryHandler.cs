@@ -42,9 +42,10 @@ namespace MyWallet.Administration.Application.UseCase.Administrators
         /// <returns></returns>
         public Task<AdministratorViewModel[]> Handle(GetAdministratorsQuery request, CancellationToken cancellationToken)
         {
+            var entities = dAO.Get(_ => true, request.Pagination);
+
             AdministratorViewModel[] administrators =
-                dAO.Get(_ => true, request.Pagination)
-                .Map<AdministratorViewModel>()
+               entities.Map<AdministratorViewModel>()
                 .ToArray();
 
             return serviceStub.Success(administrators);

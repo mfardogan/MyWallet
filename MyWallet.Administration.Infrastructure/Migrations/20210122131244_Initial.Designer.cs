@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MyWallet.Administration.Infrastructure.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20210120105053_Prepare")]
-    partial class Prepare
+    [Migration("20210122131244_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,6 +29,12 @@ namespace MyWallet.Administration.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id")
                         .HasDefaultValueSql("uuid_generate_v4()");
+
+                    b.Property<uint>("ConcurrencyToken")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("xid")
+                        .HasColumnName("xmin");
 
                     b.Property<DateTime?>("CreationAt")
                         .HasColumnType("timestamp without time zone")
@@ -48,12 +54,6 @@ namespace MyWallet.Administration.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("row_guid")
                         .HasDefaultValueSql("uuid_generate_v4()");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("bytea")
-                        .HasColumnName("row_version");
 
                     b.Property<string>("Surname")
                         .IsRequired()
@@ -83,12 +83,6 @@ namespace MyWallet.Administration.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("row_guid")
                         .HasDefaultValueSql("uuid_generate_v4()");
-
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("bytea")
-                        .HasColumnName("row_version");
 
                     b.Property<byte[]>("Salt")
                         .IsRequired()

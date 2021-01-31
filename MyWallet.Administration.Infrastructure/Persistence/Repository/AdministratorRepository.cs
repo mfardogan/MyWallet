@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 
 namespace MyWallet.Administration.Infrastructure.Persistence.Repository
 {
+    using Microsoft.EntityFrameworkCore;
     using MyWallet.Administration.Domain.Aggregation.Administrator;
     using MyWallet.Administration.Domain.Aggregation.Common;
 
@@ -25,6 +26,7 @@ namespace MyWallet.Administration.Infrastructure.Persistence.Repository
         {
             var (skip, rows) = ((pagination.Page - 1) * pagination.Rows, pagination.Rows);
             return DbContext.Administrators
+                .Include(x => x.Password)
                 .Where(expression)
                 .Skip(skip)
                 .Take(rows)
@@ -39,7 +41,8 @@ namespace MyWallet.Administration.Infrastructure.Persistence.Repository
 
         public Administrator Update(Administrator entity)
         {
-            throw new NotImplementedException();
+            DbContext.Entry<Administrator>(entity).State = EntityState.Modified;
+            return entity;
         }
     }
 }

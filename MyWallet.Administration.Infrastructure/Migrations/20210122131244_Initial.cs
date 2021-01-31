@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyWallet.Administration.Infrastructure.Migrations
 {
-    public partial class Prepare : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -23,7 +23,7 @@ namespace MyWallet.Administration.Infrastructure.Migrations
                     surname = table.Column<string>(type: "text", nullable: false),
                     full_name = table.Column<string>(type: "text", nullable: true),
                     creationAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    row_version = table.Column<byte[]>(type: "bytea", rowVersion: true, nullable: true),
+                    xmin = table.Column<uint>(type: "xid", rowVersion: true, nullable: false),
                     row_guid = table.Column<Guid>(type: "uuid", nullable: true, defaultValueSql: "uuid_generate_v4()")
                 },
                 constraints: table =>
@@ -39,7 +39,6 @@ namespace MyWallet.Administration.Infrastructure.Migrations
                     id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "uuid_generate_v4()"),
                     hash = table.Column<byte[]>(type: "bytea", nullable: false),
                     salt = table.Column<byte[]>(type: "bytea", nullable: false),
-                    row_version = table.Column<byte[]>(type: "bytea", rowVersion: true, nullable: true),
                     row_guid = table.Column<Guid>(type: "uuid", nullable: true, defaultValueSql: "uuid_generate_v4()")
                 },
                 constraints: table =>

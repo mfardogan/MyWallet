@@ -11,7 +11,7 @@ namespace MyWallet.Administration.API.Controllers
     [Route("/api/[controller]")]
     public class TotoController : CQRSBase
     {
-        [HttpPut]
+        [HttpPut("search")]
         public async Task<AdministratorViewModel[]> Get([FromBody] GetAdministratorsQuery administratorsQuery)
         {
             return await ExecuteQueryAsync(administratorsQuery);
@@ -21,6 +21,18 @@ namespace MyWallet.Administration.API.Controllers
         public async Task<AdministratorViewModel> Get(Guid id)
         {
             return await ExecuteQueryAsync(new GetAdministratorByIdQuery(id));
+        }
+
+        [HttpPost]
+        public async Task Get([FromBody]InsertAdministratorCommand insertAdministratorCommand)
+        {
+             await ExecuteCommandAsync(insertAdministratorCommand);
+        }
+
+        [HttpPut]
+        public async Task Get([FromBody] UpdateAdministratorCommand updateAdministratorCommand)
+        {
+            await ExecuteCommandAsync(updateAdministratorCommand);
         }
     }
 }

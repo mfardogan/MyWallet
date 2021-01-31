@@ -6,6 +6,8 @@ namespace MyWallet.Administration.Application.UseCase.Administrators
 {
     using MyWallet.Administration.Domain.Aggregation.Administrator;
     using MyWallet.Administration.Application.UseCase.Administrators.Request;
+    using MyWallet.Administration.Domain.Abstraction;
+    using MyWallet.Administration.Domain;
 
     public class AdministratorCommandHandler :
         IRequestHandler<InsertAdministratorCommand>,
@@ -16,14 +18,21 @@ namespace MyWallet.Administration.Application.UseCase.Administrators
         private readonly ServiceStub<IAdministratorDAO> serviceStub =
             new ServiceStub<IAdministratorDAO>();
 
+        private readonly ISaltFactory saltFactory;
+        private readonly IPasswordHasher passwordHasher;
         public AdministratorCommandHandler()
         {
             dAO = serviceStub.DataAccessObject;
+            saltFactory = Dependency.Get<ISaltFactory>();
+            passwordHasher = Dependency.Get<IPasswordHasher>();
         }
 
         public async Task<Unit> Handle(InsertAdministratorCommand request, CancellationToken cancellationToken)
         {
-            Administrator administrator = request.AdministratorViewModel.Map<Administrator>();
+            var salt = saltFactory.Generate();
+            var hash = passwordHasher.Compute(request.AdministratorViewModel.Password, salt);
+            Administrator administrator = request.AdministratorViewModel;
+            administrator.AddPassword(salt, hash);
             dAO.Insert(administrator);
 
             await serviceStub.UoW.SaveAsync();
@@ -39,9 +48,7 @@ namespace MyWallet.Administration.Application.UseCase.Administrators
 
         public async Task<Unit> Handle(UpdateAdministratorCommand request, CancellationToken cancellationToken)
         {
-            Administrator administrator = request.AdministratorViewModel.Map<Administrator>();
-            dAO.Update(administrator);
-
+            dAO.Update(request.ViewModel);
             await serviceStub.UoW.SaveAsync();
             return serviceStub.Success();
         }

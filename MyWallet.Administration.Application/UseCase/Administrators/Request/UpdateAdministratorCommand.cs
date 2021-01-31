@@ -6,6 +6,6 @@ namespace MyWallet.Administration.Application.UseCase.Administrators.Request
 
     public class UpdateAdministratorCommand : IRequest
     {
-        public AdministratorViewModel AdministratorViewModel { get; set; }
+        public AdministratorViewModel ViewModel { get; set; }
     }
 }
