@@ -6,12 +6,6 @@ namespace Turquoise.Administration.Domain.Abstraction
     public interface IUoW
     {
         /// <summary>
-        /// Save changes
-        /// </summary>
-        /// <returns></returns>
-        int Save();
-
-        /// <summary>
         /// Save changes async
         /// </summary>
         /// <param name="cancellationToken"></param>
@@ -29,6 +23,6 @@ namespace Turquoise.Administration.Domain.Abstraction
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        T GetService<T>() where T : IDAO;
+        T ServiceAs<T>() where T : IDAO;
     }
 }

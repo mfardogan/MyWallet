@@ -8,7 +8,7 @@ namespace Turquoise.Administration.API.Controllers
     using Turquoise.Administration.Application.UseCase.Administrators.DTO;
 
     [Route("/api/[controller]")]
-    public class TodoController : CQRSBase
+    public class AdministratorsController : CQRSBase
     {
         [HttpPut("search")]
         public async Task<AdministratorViewModel[]> Get([FromBody] GetAdministratorsQuery administratorsQuery)

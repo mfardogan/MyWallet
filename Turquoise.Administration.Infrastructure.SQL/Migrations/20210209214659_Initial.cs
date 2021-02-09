@@ -35,7 +35,8 @@ namespace Turquoise.Administration.Infrastructure.SQL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Branches",
+                name: "branch",
+                schema: "user",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -46,7 +47,7 @@ namespace Turquoise.Administration.Infrastructure.SQL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Branches", x => x.id);
+                    table.PrimaryKey("PK_branch", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -105,9 +106,10 @@ namespace Turquoise.Administration.Infrastructure.SQL.Migrations
                 {
                     table.PrimaryKey("PK_doctor", x => x.id);
                     table.ForeignKey(
-                        name: "FK_doctor_Branches_branch_id",
+                        name: "FK_doctor_branch_branch_id",
                         column: x => x.branch_id,
-                        principalTable: "Branches",
+                        principalSchema: "user",
+                        principalTable: "branch",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -120,6 +122,7 @@ namespace Turquoise.Administration.Infrastructure.SQL.Migrations
                     id = table.Column<Guid>(type: "uuid", nullable: false),
                     name = table.Column<string>(type: "varchar(20)", nullable: false),
                     code = table.Column<string>(type: "varchar(3)", nullable: false),
+                    number = table.Column<long>(type: "bigint", nullable: false),
                     color = table.Column<string>(type: "varchar(6)", nullable: false),
                     description = table.Column<string>(type: "varchar", nullable: true),
                     choice_group_id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -174,7 +177,8 @@ namespace Turquoise.Administration.Infrastructure.SQL.Migrations
                 schema: "survey");
 
             migrationBuilder.DropTable(
-                name: "Branches");
+                name: "branch",
+                schema: "user");
         }
     }
 }

@@ -1,23 +1,21 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Turquoise.Administration.Infrastructure.SQL.Tracker;
-using Turquoise.Administration.Domain.Aggregation.Branch;
-using Turquoise.Administration.Domain.Aggregation.Choice;
-using Turquoise.Administration.Domain.Aggregation.ChoiceGroup;
-using Turquoise.Administration.Domain.Aggregation.Common;
-using Turquoise.Administration.Domain.Aggregation.Doctor;
-using Turquoise.Administration.Domain.Aggregation.Administrator;
-using System.Threading.Tasks;
-using System.Threading;
-using Turquoise.Administration.Domain.Abstraction;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Turquoise.Administration.Infrastructure.SQL
 {
+    using Turquoise.Administration.Infrastructure.SQL.Tracker;
+    using Turquoise.Administration.Domain.Aggregation.Branch;
+    using Turquoise.Administration.Domain.Aggregation.Choice;
+    using Turquoise.Administration.Domain.Aggregation.ChoiceGroup;
+    using Turquoise.Administration.Domain.Aggregation.Common;
+    using Turquoise.Administration.Domain.Aggregation.Doctor;
+    using Turquoise.Administration.Domain.Aggregation.Administrator;
     public partial class Database : DbContext
     {
         public Database() { }

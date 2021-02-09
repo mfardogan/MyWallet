@@ -8,49 +8,68 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
     using Turquoise.Administration.Application.UseCase.Administrators.Request;
     using Turquoise.Administration.Domain.Abstraction;
     using Turquoise.Administration.Domain;
+    using Turquoise.Administration.Domain.DomainEvent;
 
     public class AdministratorCommandHandler :
         IRequestHandler<InsertAdministratorCommand>,
         IRequestHandler<UpdateAdministratorCommand>,
         IRequestHandler<DeleteAdministratorCommand>
     {
-        private readonly IAdministratorDAO dAO;
-        private readonly ServiceStub<IAdministratorDAO> serviceStub =
-            new ServiceStub<IAdministratorDAO>();
+        private readonly BussinesProxy<IAdministratorDAO> service;
 
         private readonly ISaltFactory saltFactory;
         private readonly IPasswordHasher passwordHasher;
         public AdministratorCommandHandler()
         {
-            dAO = serviceStub.DataAccessObject;
+            service = new BussinesProxy<IAdministratorDAO>();
             saltFactory = Dependency.Get<ISaltFactory>();
             passwordHasher = Dependency.Get<IPasswordHasher>();
         }
 
+        /// <summary>
+        /// Add
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<Unit> Handle(InsertAdministratorCommand request, CancellationToken cancellationToken)
         {
             var salt = saltFactory.Generate();
             var hash = passwordHasher.Compute(request.AdministratorViewModel.Password, salt);
             Administrator administrator = request.AdministratorViewModel;
             administrator.AddPassword(salt, hash);
-            dAO.Insert(administrator);
+            
+            service.DataAccessObject.Insert(administrator);
+            await service.SaveAsync();
 
-            await serviceStub.UoW.SaveAsync();
-            return serviceStub.Success();
+            await service.HandleEvent(new GenericEvent<string>("test!"));
+            return service.Success();
         }
 
+        /// <summary>
+        /// Update
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<Unit> Handle(DeleteAdministratorCommand request, CancellationToken cancellationToken)
         {
-            dAO.Delete(request.AdministratorId);
-            await serviceStub.UoW.SaveAsync();
-            return serviceStub.Success();
+            service.DataAccessObject.Delete(request.AdministratorId);
+            await service.SaveAsync();
+            return service.Success();
         }
 
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<Unit> Handle(UpdateAdministratorCommand request, CancellationToken cancellationToken)
         {
-            dAO.Update(request.ViewModel);
-            await serviceStub.UoW.SaveAsync();
-            return serviceStub.Success();
+            service.DataAccessObject.Update(request.ViewModel);
+            await service.SaveAsync();
+            return service.Success();
         }
     }
 }

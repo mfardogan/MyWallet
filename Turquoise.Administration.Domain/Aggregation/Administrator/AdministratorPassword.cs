@@ -6,7 +6,7 @@ namespace Turquoise.Administration.Domain.Aggregation.Administrator
 {
     using Turquoise.Administration.Domain.Aggregation.Common;
 
-    [Table(name: "administrator_password", Schema = Schamas.USERS)]
+    [Table("administrator_password", Schema = Schamas.USERS)]
     public class AdministratorPassword : Entity<Guid>
     {
         /// <summary>
@@ -17,11 +17,11 @@ namespace Turquoise.Administration.Domain.Aggregation.Administrator
         public Administrator Administrator { get; set; }
 
         [Required]
-        [Column(name: "hash")]
+        [Column("hash")]
         public byte[] Hash { get; set; }
 
         [Required]
-        [Column(name: "salt")]
+        [Column("salt")]
         public byte[] Salt { get; set; }
     }
 }

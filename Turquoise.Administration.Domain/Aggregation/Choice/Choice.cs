@@ -8,26 +8,30 @@ namespace Turquoise.Administration.Domain.Aggregation.Choice
     using Turquoise.Administration.Domain.Aggregation.Common;
     using Turquoise.Administration.Domain.Aggregation.ChoiceGroup;
 
-    [Table(name: "choice", Schema = Schamas.SURVEY)]
-    public class Choice : ConcurrencyEntity<Guid>, IAggregateRoot
+    [Table("choice", Schema = Schamas.SURVEY)]
+    public class Choice : Concurrency<Guid>, IAggregateRoot
     {
         [Required]
-        [Column(name: "name", TypeName = "varchar(20)")]
+        [Column("name", TypeName = "varchar(20)")]
         public string Name { get; set; }
 
         [Required]
-        [Column(name: "code", TypeName = "varchar(3)")]
+        [Column("code", TypeName = "varchar(3)")]
         public string Code { get; set; }
 
         [Required]
-        [Column(name: "color", TypeName = "varchar(6)")]
+        [Column("number")]
+        public uint Number { get; set; }
+
+        [Required]
+        [Column("color", TypeName = "varchar(6)")]
         public string Color { get; set; }
 
-        [Column(name: "description", TypeName = "varchar")]
+        [Column("description", TypeName = "varchar")]
         public string Description { get; set; }
 
         [Required]
-        [Column(name: "choice_group_id")]
+        [Column("choice_group_id")]
         [ForeignKey(name: nameof(ChoiceGroup))]
         public Guid ChoiceGroupId { get; set; }
 

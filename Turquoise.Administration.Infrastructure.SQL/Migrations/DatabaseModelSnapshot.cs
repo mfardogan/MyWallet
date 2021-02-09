@@ -118,7 +118,7 @@ namespace Turquoise.Administration.Infrastructure.SQL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Branches");
+                    b.ToTable("branch", "user");
                 });
 
             modelBuilder.Entity("Turquoise.Administration.Domain.Aggregation.Choice.Choice", b =>
@@ -156,6 +156,10 @@ namespace Turquoise.Administration.Infrastructure.SQL.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(20)")
                         .HasColumnName("name");
+
+                    b.Property<long>("Number")
+                        .HasColumnType("bigint")
+                        .HasColumnName("number");
 
                     b.Property<Guid?>("RowGuid")
                         .HasColumnType("uuid")

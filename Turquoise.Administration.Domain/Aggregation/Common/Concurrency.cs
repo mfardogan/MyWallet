@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Turquoise.Administration.Domain.Aggregation.Common
 {
-    public abstract class ConcurrencyEntity<TPk> : Entity<TPk>
+    public abstract class Concurrency<TPk> : Entity<TPk>
     {
         /// <summary>
         /// Concurrency token

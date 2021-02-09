@@ -13,13 +13,11 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
         IRequestHandler<GetAdministratorByIdQuery, AdministratorViewModel>,
         IRequestHandler<GetAdministratorsQuery, AdministratorViewModel[]>
     {
-        private readonly IAdministratorDAO dAO;
-        private readonly ServiceStub<IAdministratorDAO> serviceStub =
-            new ServiceStub<IAdministratorDAO>();
+        private readonly BussinesProxy<IAdministratorDAO> service;
 
         public AdministratorQueryHandler()
         {
-            dAO = serviceStub.DataAccessObject;
+            service = new BussinesProxy<IAdministratorDAO>();
         }
 
         /// <summary>
@@ -30,8 +28,8 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
         /// <returns></returns>
         public Task<AdministratorViewModel> Handle(GetAdministratorByIdQuery request, CancellationToken cancellationToken)
         {
-            Administrator administrator = dAO.Get(request.Id);
-            return serviceStub.Success(administrator.Map<AdministratorViewModel>());
+            Administrator administrator = service.DataAccessObject.Get(request.Id);
+            return service.Success(administrator.Map<AdministratorViewModel>());
         }
 
         /// <summary>
@@ -42,13 +40,12 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
         /// <returns></returns>
         public Task<AdministratorViewModel[]> Handle(GetAdministratorsQuery request, CancellationToken cancellationToken)
         {
-            var entities = dAO.Get(_ => true, request.Pagination);
-
             AdministratorViewModel[] administrators =
-               entities.Map<AdministratorViewModel>()
-                .ToArray();
+               service.DataAccessObject.Get(_ => true, request.Pagination)
+               .Map<AdministratorViewModel>()
+               .ToArray();
 
-            return serviceStub.Success(administrators);
+            return service.Success(administrators);
         }
     }
 }

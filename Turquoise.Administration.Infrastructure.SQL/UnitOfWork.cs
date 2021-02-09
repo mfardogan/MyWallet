@@ -19,19 +19,13 @@ namespace Turquoise.Administration.Infrastructure.SQL
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T GetService<T>() where T : IDAO => Dependency.Get<T>();
+        public T ServiceAs<T>() where T : IDAO => Dependency.Get<T>();
 
         /// <summary>
         /// Begin new transaction
         /// </summary>
         /// <returns></returns>
         public ITransaction BeginTransaction() => new TransactionScope(_context);
-
-        /// <summary>
-        /// Save
-        /// </summary>
-        /// <returns></returns>
-        public int Save() => _context.SaveChanges();
 
         /// <summary>
         /// Save async

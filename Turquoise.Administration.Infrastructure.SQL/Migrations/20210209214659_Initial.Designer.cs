@@ -10,7 +10,7 @@ using Turquoise.Administration.Infrastructure.SQL;
 namespace Turquoise.Administration.Infrastructure.SQL.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20210209193846_Initial")]
+    [Migration("20210209214659_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -120,7 +120,7 @@ namespace Turquoise.Administration.Infrastructure.SQL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Branches");
+                    b.ToTable("branch", "user");
                 });
 
             modelBuilder.Entity("Turquoise.Administration.Domain.Aggregation.Choice.Choice", b =>
@@ -158,6 +158,10 @@ namespace Turquoise.Administration.Infrastructure.SQL.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(20)")
                         .HasColumnName("name");
+
+                    b.Property<long>("Number")
+                        .HasColumnType("bigint")
+                        .HasColumnName("number");
 
                     b.Property<Guid?>("RowGuid")
                         .HasColumnType("uuid")

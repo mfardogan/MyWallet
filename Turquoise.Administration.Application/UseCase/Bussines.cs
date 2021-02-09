@@ -4,12 +4,13 @@ using System.Threading.Tasks;
 
 namespace Turquoise.Administration.Application.UseCase
 {
+    using System.Threading;
     using Turquoise.Administration.Domain;
     using Turquoise.Administration.Domain.Abstraction;
-    public class Stub
+    public class Bussines
     {
-        private readonly Lazy<IIdentity> lazyIdentity = 
-            new Lazy<IIdentity>(()=> Dependency.Get<IIdentity>(),
+        private readonly Lazy<IIdentity> lazyIdentity =
+            new Lazy<IIdentity>(() => Dependency.Get<IIdentity>(),
                 isThreadSafe: false);
 
         /// <summary>
@@ -20,10 +21,10 @@ namespace Turquoise.Administration.Application.UseCase
         /// <summary>
         /// Completed task with data
         /// </summary>
-        /// <typeparam name="P"></typeparam>
-        /// <param name="data"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="result"></param>
         /// <returns></returns>
-        public Task<P> Success<P>(P data) => Task.FromResult(data);
+        public Task<T> Success<T>(T result) => Task.FromResult(result);
 
         /// <summary>
         /// Compted task as command
@@ -32,11 +33,13 @@ namespace Turquoise.Administration.Application.UseCase
         public Unit Success() => Unit.Value;
 
         /// <summary>
-        /// Special case result
+        /// Publish event
         /// </summary>
-        /// <typeparam name="P"></typeparam>
-        /// <param name="result"></param>
-        /// <returns></returns>
-        public Task<P> SpecialCase<P>(P result) => Task.FromResult(result);
+        /// <param name="notification"></param>
+        /// <param name="cancellationToken"></param>
+        public async Task HandleEvent(INotification notification, CancellationToken cancellationToken = default)
+        {
+            await Dependency.Get<IMediator>().Publish(notification, cancellationToken);
+        }
     }
 }

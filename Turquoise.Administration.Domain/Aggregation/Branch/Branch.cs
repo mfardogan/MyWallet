@@ -9,14 +9,15 @@ namespace Turquoise.Administration.Domain.Aggregation.Branch
     using Turquoise.Administration.Domain.Aggregation.Common;
     using Turquoise.Administration.Domain.Aggregation.Doctor;
 
-    public class Branch : ConcurrencyEntity<Guid>, IAggregateRoot
+    [Table("branch", Schema = Schamas.USERS)]
+    public class Branch : Concurrency<Guid>, IAggregateRoot
     {
         [Required]
-        [Column(name: "name", TypeName = "varchar(20)")]
+        [Column("name", TypeName = "varchar(20)")]
         public string Name { get; set; }
 
         [Required]
-        [Column(name: "code", TypeName = "varchar(3)")]
+        [Column("code", TypeName = "varchar(3)")]
         public string Code { get; set; }
 
         /// <summary>
