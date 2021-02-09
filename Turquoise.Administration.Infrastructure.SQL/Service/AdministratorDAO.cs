@@ -3,12 +3,12 @@ using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Turquoise.Administration.Infrastructure.SQL.Persistence.Repository
+namespace Turquoise.Administration.Infrastructure.SQL.Service
 {
     using Turquoise.Administration.Domain.Aggregation.Administrator;
     using Turquoise.Administration.Domain.Aggregation.Common;
 
-    public class AdministratorRepository : BaseService, IAdministratorDAO
+    public class AdministratorDAO : BaseService, IAdministratorDAO
     {
         public Administrator Delete(Guid id)
         {

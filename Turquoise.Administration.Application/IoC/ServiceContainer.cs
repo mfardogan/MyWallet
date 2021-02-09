@@ -12,10 +12,6 @@ namespace Turquoise.Administration.Application.IoC
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(x => new MapperConfiguration(x => x.AddMaps(typeof(ViewModel).Assembly)))
-              .AsSelf()
-              .SingleInstance();
-
 #pragma warning disable CS0612 // Type or member is obsolete
             builder.AddMediatR(typeof(ViewModel).Assembly);
 #pragma warning restore CS0612 // Type or member is obsolete
@@ -28,6 +24,10 @@ namespace Turquoise.Administration.Application.IoC
             })
             .As<IMapper>()
             .InstancePerLifetimeScope();
+
+            builder.Register(x => new MapperConfiguration(x => x.AddMaps(typeof(ViewModel).Assembly)))
+                .AsSelf()
+                .SingleInstance();
 
             builder.RegisterType<Rfc2898>().As<IPasswordHasher>().SingleInstance();
             builder.RegisterType<SaltFactory>().As<ISaltFactory>().SingleInstance();

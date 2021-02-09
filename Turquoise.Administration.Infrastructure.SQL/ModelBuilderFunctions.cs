@@ -2,11 +2,12 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Turquoise.Administration.Domain.Aggregation.Common;
 
-namespace Turquoise.Administration.Infrastructure.SQL.Persistence
+namespace Turquoise.Administration.Infrastructure.SQL
 {
-    internal static class BuilderExtensions
+    using Turquoise.Administration.Domain.Aggregation.Common;
+
+    internal static class ModelBuilderFunctions
     {
         public static void ConcurrencyTokens(this ModelBuilder modelBuilder)
         {

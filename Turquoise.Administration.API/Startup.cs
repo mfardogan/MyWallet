@@ -34,7 +34,7 @@ namespace Turquoise.Administration.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "DEMO API",
+                    Title = "Turquoise API",
                     Version = "v1",
                     Description = "API"
                 });
@@ -104,7 +104,7 @@ namespace Turquoise.Administration.API
             app.UseSwagger();
             app.UseSwaggerUI(x =>
             {
-                x.SwaggerEndpoint("/swagger/v1/swagger.json", "DEMO API");
+                x.SwaggerEndpoint("/swagger/v1/swagger.json", "Turquoise API");
             });
 
             ILifetimeScope lifetimeScope = app.ApplicationServices.GetAutofacRoot();

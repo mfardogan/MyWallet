@@ -5,9 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Turquoise.Administration.API.Controllers
 {
     using Turquoise.Administration.Domain;
-
-    [ApiController]
-    public class CQRSBase : ControllerBase
+    public class CQRSBase : Base
     {
         private readonly IMediator mediator;
         public CQRSBase() => mediator = Dependency.Get<IMediator>();

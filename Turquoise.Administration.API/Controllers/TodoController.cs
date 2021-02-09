@@ -2,14 +2,13 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace Turquoise.Administration.API.Controllers
 {
     using Turquoise.Administration.Application.UseCase.Administrators.Request;
     using Turquoise.Administration.Application.UseCase.Administrators.DTO;
 
     [Route("/api/[controller]")]
-    public class TotoController : CQRSBase
+    public class TodoController : CQRSBase
     {
         [HttpPut("search")]
         public async Task<AdministratorViewModel[]> Get([FromBody] GetAdministratorsQuery administratorsQuery)

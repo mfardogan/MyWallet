@@ -7,10 +7,10 @@ namespace Turquoise.Administration.Application.UseCase
 
     public class ServiceStub<TDao> : Stub where TDao : IDAO
     {
-        private readonly Lazy<UnitOfWork> lazyUoW;
+        private readonly Lazy<IUoW> lazyUoW;
         public ServiceStub() => (DataAccessObject, lazyUoW) =
-            (Dependency.Get<TDao>(), new Lazy<UnitOfWork>(
-                () => Dependency.Get<UnitOfWork>()));
+            (Dependency.Get<TDao>(), new Lazy<IUoW>(
+                () => Dependency.Get<IUoW>()));
 
         /// <summary>
         /// Aggregation service
@@ -20,6 +20,6 @@ namespace Turquoise.Administration.Application.UseCase
         /// <summary>
         /// Unit of work
         /// </summary>
-        public UnitOfWork UoW => lazyUoW.Value;
+        public IUoW UoW => lazyUoW.Value;
     }
 }

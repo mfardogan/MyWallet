@@ -5,5 +5,6 @@ namespace Turquoise.Administration.Domain.Abstraction
     public interface IIdentity
     {
         Guid? AdministratorId { get; }
+        Guid? DoctorId { get; }
     }
 }

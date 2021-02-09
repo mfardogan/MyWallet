@@ -3,32 +3,32 @@ using System.Threading.Tasks;
 
 namespace Turquoise.Administration.Domain.Abstraction
 {
-    public abstract class UnitOfWork
+    public interface IUoW
     {
         /// <summary>
         /// Save changes
         /// </summary>
         /// <returns></returns>
-        public abstract int Save();
+        int Save();
 
         /// <summary>
         /// Save changes async
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public abstract Task<int> SaveAsync(CancellationToken cancellationToken = default);
+        Task<int> SaveAsync(CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a new transaction
         /// </summary>
         /// <returns></returns>
-        public abstract ITransaction BeginTransaction();
+        ITransaction BeginTransaction();
 
         /// <summary>
         /// Get service
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public abstract T GetService<T>() where T : IDAO;
+        T GetService<T>() where T : IDAO;
     }
 }

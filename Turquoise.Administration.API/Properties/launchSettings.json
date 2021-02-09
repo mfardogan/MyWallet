@@ -12,12 +12,12 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
+      "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "MyWallet.Administration.API": {
+    "Turquoise.Administration.API": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

@@ -7,8 +7,7 @@ namespace Turquoise.Administration.Infrastructure.SQL.IoC
 {
     using Turquoise.Administration.Domain.Abstraction;
     using Turquoise.Administration.Domain.Aggregation.Administrator;
-    using Turquoise.Administration.Infrastructure.SQL.Persistence;
-    using Turquoise.Administration.Infrastructure.SQL.Persistence.Repository;
+    using Turquoise.Administration.Infrastructure.SQL.Service;
 
     public class ServiceContainer : Module
     {
@@ -19,15 +18,15 @@ namespace Turquoise.Administration.Infrastructure.SQL.IoC
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            builder.Register(x =>
+            builder.Register((System.Func<IComponentContext, Database>)(x =>
             {
-                var optsBuilder = new DbContextOptionsBuilder<MyDbContext>();
-                optsBuilder.UseNpgsql(root.GetConnectionString("MyWalletLocal"));
-                return new MyDbContext(optsBuilder.Options);
-            }).InstancePerLifetimeScope();
+                var optsBuilder = new DbContextOptionsBuilder<Database>();
+                optsBuilder.UseNpgsql(root.GetConnectionString("TurquoiseLocal"));
+                return new Database(optsBuilder.Options);
+            })).InstancePerLifetimeScope();
 
-            builder.RegisterType<AdministratorRepository>().As<IAdministratorDAO>().InstancePerLifetimeScope();
-            builder.RegisterType<UoW>().As<UnitOfWork>().InstancePerLifetimeScope();
+            builder.RegisterType<AdministratorDAO>().As<IAdministratorDAO>().InstancePerLifetimeScope();
+            builder.RegisterType<UnitOfWork>().As<IUoW>().InstancePerLifetimeScope();
             base.Load(builder);
         }
     }
