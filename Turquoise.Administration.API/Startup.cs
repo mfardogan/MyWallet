@@ -72,7 +72,7 @@ namespace Turquoise.Administration.API
         {
             Dependency.Instance.SetContainerBuilder(builder)
                 .Register(new Application.IoC.ServiceContainer())
-                .Register(new Infrastructure.IoC.ServiceContainer());
+                .Register(new Infrastructure.SQL.IoC.ServiceContainer());
         }
 
         /// <summary>

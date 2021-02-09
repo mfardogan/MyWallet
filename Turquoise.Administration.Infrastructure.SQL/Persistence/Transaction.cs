@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace Turquoise.Administration.Infrastructure.Persistence
+namespace Turquoise.Administration.Infrastructure.SQL.Persistence
 {
     using Turquoise.Administration.Domain.Abstraction;
 

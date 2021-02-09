@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Turquoise.Administration.Infrastructure.Persistence
+namespace Turquoise.Administration.Infrastructure.SQL.Persistence
 {
     using Turquoise.Administration.Domain.Aggregation.Common;
     internal static class QueryExtensions

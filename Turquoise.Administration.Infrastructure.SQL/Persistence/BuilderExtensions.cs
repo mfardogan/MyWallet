@@ -4,17 +4,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Turquoise.Administration.Domain.Aggregation.Common;
 
-namespace Turquoise.Administration.Infrastructure.Persistence
+namespace Turquoise.Administration.Infrastructure.SQL.Persistence
 {
     internal static class BuilderExtensions
     {
         public static void ConcurrencyTokens(this ModelBuilder modelBuilder)
         {
             modelBuilder.Model.GetEntityTypes()
-                .Where(e => e.ClrType.GetInterfaces().Contains(typeof(IHasConcurrency)))
+                .Where(e => e.ClrType.BaseType==typeof(ConcurrencyEntity<>))
                 .Select(e => e.ClrType)
                 .ToList()
-                .ForEach(e => modelBuilder.Entity(e).Property(nameof(IHasConcurrency.ConcurrencyToken))
+                .ForEach(e => modelBuilder.Entity(e).Property(nameof(ConcurrencyEntity<object>.ConcurrencyToken))
                      .HasColumnName("xmin")
                          .HasColumnType("xid")
                               .ValueGeneratedOnAddOrUpdate()

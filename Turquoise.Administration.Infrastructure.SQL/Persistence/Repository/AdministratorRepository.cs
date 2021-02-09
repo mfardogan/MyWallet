@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 
-namespace Turquoise.Administration.Infrastructure.Persistence.Repository
+namespace Turquoise.Administration.Infrastructure.SQL.Persistence.Repository
 {
     using Turquoise.Administration.Domain.Aggregation.Administrator;
     using Turquoise.Administration.Domain.Aggregation.Common;

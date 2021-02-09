@@ -23,7 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Turquoise.Administration.Application\Turquoise.Administration.Application.csproj" />
     <ProjectReference Include="..\Turquoise.Administration.Domain\Turquoise.Administration.Domain.csproj" />
-    <ProjectReference Include="..\Turquoise.Administration.Infrastructure\Turquoise.Administration.Infrastructure.csproj" />
+    <ProjectReference Include="..\Turquoise.Administration.Infrastructure.SQL\Turquoise.Administration.Infrastructure.SQL.csproj" />
   </ItemGroup>
 
 

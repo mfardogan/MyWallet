@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace Turquoise.Administration.Infrastructure.Persistence
+namespace Turquoise.Administration.Infrastructure.SQL.Persistence
 {
     using Turquoise.Administration.Domain.Aggregation.Administrator;
 

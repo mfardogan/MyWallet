@@ -8,7 +8,7 @@ namespace Turquoise.Administration.Domain.Aggregation.Administrator
     using Turquoise.Administration.Domain.Aggregation.Common;
 
     [Table(name: "administrator", Schema = Schamas.USERS)]
-    public class Administrator : Entity<Guid>, IAggregateRoot, ICreationAt, IHasConcurrency
+    public class Administrator : ConcurrencyEntity<Guid>, IAggregateRoot, ICreationAt
     {
         [Required]
         [Column(name: "name")]
@@ -23,11 +23,6 @@ namespace Turquoise.Administration.Domain.Aggregation.Administrator
 
         [Column(name: "creationAt")]
         public DateTime? CreationAt { get; set; }
-
-        [ConcurrencyCheck]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [Column(name: "xmin", TypeName = "xid", Order = 2)]
-        public uint ConcurrencyToken { get; set; }
 
         /// <summary>
         /// Password

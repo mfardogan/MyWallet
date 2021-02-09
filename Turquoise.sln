@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Turquoise.Administration.Do
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Turquoise.Administration.Application", "Turquoise.Administration.Application\Turquoise.Administration.Application.csproj", "{6A1F6D10-D3E6-4F45-8099-4E40B4FFF7E2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Turquoise.Administration.Infrastructure", "Turquoise.Administration.Infrastructure\Turquoise.Administration.Infrastructure.csproj", "{5FBE10C1-3077-44F6-BA83-76BF76F05F37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Turquoise.Administration.Infrastructure.SQL", "Turquoise.Administration.Infrastructure.SQL\Turquoise.Administration.Infrastructure.SQL.csproj", "{5FBE10C1-3077-44F6-BA83-76BF76F05F37}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Turquoise.Gateway", "Turquoise.Gateway\Turquoise.Gateway.csproj", "{9C8A5331-B9AE-46B8-A51F-512027B12D74}"
 EndProject

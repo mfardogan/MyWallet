@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace Turquoise.Administration.Infrastructure.Persistence
+namespace Turquoise.Administration.Infrastructure.SQL.Persistence
 {
     using Turquoise.Administration.Domain;
     using Turquoise.Administration.Domain.Abstraction;

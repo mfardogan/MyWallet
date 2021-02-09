@@ -3,12 +3,12 @@ using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace Turquoise.Administration.Infrastructure.IoC
+namespace Turquoise.Administration.Infrastructure.SQL.IoC
 {
     using Turquoise.Administration.Domain.Abstraction;
     using Turquoise.Administration.Domain.Aggregation.Administrator;
-    using Turquoise.Administration.Infrastructure.Persistence;
-    using Turquoise.Administration.Infrastructure.Persistence.Repository;
+    using Turquoise.Administration.Infrastructure.SQL.Persistence;
+    using Turquoise.Administration.Infrastructure.SQL.Persistence.Repository;
 
     public class ServiceContainer : Module
     {
