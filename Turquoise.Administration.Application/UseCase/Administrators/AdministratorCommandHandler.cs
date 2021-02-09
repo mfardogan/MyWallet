@@ -1,15 +1,16 @@
 ﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Turquoise.Administration.Application.UseCase.Administrators
 {
+    using Turquoise.Administration.Domain;
+    using Turquoise.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain.DomainEvent;
+    using Turquoise.Administration.Domain.Aggregation.Choice;
     using Turquoise.Administration.Domain.Aggregation.Administrator;
     using Turquoise.Administration.Application.UseCase.Administrators.Request;
-    using Turquoise.Administration.Domain.Abstraction;
-    using Turquoise.Administration.Domain;
-    using Turquoise.Administration.Domain.DomainEvent;
-
     public class AdministratorCommandHandler :
         IRequestHandler<InsertAdministratorCommand>,
         IRequestHandler<UpdateAdministratorCommand>,
@@ -42,7 +43,7 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
             service.DataAccessObject.Insert(administrator);
             await service.SaveAsync();
 
-            await service.HandleEvent(new GenericEvent<string>("test!"));
+            await service.HandleEvent(new GenericEvent<IEnumerable<Choice>>(null));
             return service.Success();
         }
 

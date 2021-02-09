@@ -13,11 +13,11 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
         IRequestHandler<GetAdministratorByIdQuery, AdministratorViewModel>,
         IRequestHandler<GetAdministratorsQuery, AdministratorViewModel[]>
     {
+        private readonly IAdministratorDAO dAO;
         private readonly BussinesProxy<IAdministratorDAO> service;
-
         public AdministratorQueryHandler()
         {
-            service = new BussinesProxy<IAdministratorDAO>();
+            (service, dAO) = (new BussinesProxy<IAdministratorDAO>(), service.DataAccessObject);
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
         /// <returns></returns>
         public Task<AdministratorViewModel> Handle(GetAdministratorByIdQuery request, CancellationToken cancellationToken)
         {
-            Administrator administrator = service.DataAccessObject.Get(request.Id);
+            Administrator administrator = dAO.Get(request.Id);
             return service.Success(administrator.Map<AdministratorViewModel>());
         }
 
@@ -41,7 +41,7 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
         public Task<AdministratorViewModel[]> Handle(GetAdministratorsQuery request, CancellationToken cancellationToken)
         {
             AdministratorViewModel[] administrators =
-               service.DataAccessObject.Get(_ => true, request.Pagination)
+               dAO.Get(_ => true, request.Pagination)
                .Map<AdministratorViewModel>()
                .ToArray();
 

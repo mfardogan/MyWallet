@@ -1,5 +1,5 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
@@ -16,6 +16,8 @@ namespace Turquoise.Administration.Infrastructure.SQL
     using Turquoise.Administration.Domain.Aggregation.Common;
     using Turquoise.Administration.Domain.Aggregation.Doctor;
     using Turquoise.Administration.Domain.Aggregation.Administrator;
+    using System;
+
     public partial class Database : DbContext
     {
         public Database() { }
@@ -51,20 +53,35 @@ namespace Turquoise.Administration.Infrastructure.SQL
         /// Build models
         /// </summary>
         /// <param name="modelBuilder"></param>
-        protected override void OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasPostgresExtension("uuid-ossp");
 
             modelBuilder.DefaultSqlValues(
-                filter: e => e.ClrType.BaseType == typeof(Entity<Guid>),
-                propertyName: nameof(Entity<Guid>.Id),
-                defaultSqlValue: "uuid_generate_v4()"
-                );
+               filter: e => e.ClrType.BaseType == typeof(Entity<Guid>),
+               propertyName: nameof(Entity<Guid>.Id),
+               defaultSqlValue: "uuid_generate_v4()"
+               );
+
+            modelBuilder.DefaultSqlValues(
+                filter: e => e.ClrType.BaseType == typeof(Concurrency<>),
+                propertyName: nameof(Concurrency<Guid>.RowGuid),
+                defaultSqlValue: "uuid_generate_v4()");
 
             modelBuilder.DefaultSqlValues(
                 filter: e => e.ClrType.BaseType.IsGenericType && e.ClrType.BaseType.GetGenericTypeDefinition() == typeof(Entity<>),
                 propertyName: nameof(Entity<object>.RowGuid),
                 defaultSqlValue: "uuid_generate_v4()");
+
+            modelBuilder.DefaultSqlValues(
+                filter: e => e.ClrType.BaseType.IsGenericType && e.ClrType.BaseType.GetGenericTypeDefinition() == typeof(Concurrency<>),
+                propertyName: nameof(Entity<object>.RowGuid),
+                defaultSqlValue: "uuid_generate_v4()");
+
+            modelBuilder.DefaultSqlValues(
+                filter: e => e.ClrType.GetInterfaces().Any(x => x == typeof(ICreationAt)),
+                propertyName: nameof(ICreationAt.CreationAt),
+                defaultSqlValue: "now()");
 
             base.OnModelCreating(modelBuilder);
         }
