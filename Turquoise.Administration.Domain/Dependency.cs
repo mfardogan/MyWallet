@@ -1,6 +1,6 @@
 ﻿using Autofac;
 
-namespace MyWallet.Administration.Domain
+namespace Turquoise.Administration.Domain
 {
     public sealed partial class Dependency
     {

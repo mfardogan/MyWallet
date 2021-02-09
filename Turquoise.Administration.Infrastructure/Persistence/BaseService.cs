@@ -1,8 +1,8 @@
-﻿using MyWallet.Administration.Domain;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
-namespace MyWallet.Administration.Infrastructure.Persistence
+namespace Turquoise.Administration.Infrastructure.Persistence
 {
+    using Turquoise.Administration.Domain;
     public class BaseService
     {
         public MyDbContext DbContext { get; private set; }

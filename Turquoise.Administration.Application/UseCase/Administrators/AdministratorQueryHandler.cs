@@ -3,11 +3,11 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MyWallet.Administration.Application.UseCase.Administrators
+namespace Turquoise.Administration.Application.UseCase.Administrators
 {
-    using MyWallet.Administration.Domain.Aggregation.Administrator;
-    using MyWallet.Administration.Application.UseCase.Administrators.DTO;
-    using MyWallet.Administration.Application.UseCase.Administrators.Request;
+    using Turquoise.Administration.Domain.Aggregation.Administrator;
+    using Turquoise.Administration.Application.UseCase.Administrators.DTO;
+    using Turquoise.Administration.Application.UseCase.Administrators.Request;
 
     public class AdministratorQueryHandler :
         IRequestHandler<GetAdministratorByIdQuery, AdministratorViewModel>,

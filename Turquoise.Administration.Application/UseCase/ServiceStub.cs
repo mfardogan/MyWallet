@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace MyWallet.Administration.Application.UseCase
+namespace Turquoise.Administration.Application.UseCase
 {
-    using MyWallet.Administration.Domain;
-    using MyWallet.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain;
+    using Turquoise.Administration.Domain.Abstraction;
 
     public class ServiceStub<TDao> : Stub where TDao : IDAO
     {

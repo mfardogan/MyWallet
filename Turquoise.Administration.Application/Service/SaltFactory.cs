@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
-using MyWallet.Administration.Domain.Abstraction;
+using Turquoise.Administration.Domain.Abstraction;
 
-namespace MyWallet.Administration.Application.Service
+namespace Turquoise.Administration.Application.Service
 {
     public sealed class SaltFactory : ISaltFactory
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace MyWallet.Administration.Application.UseCase
+namespace Turquoise.Administration.Application.UseCase
 {
     public abstract class Specification<TEntity,TViewModel>
     {

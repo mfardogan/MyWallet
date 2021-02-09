@@ -1,4 +1,4 @@
-﻿namespace MyWallet.Administration.Application.UseCase
+﻿namespace Turquoise.Administration.Application.UseCase
 {
     public abstract class EntityViewModel<TPk> : ViewModel
     {

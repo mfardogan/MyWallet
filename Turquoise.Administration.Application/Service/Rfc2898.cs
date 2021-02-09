@@ -2,9 +2,9 @@
 using System.Text;
 using System.Security.Cryptography;
 
-namespace MyWallet.Administration.Application.Service
+namespace Turquoise.Administration.Application.Service
 {
-    using MyWallet.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain.Abstraction;
     public sealed class Rfc2898 : IPasswordHasher
     {
         /// <summary>

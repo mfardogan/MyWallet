@@ -5,12 +5,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Hosting;
+using System.Collections.Generic;
+using Microsoft.OpenApi.Models;
 
-namespace MyWallet.Administration.API
+namespace Turquoise.Administration.API
 {
-    using Microsoft.OpenApi.Models;
-    using MyWallet.Administration.Domain;
-    using System.Collections.Generic;
+    using Turquoise.Administration.Domain;
 
     public class Startup
     {

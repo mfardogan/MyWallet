@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace MyWallet.Administration.Application.Service
+namespace Turquoise.Administration.Application.Service
 {
-    using MyWallet.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain.Abstraction;
 
     public sealed class Identity : IIdentity
     {

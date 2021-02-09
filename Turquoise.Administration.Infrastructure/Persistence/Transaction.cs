@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace MyWallet.Administration.Infrastructure.Persistence
+namespace Turquoise.Administration.Infrastructure.Persistence
 {
-    using MyWallet.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain.Abstraction;
 
     public sealed class Transaction : ITransaction
     {

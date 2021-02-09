@@ -1,4 +1,4 @@
-﻿namespace MyWallet.Administration.Application.UseCase
+﻿namespace Turquoise.Administration.Application.UseCase
 {
     public abstract class EntityViewModelPersistent<TPk, TEntity> : EntityViewModel<TPk> where TEntity : class
     {

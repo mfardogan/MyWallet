@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace MyWallet.Administration.Application.UseCase.Administrators.DTO
+namespace Turquoise.Administration.Application.UseCase.Administrators.DTO
 {
-    using MyWallet.Administration.Application.UseCase;
-    using MyWallet.Administration.Domain.Aggregation.Administrator;
+    using Turquoise.Administration.Application.UseCase;
+    using Turquoise.Administration.Domain.Aggregation.Administrator;
 
     public class AdministratorViewModel : EntityViewModelPersistent<Guid, Administrator>
     {

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace MyWallet.Administration.Application.UseCase.Administrators.DTO
+namespace Turquoise.Administration.Application.UseCase.Administrators.DTO
 {
     public sealed class AdministratorViewModelValidator : AbstractValidator<AdministratorViewModel>
     {

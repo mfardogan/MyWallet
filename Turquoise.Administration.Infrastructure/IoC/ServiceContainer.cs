@@ -3,13 +3,12 @@ using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace MyWallet.Administration.Infrastructure.IoC
+namespace Turquoise.Administration.Infrastructure.IoC
 {
-    using MyWallet.Administration.Domain.Abstraction;
-    using MyWallet.Administration.Domain.Aggregation.Administrator;
-    using MyWallet.Administration.Infrastructure.Multitenancy;
-    using MyWallet.Administration.Infrastructure.Persistence;
-    using MyWallet.Administration.Infrastructure.Persistence.Repository;
+    using Turquoise.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain.Aggregation.Administrator;
+    using Turquoise.Administration.Infrastructure.Persistence;
+    using Turquoise.Administration.Infrastructure.Persistence.Repository;
 
     public class ServiceContainer : Module
     {
@@ -27,7 +26,6 @@ namespace MyWallet.Administration.Infrastructure.IoC
                 return new MyDbContext(optsBuilder.Options);
             }).InstancePerLifetimeScope();
 
-            builder.RegisterType<MultitenancyHttpInterceptor>().As<IMultitenancyAccessor>().InstancePerLifetimeScope();
             builder.RegisterType<AdministratorRepository>().As<IAdministratorDAO>().InstancePerLifetimeScope();
             builder.RegisterType<UoW>().As<UnitOfWork>().InstancePerLifetimeScope();
             base.Load(builder);

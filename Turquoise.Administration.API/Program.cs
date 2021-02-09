@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Autofac.Extensions.DependencyInjection;
 
-namespace MyWallet.Administration.API
+namespace Turquoise.Administration.API
 {
     public class Program
     {

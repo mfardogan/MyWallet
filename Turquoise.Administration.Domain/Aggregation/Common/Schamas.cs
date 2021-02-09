@@ -1,4 +1,4 @@
-﻿namespace MyWallet.Administration.Domain.Aggregation.Common
+﻿namespace Turquoise.Administration.Domain.Aggregation.Common
 {
     internal static class Schamas
     {

@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 
-namespace MyWallet.Solution.GatewayAPI
+namespace Turquoise.Gateway
 {
     public class Startup
     {

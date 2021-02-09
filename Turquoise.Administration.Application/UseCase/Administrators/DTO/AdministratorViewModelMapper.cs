@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 
-namespace MyWallet.Administration.Application.UseCase.Administrators.DTO
+namespace Turquoise.Administration.Application.UseCase.Administrators.DTO
 {
-    using MyWallet.Administration.Domain.Aggregation.Administrator;
+    using Turquoise.Administration.Domain.Aggregation.Administrator;
     public sealed class AdministratorViewModelMapper : Profile
     {
         public AdministratorViewModelMapper()

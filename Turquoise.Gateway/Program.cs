@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
-namespace MyWallet.Solution.GatewayAPI
+namespace Turquoise.Gateway
 {
     public class Program
     {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MyWallet.Administration.Domain.Aggregation.Common
+namespace Turquoise.Administration.Domain.Aggregation.Common
 {
     public abstract class Entity<TPk> : DbObject
     {

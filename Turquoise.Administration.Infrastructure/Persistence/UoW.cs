@@ -1,10 +1,10 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace MyWallet.Administration.Infrastructure.Persistence
+namespace Turquoise.Administration.Infrastructure.Persistence
 {
-    using MyWallet.Administration.Domain;
-    using MyWallet.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain;
+    using Turquoise.Administration.Domain.Abstraction;
 
     public class UoW : UnitOfWork
     {

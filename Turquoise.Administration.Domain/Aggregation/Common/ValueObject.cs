@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MyWallet.Administration.Domain.Aggregation.Common
+namespace Turquoise.Administration.Domain.Aggregation.Common
 {
     public abstract class ValueObject
     {

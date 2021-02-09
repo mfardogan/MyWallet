@@ -1,4 +1,4 @@
-﻿using MyWallet.Administration.Domain.Aggregation.Common;
+﻿using Turquoise.Administration.Domain.Aggregation.Common;
 
 namespace MyWallet.Administration.Domain.Abstraction
 {

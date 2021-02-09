@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using MyWallet.Administration.Domain.Aggregation.Common;
 
-namespace MyWallet.Administration.Infrastructure.Persistence
+namespace Turquoise.Administration.Infrastructure.Persistence
 {
+    using Turquoise.Administration.Domain.Aggregation.Common;
     internal static class QueryExtensions
     {
         /// <summary>

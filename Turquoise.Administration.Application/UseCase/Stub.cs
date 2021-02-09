@@ -2,10 +2,10 @@
 using System;
 using System.Threading.Tasks;
 
-namespace MyWallet.Administration.Application.UseCase
+namespace Turquoise.Administration.Application.UseCase
 {
-    using MyWallet.Administration.Domain;
-    using MyWallet.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain;
+    using Turquoise.Administration.Domain.Abstraction;
     public class Stub
     {
         private readonly Lazy<IIdentity> lazyIdentity = 

@@ -2,10 +2,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MyWallet.Administration.Domain.Aggregation.Administrator
+namespace Turquoise.Administration.Domain.Aggregation.Administrator
 {
-    using MyWallet.Administration.Domain.Abstraction;
-    using MyWallet.Administration.Domain.Aggregation.Common;
+    using Turquoise.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain.Aggregation.Common;
 
     [Table(name: "administrator", Schema = Schamas.USERS)]
     public class Administrator : Entity<Guid>, IAggregateRoot, ICreationAt, IHasConcurrency

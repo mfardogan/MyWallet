@@ -3,9 +3,9 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace MyWallet.Administration.Infrastructure.Persistence
+namespace Turquoise.Administration.Infrastructure.Persistence
 {
-    using MyWallet.Administration.Domain.Aggregation.Administrator;
+    using Turquoise.Administration.Domain.Aggregation.Administrator;
 
     public partial class MyDbContext : DbContext
     {

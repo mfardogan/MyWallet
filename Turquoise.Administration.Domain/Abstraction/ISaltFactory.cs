@@ -1,4 +1,4 @@
-﻿namespace MyWallet.Administration.Domain.Abstraction
+﻿namespace Turquoise.Administration.Domain.Abstraction
 {
     public interface ISaltFactory
     {

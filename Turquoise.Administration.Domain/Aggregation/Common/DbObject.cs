@@ -1,6 +1,6 @@
 ﻿using MyWallet.Administration.Domain.Abstraction;
 
-namespace MyWallet.Administration.Domain.Aggregation.Common
+namespace Turquoise.Administration.Domain.Aggregation.Common
 {
     public abstract class DbObject
     {

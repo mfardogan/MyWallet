@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace MyWallet.Administration.Domain.Aggregation.Administrator
+namespace Turquoise.Administration.Domain.Aggregation.Administrator
 {
-    using MyWallet.Administration.Domain.Abstraction;
-    using MyWallet.Administration.Domain.Aggregation.Common;
+    using Turquoise.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain.Aggregation.Common;
 
     public interface IAdministratorDAO : IDAO, 
         ICommand<Administrator, Guid>, 

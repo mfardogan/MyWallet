@@ -2,12 +2,12 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MyWallet.Administration.Application.UseCase.Administrators
+namespace Turquoise.Administration.Application.UseCase.Administrators
 {
-    using MyWallet.Administration.Domain.Aggregation.Administrator;
-    using MyWallet.Administration.Application.UseCase.Administrators.Request;
-    using MyWallet.Administration.Domain.Abstraction;
-    using MyWallet.Administration.Domain;
+    using Turquoise.Administration.Domain.Aggregation.Administrator;
+    using Turquoise.Administration.Application.UseCase.Administrators.Request;
+    using Turquoise.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain;
 
     public class AdministratorCommandHandler :
         IRequestHandler<InsertAdministratorCommand>,

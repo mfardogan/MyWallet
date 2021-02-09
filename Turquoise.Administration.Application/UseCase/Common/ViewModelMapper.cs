@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
-using MyWallet.Administration.Domain;
 using System;
 using System.Collections.Generic;
 
-namespace MyWallet.Administration.Application.UseCase
+namespace Turquoise.Administration.Application.UseCase
 {
+    using Turquoise.Administration.Domain;
+
     public static class Mapper
     {
         /// <summary>

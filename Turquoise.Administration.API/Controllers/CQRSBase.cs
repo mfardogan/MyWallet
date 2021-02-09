@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MyWallet.Administration.API.Controllers
+namespace Turquoise.Administration.API.Controllers
 {
-    using MyWallet.Administration.Domain;
+    using Turquoise.Administration.Domain;
 
     [ApiController]
     public class CQRSBase : ControllerBase

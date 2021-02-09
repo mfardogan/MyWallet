@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace MyWallet.Administration.Domain.Abstraction
+namespace Turquoise.Administration.Domain.Abstraction
 {
     public abstract class UnitOfWork
     {

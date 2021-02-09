@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace MyWallet.Administration.Domain.Aggregation.Common
+namespace Turquoise.Administration.Domain.Aggregation.Common
 {
     public interface IQuery<TEntity, TPk> where TEntity : Entity<TPk>
     {

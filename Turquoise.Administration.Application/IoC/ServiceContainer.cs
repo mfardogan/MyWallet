@@ -2,11 +2,11 @@
 using AutoMapper;
 using MediatR.Extensions.Autofac.DependencyInjection;
 
-namespace MyWallet.Administration.Application.IoC
+namespace Turquoise.Administration.Application.IoC
 {
-    using MyWallet.Administration.Application.Service;
-    using MyWallet.Administration.Application.UseCase;
-    using MyWallet.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Application.Service;
+    using Turquoise.Administration.Application.UseCase;
+    using Turquoise.Administration.Domain.Abstraction;
 
     public class ServiceContainer : Module
     {

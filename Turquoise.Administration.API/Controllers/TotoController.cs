@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace MyWallet.Administration.API.Controllers
+namespace Turquoise.Administration.API.Controllers
 {
-    using MyWallet.Administration.Application.UseCase.Administrators.Request;
-    using MyWallet.Administration.Application.UseCase.Administrators.DTO;
+    using Turquoise.Administration.Application.UseCase.Administrators.Request;
+    using Turquoise.Administration.Application.UseCase.Administrators.DTO;
 
     [Route("/api/[controller]")]
     public class TotoController : CQRSBase

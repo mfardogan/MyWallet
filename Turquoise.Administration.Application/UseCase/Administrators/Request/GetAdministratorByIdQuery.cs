@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using System;
 
-namespace MyWallet.Administration.Application.UseCase.Administrators.Request
+namespace Turquoise.Administration.Application.UseCase.Administrators.Request
 {
-    using MyWallet.Administration.Application.UseCase.Administrators.DTO;
+    using Turquoise.Administration.Application.UseCase.Administrators.DTO;
     public class GetAdministratorByIdQuery : IRequest<AdministratorViewModel>
     {
         public GetAdministratorByIdQuery()

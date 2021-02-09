@@ -2,9 +2,9 @@
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using MyWallet.Administration.Domain.Aggregation.Common;
+using Turquoise.Administration.Domain.Aggregation.Common;
 
-namespace MyWallet.Administration.Infrastructure.Persistence
+namespace Turquoise.Administration.Infrastructure.Persistence
 {
     internal static class BuilderExtensions
     {

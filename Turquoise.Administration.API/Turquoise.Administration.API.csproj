@@ -26,11 +26,5 @@
     <ProjectReference Include="..\Turquoise.Administration.Infrastructure\Turquoise.Administration.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="apptenancy.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
 
 </Project>

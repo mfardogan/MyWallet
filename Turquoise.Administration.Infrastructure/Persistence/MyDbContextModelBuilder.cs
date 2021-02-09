@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 
-namespace MyWallet.Administration.Infrastructure.Persistence
+namespace Turquoise.Administration.Infrastructure.Persistence
 {
-    using MyWallet.Administration.Domain.Aggregation.Common;
+    using Turquoise.Administration.Domain.Aggregation.Common;
 
     public partial class MyDbContext
     {

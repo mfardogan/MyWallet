@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 
-namespace MyWallet.Administration.Infrastructure.Persistence.Repository
+namespace Turquoise.Administration.Infrastructure.Persistence.Repository
 {
-    using Microsoft.EntityFrameworkCore;
-    using MyWallet.Administration.Domain.Aggregation.Administrator;
-    using MyWallet.Administration.Domain.Aggregation.Common;
+    using Turquoise.Administration.Domain.Aggregation.Administrator;
+    using Turquoise.Administration.Domain.Aggregation.Common;
 
     public class AdministratorRepository : BaseService, IAdministratorDAO
     {
