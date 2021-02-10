@@ -1,11 +1,11 @@
 ﻿using MediatR;
 
-namespace Turquoise.Administration.Application.UseCase.Administrators.Request
+namespace Turquoise.Administration.Application.UseCase.Administrators.CQ
 {
     using Turquoise.Administration.Domain.Aggregation.Common;
     using Turquoise.Administration.Application.UseCase.Administrators.DTO;
 
-    public class GetAdministratorsQuery : IRequest<AdministratorViewModel[]>
+    public class SearchAdministrators : IRequest<AdministratorViewModel[]>
     {
         public Pagination Pagination { get; set; }
         public AdministratorViewModel Filters { get; set; }

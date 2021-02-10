@@ -4,14 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Turquoise.Administration.API.Controllers
 {
-    using Turquoise.Administration.Application.UseCase.Administrators.Request;
+    using Turquoise.Administration.Application.UseCase.Administrators.CQ;
     using Turquoise.Administration.Application.UseCase.Administrators.DTO;
 
     [RouteJoin("[controller]")]
     public class AdministratorsController : CQRSBase
     {
         [HttpPut("search")]
-        public async Task<AdministratorViewModel[]> Get([FromBody] GetAdministratorsQuery administratorsQuery)
+        public async Task<AdministratorViewModel[]> Get([FromBody] SearchAdministrators administratorsQuery)
         {
             return await ExecuteQueryAsync(administratorsQuery);
         }
@@ -19,17 +19,17 @@ namespace Turquoise.Administration.API.Controllers
         [HttpGet("{id}")]
         public async Task<AdministratorViewModel> Get(Guid id)
         {
-            return await ExecuteQueryAsync(new GetAdministratorByIdQuery(id));
+            return await ExecuteQueryAsync(new GetAdministratorById(id));
         }
 
         [HttpPost]
-        public async Task Get([FromBody]InsertAdministratorCommand insertAdministratorCommand)
+        public async Task Get([FromBody]InsertAdministrator insertAdministratorCommand)
         {
              await ExecuteCommandAsync(insertAdministratorCommand);
         }
 
         [HttpPut]
-        public async Task Get([FromBody] UpdateAdministratorCommand updateAdministratorCommand)
+        public async Task Get([FromBody] UpdateAdministrator updateAdministratorCommand)
         {
             await ExecuteCommandAsync(updateAdministratorCommand);
         }

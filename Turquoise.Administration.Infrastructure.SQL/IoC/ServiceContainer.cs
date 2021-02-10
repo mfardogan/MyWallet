@@ -7,6 +7,7 @@ namespace Turquoise.Administration.Infrastructure.SQL.IoC
 {
     using Turquoise.Administration.Domain.Abstraction;
     using Turquoise.Administration.Domain.Aggregation.Administrator;
+    using Turquoise.Administration.Domain.Aggregation.Branch;
     using Turquoise.Administration.Infrastructure.SQL.Service;
 
     public class ServiceContainer : Module
@@ -18,15 +19,17 @@ namespace Turquoise.Administration.Infrastructure.SQL.IoC
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            builder.Register((System.Func<IComponentContext, Database>)(x =>
+            builder.Register(x =>
             {
                 var optsBuilder = new DbContextOptionsBuilder<Database>();
                 optsBuilder.UseNpgsql(root.GetConnectionString("TurquoiseLocal"));
                 return new Database(optsBuilder.Options);
-            })).InstancePerLifetimeScope();
+            }).InstancePerLifetimeScope();
 
-            builder.RegisterType<AdministratorDAO>().As<IAdministratorDAO>().InstancePerLifetimeScope();
             builder.RegisterType<UnitOfWork>().As<IUoW>().InstancePerLifetimeScope();
+            builder.RegisterType<AdministratorDAO>().As<IAdministratorDAO>().InstancePerLifetimeScope();
+            builder.RegisterType<BranchDAO>().As<IBranchDAO>().InstancePerLifetimeScope();
+
             base.Load(builder);
         }
     }

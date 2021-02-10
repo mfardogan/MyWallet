@@ -7,15 +7,15 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
     using Turquoise.Administration.Domain;
     using Turquoise.Administration.Domain.Abstraction;
     using Turquoise.Administration.Domain.Aggregation.Administrator;
-    using Turquoise.Administration.Application.UseCase.Administrators.Request;
-    public partial class AdministratorHandler :
-        IRequestHandler<InsertAdministratorCommand>,
-        IRequestHandler<UpdateAdministratorCommand>,
-        IRequestHandler<DeleteAdministratorCommand>
+    using Turquoise.Administration.Application.UseCase.Administrators.CQ;
+    public partial class AdministratorCQHandler :
+        IRequestHandler<InsertAdministrator>,
+        IRequestHandler<UpdateAdministrator>,
+        IRequestHandler<DeleteAdministrator>
     {
         private readonly IAdministratorDAO dAO;
         private readonly ServiceProxy<IAdministratorDAO> service;
-        public AdministratorHandler()
+        public AdministratorCQHandler()
         {
             var proxy = new ServiceProxy<IAdministratorDAO>();
             (service, dAO) = (proxy, proxy.DataAccessObject);
@@ -27,7 +27,7 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<Unit> Handle(InsertAdministratorCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(InsertAdministrator request, CancellationToken cancellationToken)
         {
             var (salt, hash) = GetSaltHashTuple(request.AdministratorViewModel.Password);
             Administrator administrator = request.AdministratorViewModel;
@@ -46,7 +46,7 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<Unit> Handle(DeleteAdministratorCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteAdministrator request, CancellationToken cancellationToken)
         {
             dAO.Delete(request.AdministratorId);
             await service.SaveAsync();
@@ -59,7 +59,7 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<Unit> Handle(UpdateAdministratorCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(UpdateAdministrator request, CancellationToken cancellationToken)
         {
             dAO.Update(request.ViewModel);
             await service.SaveAsync();

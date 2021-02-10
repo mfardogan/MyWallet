@@ -22,7 +22,7 @@ namespace Turquoise.Administration.Domain.Aggregation.Doctor
         [Column("full_name")]
         public string FullName { get; set; }
 
-        [Column("creationAt")]
+        [Column("creation_at")]
         public DateTime? CreationAt { get; set; }
 
         [Column("branch_id")]

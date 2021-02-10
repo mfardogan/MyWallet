@@ -18,6 +18,9 @@ namespace Turquoise.Administration.Infrastructure.SQL
     using Turquoise.Administration.Domain.Aggregation.ChoiceGroup;
     using Turquoise.Administration.Domain.Aggregation.Doctor;
     using Turquoise.Administration.Domain.Aggregation.Administrator;
+    using Turquoise.Administration.Domain.Aggregation.Survey;
+    using Turquoise.Administration.Domain.Aggregation.SurveyAnswer;
+
     public class Database : DbContext
     {
         public Database() { }
@@ -30,6 +33,10 @@ namespace Turquoise.Administration.Infrastructure.SQL
         public DbSet<ChoiceGroup> ChoiceGroups { get; set; }
         public DbSet<Administrator> Administrators { get; set; }
         public DbSet<AdministratorPassword> AdministratorPasswords { get; set; }
+        public DbSet<Survey> Surveys { get; set; }
+        public DbSet<SurveyAnswer> SurveyAnswers { get; set; }
+        public DbSet<SurveyAnswerChoice> SurveyAnswerChoices { get; set; }
+
 
         #region Configuration
         /// <summary>

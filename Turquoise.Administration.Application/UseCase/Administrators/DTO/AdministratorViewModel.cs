@@ -14,9 +14,11 @@ namespace Turquoise.Administration.Application.UseCase.Administrators.DTO
         public string Password { get; set; }
         public uint ConcurrencyToken { get; set; }
 
-        public static implicit operator Administrator(AdministratorViewModel viewModel)
-        {
-            return viewModel.Map<Administrator>();
-        }
+        /// <summary>
+        /// Convert to entity
+        /// </summary>
+        /// <param name="viewModel"></param>
+
+        public static explicit operator Administrator(AdministratorViewModel viewModel) => viewModel.Map<Administrator>();
     }
 }

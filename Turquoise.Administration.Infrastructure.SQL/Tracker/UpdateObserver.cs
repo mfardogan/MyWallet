@@ -6,11 +6,23 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 namespace Turquoise.Administration.Infrastructure.SQL.Tracker
 {
     using Turquoise.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain.Aggregation.Common;
+
     internal sealed class UpdateObserver : IObserver<IEnumerable<EntityEntry>>
     {
         public void Subscribe(IEnumerable<EntityEntry> parameter)
         {
             IEnumerable<EntityEntry> entries = parameter.Where(e => e.State == EntityState.Modified);
+            foreach (var item in entries)
+            {
+                item.Property("Id").IsModified = false;
+                item.Property("RowGuid").IsModified = false;
+
+                if (item.Entity is ICreationAt)
+                {
+                    item.Property(nameof(ICreationAt.CreationAt)).IsModified = false;
+                }
+            }
         }
     }
 }
