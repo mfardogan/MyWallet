@@ -23,6 +23,6 @@ namespace Turquoise.Administration.Domain.Abstraction
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        T ServiceAs<T>() where T : IDAO;
+        T ServiceAs<T>() where T : IDataAccessObject;
     }
 }

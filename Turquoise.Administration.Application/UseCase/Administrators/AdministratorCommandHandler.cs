@@ -1,30 +1,24 @@
 ﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 
 namespace Turquoise.Administration.Application.UseCase.Administrators
 {
     using Turquoise.Administration.Domain;
     using Turquoise.Administration.Domain.Abstraction;
-    using Turquoise.Administration.Domain.DomainEvent;
-    using Turquoise.Administration.Domain.Aggregation.Choice;
     using Turquoise.Administration.Domain.Aggregation.Administrator;
     using Turquoise.Administration.Application.UseCase.Administrators.Request;
-    public class AdministratorCommandHandler :
+    public partial class AdministratorHandler :
         IRequestHandler<InsertAdministratorCommand>,
         IRequestHandler<UpdateAdministratorCommand>,
         IRequestHandler<DeleteAdministratorCommand>
     {
-        private readonly BussinesProxy<IAdministratorDAO> service;
-
-        private readonly ISaltFactory saltFactory;
-        private readonly IPasswordHasher passwordHasher;
-        public AdministratorCommandHandler()
+        private readonly IAdministratorDAO dAO;
+        private readonly ServiceProxy<IAdministratorDAO> service;
+        public AdministratorHandler()
         {
-            service = new BussinesProxy<IAdministratorDAO>();
-            saltFactory = Dependency.Get<ISaltFactory>();
-            passwordHasher = Dependency.Get<IPasswordHasher>();
+            var bussines = new ServiceProxy<IAdministratorDAO>();
+            (service, dAO) = (bussines, bussines.DataAccessObject);
         }
 
         /// <summary>
@@ -35,15 +29,14 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
         /// <returns></returns>
         public async Task<Unit> Handle(InsertAdministratorCommand request, CancellationToken cancellationToken)
         {
-            var salt = saltFactory.Generate();
-            var hash = passwordHasher.Compute(request.AdministratorViewModel.Password, salt);
+            var (salt, hash) = GetSaltHashTuple(request.AdministratorViewModel.Password);
             Administrator administrator = request.AdministratorViewModel;
             administrator.AddPassword(salt, hash);
-            
+
             service.DataAccessObject.Insert(administrator);
             await service.SaveAsync();
 
-            await service.HandleEvent(new GenericEvent<IEnumerable<Choice>>(null));
+            //await service.HandleEvent(new GenericEvent<IEnumerable<Choice>>(null));
             return service.Success();
         }
 
@@ -71,6 +64,18 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
             service.DataAccessObject.Update(request.ViewModel);
             await service.SaveAsync();
             return service.Success();
+        }
+
+        /// <summary>
+        /// Generate password
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        private (byte[] salt, byte[] hash) GetSaltHashTuple(string input)
+        {
+            var shaker = Dependency.Get<ISaltFactory>().Generate();
+            var hasher = Dependency.Get<IPasswordHasher>().Compute(input, shaker);
+            return (shaker, hasher);
         }
     }
 }

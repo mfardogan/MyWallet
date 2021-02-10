@@ -19,7 +19,7 @@ namespace Turquoise.Administration.Infrastructure.SQL
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T ServiceAs<T>() where T : IDAO => Dependency.Get<T>();
+        public T ServiceAs<T>() where T : IDataAccessObject => Dependency.Get<T>();
 
         /// <summary>
         /// Begin new transaction

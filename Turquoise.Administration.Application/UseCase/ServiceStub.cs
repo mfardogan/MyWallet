@@ -1,22 +1,22 @@
 ﻿using MediatR;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Turquoise.Administration.Application.UseCase
 {
-    using System.Threading;
     using Turquoise.Administration.Domain;
     using Turquoise.Administration.Domain.Abstraction;
-    public class Bussines
+    public class ServiceStub
     {
-        private readonly Lazy<IIdentity> lazyIdentity =
+        private readonly Lazy<IIdentity> identity =
             new Lazy<IIdentity>(() => Dependency.Get<IIdentity>(),
                 isThreadSafe: false);
 
         /// <summary>
         /// User
         /// </summary>
-        public IIdentity Identity => lazyIdentity.Value;
+        public IIdentity Identity => identity.Value;
 
         /// <summary>
         /// Completed task with data

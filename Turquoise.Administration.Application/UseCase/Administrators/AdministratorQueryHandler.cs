@@ -5,21 +5,15 @@ using System.Threading.Tasks;
 
 namespace Turquoise.Administration.Application.UseCase.Administrators
 {
+    using Turquoise.Administration.Domain.Abstraction;
     using Turquoise.Administration.Domain.Aggregation.Administrator;
     using Turquoise.Administration.Application.UseCase.Administrators.DTO;
     using Turquoise.Administration.Application.UseCase.Administrators.Request;
 
-    public class AdministratorQueryHandler :
+    public partial class AdministratorHandler :
         IRequestHandler<GetAdministratorByIdQuery, AdministratorViewModel>,
         IRequestHandler<GetAdministratorsQuery, AdministratorViewModel[]>
-    {
-        private readonly IAdministratorDAO dAO;
-        private readonly BussinesProxy<IAdministratorDAO> service;
-        public AdministratorQueryHandler()
-        {
-            (service, dAO) = (new BussinesProxy<IAdministratorDAO>(), service.DataAccessObject);
-        }
-
+    {    
         /// <summary>
         /// Get by id
         /// </summary>
@@ -40,8 +34,11 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
         /// <returns></returns>
         public Task<AdministratorViewModel[]> Handle(GetAdministratorsQuery request, CancellationToken cancellationToken)
         {
+            Specification<Administrator, AdministratorViewModel> specify =
+                new AdministratorSpecify(request.Filters);
+
             AdministratorViewModel[] administrators =
-               dAO.Get(_ => true, request.Pagination)
+               dAO.Get(specify.GetFilters(), request.Pagination)
                .Map<AdministratorViewModel>()
                .ToArray();
 

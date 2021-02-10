@@ -7,10 +7,10 @@ namespace Turquoise.Administration.Application.UseCase
     using Turquoise.Administration.Domain;
     using Turquoise.Administration.Domain.Abstraction;
 
-    public class BussinesProxy<TDAO> : Bussines where TDAO : IDAO
+    public class ServiceProxy<TDAO> : ServiceStub where TDAO : IDataAccessObject
     {
         private readonly Lazy<IUoW> lazyUoW;
-        public BussinesProxy() => (DataAccessObject, lazyUoW) =
+        public ServiceProxy() => (DataAccessObject, lazyUoW) =
             (Dependency.Get<TDAO>(), new Lazy<IUoW>(
                 () => Dependency.Get<IUoW>()));
 
@@ -37,6 +37,6 @@ namespace Turquoise.Administration.Application.UseCase
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T ServiceAs<T>() where T : IDAO => lazyUoW.Value.ServiceAs<T>();
+        public T ServiceAs<T>() where T : IDataAccessObject => lazyUoW.Value.ServiceAs<T>();
     }
 }
