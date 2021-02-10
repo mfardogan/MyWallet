@@ -7,7 +7,7 @@ namespace Turquoise.Administration.API.Controllers
     using Turquoise.Administration.Application.UseCase.Administrators.Request;
     using Turquoise.Administration.Application.UseCase.Administrators.DTO;
 
-    [Route("/api/[controller]")]
+    [RouteJoin("[controller]")]
     public class AdministratorsController : CQRSBase
     {
         [HttpPut("search")]

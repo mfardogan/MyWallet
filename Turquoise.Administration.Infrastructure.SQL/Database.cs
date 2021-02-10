@@ -1,24 +1,24 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Turquoise.Administration.Infrastructure.SQL
 {
     using Turquoise.Administration.Infrastructure.SQL.Tracker;
+    using Turquoise.Administration.Domain.Aggregation.Common;
     using Turquoise.Administration.Domain.Aggregation.Branch;
     using Turquoise.Administration.Domain.Aggregation.Choice;
     using Turquoise.Administration.Domain.Aggregation.ChoiceGroup;
-    using Turquoise.Administration.Domain.Aggregation.Common;
     using Turquoise.Administration.Domain.Aggregation.Doctor;
     using Turquoise.Administration.Domain.Aggregation.Administrator;
-    using System;
-
-    public partial class Database : DbContext
+    public class Database : DbContext
     {
         public Database() { }
         public Database([NotNull] DbContextOptions options) : base(options) { }
@@ -31,6 +31,7 @@ namespace Turquoise.Administration.Infrastructure.SQL
         public DbSet<Administrator> Administrators { get; set; }
         public DbSet<AdministratorPassword> AdministratorPasswords { get; set; }
 
+        #region Configuration
         /// <summary>
         /// Configure
         /// </summary>
@@ -57,31 +58,33 @@ namespace Turquoise.Administration.Infrastructure.SQL
         {
             modelBuilder.HasPostgresExtension("uuid-ossp");
 
-            modelBuilder.DefaultSqlValues(
-               filter: e => e.ClrType.BaseType == typeof(Entity<Guid>),
-               propertyName: nameof(Entity<Guid>.Id),
-               defaultSqlValue: "uuid_generate_v4()"
+            ConcurrencyTokens(modelBuilder);
+
+            ApplyDefaultSql(modelBuilder,
+                e => e.ClrType.BaseType == typeof(Entity<Guid>),
+                nameof(Entity<Guid>.Id),
+                "uuid_generate_v4()"
                );
 
-            modelBuilder.DefaultSqlValues(
-                filter: e => e.ClrType.BaseType == typeof(Concurrency<>),
-                propertyName: nameof(Concurrency<Guid>.RowGuid),
-                defaultSqlValue: "uuid_generate_v4()");
+            ApplyDefaultSql(modelBuilder,
+                e => e.ClrType.BaseType == typeof(Concurrency<>),
+                nameof(Concurrency<Guid>.RowGuid),
+                "uuid_generate_v4()");
 
-            modelBuilder.DefaultSqlValues(
-                filter: e => e.ClrType.BaseType.IsGenericType && e.ClrType.BaseType.GetGenericTypeDefinition() == typeof(Entity<>),
-                propertyName: nameof(Entity<object>.RowGuid),
-                defaultSqlValue: "uuid_generate_v4()");
+            ApplyDefaultSql(modelBuilder,
+                e => e.ClrType.BaseType.IsGenericType && e.ClrType.BaseType.GetGenericTypeDefinition() == typeof(Entity<>),
+                nameof(Entity<object>.RowGuid),
+                "uuid_generate_v4()");
 
-            modelBuilder.DefaultSqlValues(
-                filter: e => e.ClrType.BaseType.IsGenericType && e.ClrType.BaseType.GetGenericTypeDefinition() == typeof(Concurrency<>),
-                propertyName: nameof(Entity<object>.RowGuid),
-                defaultSqlValue: "uuid_generate_v4()");
+            ApplyDefaultSql(modelBuilder,
+                e => e.ClrType.BaseType.IsGenericType && e.ClrType.BaseType.GetGenericTypeDefinition() == typeof(Concurrency<>),
+                nameof(Entity<object>.RowGuid),
+                "uuid_generate_v4()");
 
-            modelBuilder.DefaultSqlValues(
-                filter: e => e.ClrType.GetInterfaces().Any(x => x == typeof(ICreationAt)),
-                propertyName: nameof(ICreationAt.CreationAt),
-                defaultSqlValue: "now()");
+            ApplyDefaultSql(modelBuilder,
+                e => e.ClrType.GetInterfaces().Any(x => x == typeof(ICreationAt)),
+                nameof(ICreationAt.CreationAt),
+                "now()");
 
             base.OnModelCreating(modelBuilder);
         }
@@ -102,5 +105,44 @@ namespace Turquoise.Administration.Infrastructure.SQL
             subject.Publish(ChangeTracker.Entries());
             return base.SaveChangesAsync(cancellationToken);
         }
+
+        /// <summary>
+        /// Add concurrency tokens for models
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        public static void ConcurrencyTokens(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Model.GetEntityTypes()
+                .Where(e => e.ClrType.BaseType == typeof(Concurrency<>))
+                .Select(e => e.ClrType)
+                .ToList()
+                .ForEach(e => modelBuilder.Entity(e).Property(nameof(Concurrency<object>.ConcurrencyToken))
+                     .HasColumnName("xmin")
+                         .HasColumnType("xid")
+                              .ValueGeneratedOnAddOrUpdate()
+                                     .IsConcurrencyToken());
+        }
+
+        /// <summary>
+        /// Default value sql
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        /// <param name="filter"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="defaultSqlValue"></param>
+        public static void ApplyDefaultSql(ModelBuilder modelBuilder, Func<IMutableEntityType, bool> filter, string propertyName, string defaultSqlValue)
+        {
+            modelBuilder.Model.GetEntityTypes()
+                .Where(filter)
+                .Select(e => e.ClrType)
+                .ToList()
+                .ForEach(e =>
+                {
+                    modelBuilder.Entity(e)
+                    .Property(propertyName)
+                    .HasDefaultValueSql(defaultSqlValue);
+                });
+        } 
+        #endregion
     }
 }

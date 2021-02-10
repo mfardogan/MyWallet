@@ -15,7 +15,8 @@ namespace Turquoise.Administration.API.Controllers
         /// </summary>
         /// <param name="command"></param>
         /// <returns></returns>
-        [NonAction] public Task ExecuteCommandAsync(IRequest command) => mediator.Send(command);
+        [NonAction] 
+        public Task ExecuteCommandAsync(IRequest command) => mediator.Send(command);
 
         /// <summary>
         /// Query
@@ -23,6 +24,7 @@ namespace Turquoise.Administration.API.Controllers
         /// <typeparam name="T"></typeparam>
         /// <param name="query"></param>
         /// <returns></returns>
-        [NonAction] public Task<T> ExecuteQueryAsync<T>(IRequest<T> query) => mediator.Send(query);
+        [NonAction] 
+        public Task<T> ExecuteQueryAsync<T>(IRequest<T> query) => mediator.Send(query);
     }
 }
