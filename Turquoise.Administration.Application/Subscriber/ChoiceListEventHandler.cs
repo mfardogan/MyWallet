@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Turquoise.Administration.Application.Subscriber
 {
     using Turquoise.Administration.Domain.DomainEvent;
-    using Turquoise.Administration.Domain.Aggregation.Choice;
+    using Turquoise.Administration.Domain.Aggregation.ChoiceGroup;
 
     public sealed class ChoiceListEventHandler : INotificationHandler<GenericEvent<IEnumerable<Choice>>>
     {

@@ -14,7 +14,6 @@ namespace Turquoise.Administration.Infrastructure.SQL
     using Turquoise.Administration.Infrastructure.SQL.Tracker;
     using Turquoise.Administration.Domain.Aggregation.Common;
     using Turquoise.Administration.Domain.Aggregation.Branch;
-    using Turquoise.Administration.Domain.Aggregation.Choice;
     using Turquoise.Administration.Domain.Aggregation.ChoiceGroup;
     using Turquoise.Administration.Domain.Aggregation.Doctor;
     using Turquoise.Administration.Domain.Aggregation.Administrator;

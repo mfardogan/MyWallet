@@ -34,9 +34,7 @@ namespace Turquoise.Administration.Application.UseCase.Branches
         /// <returns></returns>
         public Task<BranchViewModel[]> Handle(SearchBranches request, CancellationToken cancellationToken)
         {
-            Specification<Branch, BranchViewModel> specify =
-                new BranchSpecify(request.Filters);
-
+            BranchSpecify specify = new BranchSpecify(request.Filters);
             BranchViewModel[] branches =
                dAO.Get(specify.GetFilters(), request.Pagination)
                .Map<BranchViewModel>()

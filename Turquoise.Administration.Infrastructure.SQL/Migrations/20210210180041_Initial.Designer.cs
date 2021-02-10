@@ -10,7 +10,7 @@ using Turquoise.Administration.Infrastructure.SQL;
 namespace Turquoise.Administration.Infrastructure.SQL.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20210210150852_Initial")]
+    [Migration("20210210180041_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -129,7 +129,7 @@ namespace Turquoise.Administration.Infrastructure.SQL.Migrations
                     b.ToTable("branch", "user");
                 });
 
-            modelBuilder.Entity("Turquoise.Administration.Domain.Aggregation.Choice.Choice", b =>
+            modelBuilder.Entity("Turquoise.Administration.Domain.Aggregation.ChoiceGroup.Choice", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -443,7 +443,7 @@ namespace Turquoise.Administration.Infrastructure.SQL.Migrations
                     b.Navigation("Administrator");
                 });
 
-            modelBuilder.Entity("Turquoise.Administration.Domain.Aggregation.Choice.Choice", b =>
+            modelBuilder.Entity("Turquoise.Administration.Domain.Aggregation.ChoiceGroup.Choice", b =>
                 {
                     b.HasOne("Turquoise.Administration.Domain.Aggregation.ChoiceGroup.ChoiceGroup", "ChoiceGroup")
                         .WithMany("Choices")
@@ -501,7 +501,7 @@ namespace Turquoise.Administration.Infrastructure.SQL.Migrations
 
             modelBuilder.Entity("Turquoise.Administration.Domain.Aggregation.SurveyAnswer.SurveyAnswerChoice", b =>
                 {
-                    b.HasOne("Turquoise.Administration.Domain.Aggregation.Choice.Choice", "Choice")
+                    b.HasOne("Turquoise.Administration.Domain.Aggregation.ChoiceGroup.Choice", "Choice")
                         .WithMany()
                         .HasForeignKey("ChoiceId")
                         .OnDelete(DeleteBehavior.Cascade)

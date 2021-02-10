@@ -5,7 +5,7 @@ namespace Turquoise.Administration.Domain.Aggregation.SurveyAnswer
 {
     using System.ComponentModel.DataAnnotations;
     using Turquoise.Administration.Domain.Abstraction;
-    using Turquoise.Administration.Domain.Aggregation.Choice;
+    using Turquoise.Administration.Domain.Aggregation.ChoiceGroup;
     using Turquoise.Administration.Domain.Aggregation.Common;
 
     [Table("survey_answer_choice", Schema = Schamas.SURVEY)]

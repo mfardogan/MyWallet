@@ -7,7 +7,6 @@ namespace Turquoise.Administration.Domain.Aggregation.ChoiceGroup
 {
     using Turquoise.Administration.Domain.Abstraction;
     using Turquoise.Administration.Domain.Aggregation.Common;
-    using Turquoise.Administration.Domain.Aggregation.Choice;
 
     [Table("choice_group", Schema = Schamas.SURVEY)]
     public class ChoiceGroup : Concurrency<Guid>, IAggregateRoot

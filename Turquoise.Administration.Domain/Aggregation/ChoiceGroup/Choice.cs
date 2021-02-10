@@ -2,11 +2,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Turquoise.Administration.Domain.Aggregation.Choice
+namespace Turquoise.Administration.Domain.Aggregation.ChoiceGroup
 {
     using Turquoise.Administration.Domain.Abstraction;
     using Turquoise.Administration.Domain.Aggregation.Common;
-    using Turquoise.Administration.Domain.Aggregation.ChoiceGroup;
 
     [Table("choice", Schema = Schamas.SURVEY)]
     public class Choice : Concurrency<Guid>, IAggregateRoot
@@ -19,7 +18,6 @@ namespace Turquoise.Administration.Domain.Aggregation.Choice
         [Column("code", TypeName = "varchar(3)")]
         public string Code { get; set; }
 
-        [Required]
         [Column("number")]
         public uint Number { get; set; }
 
@@ -39,6 +37,5 @@ namespace Turquoise.Administration.Domain.Aggregation.Choice
         /// Group
         /// </summary>
         public virtual ChoiceGroup ChoiceGroup { get; set; }
-
     }
 }
