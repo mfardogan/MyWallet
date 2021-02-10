@@ -5,10 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 namespace Turquoise.Administration.API.Controllers
 {
     using Turquoise.Administration.Domain;
-    public class CQRSBase : Base
+    public class CQBaseController : BaseController
     {
         private readonly IMediator mediator;
-        public CQRSBase() => mediator = Dependency.Get<IMediator>();
+        public CQBaseController()
+        {
+            mediator = Dependency.Get<IMediator>();
+        }
 
         /// <summary>
         /// Command
@@ -16,7 +19,7 @@ namespace Turquoise.Administration.API.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [NonAction] 
-        public Task ExecuteCommandAsync(IRequest command) => mediator.Send(command);
+        public virtual Task ExecuteCommandAsync(IRequest command) => mediator.Send(command);
 
         /// <summary>
         /// Query
@@ -25,6 +28,6 @@ namespace Turquoise.Administration.API.Controllers
         /// <param name="query"></param>
         /// <returns></returns>
         [NonAction] 
-        public Task<T> ExecuteQueryAsync<T>(IRequest<T> query) => mediator.Send(query);
+        public virtual Task<T> ExecuteQueryAsync<T>(IRequest<T> query) => mediator.Send(query);
     }
 }

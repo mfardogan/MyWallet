@@ -6,8 +6,7 @@ namespace Turquoise.Administration.Application.Service
 
     public sealed class Identity : IIdentity
     {
-        Guid? IIdentity.AdministratorId => throw new NotImplementedException();
-
-        Guid? IIdentity.DoctorId => throw new NotImplementedException();
+        Guid? IIdentity.DoctorId => Guid.NewGuid();
+        Guid? IIdentity.AdministratorId => Guid.NewGuid();
     }
 }

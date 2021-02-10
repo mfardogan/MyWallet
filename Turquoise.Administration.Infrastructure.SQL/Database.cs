@@ -34,6 +34,7 @@ namespace Turquoise.Administration.Infrastructure.SQL
         public DbSet<Administrator> Administrators { get; set; }
         public DbSet<AdministratorPassword> AdministratorPasswords { get; set; }
         public DbSet<Survey> Surveys { get; set; }
+        public DbSet<SurveyBranch> SurveyBranches { get; set; }
         public DbSet<SurveyAnswer> SurveyAnswers { get; set; }
         public DbSet<SurveyAnswerChoice> SurveyAnswerChoices { get; set; }
 

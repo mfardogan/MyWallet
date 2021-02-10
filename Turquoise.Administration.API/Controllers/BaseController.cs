@@ -11,7 +11,7 @@ namespace Turquoise.Administration.API.Controllers
         ApiController,
         TypeFilter(typeof(ExceptionFilter))
     ]
-    public class Base : ControllerBase
+    public class BaseController : ControllerBase
     {
     }
 }

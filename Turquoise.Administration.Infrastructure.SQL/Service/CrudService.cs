@@ -8,8 +8,8 @@ namespace Turquoise.Administration.Infrastructure.SQL.Service
     using Turquoise.Administration.Domain.Aggregation.Common;
     public abstract class CrudService<TEntity, TPk> : BaseService where TEntity : Entity<TPk>
     {
-        public DbSet<TEntity> Repository { get; set; }
-        public CrudService() => Repository = DbContext.Set<TEntity>();
+        protected DbSet<TEntity> RepositoryContext { get; set; }
+        public CrudService() => RepositoryContext = DatabaseContext.Set<TEntity>();
 
         /// <summary>
         /// Delete
@@ -18,8 +18,8 @@ namespace Turquoise.Administration.Infrastructure.SQL.Service
         /// <returns></returns>
         public virtual TEntity Delete(TPk id)
         {
-            TEntity entity = Repository.Single(e => e.Id.Equals(id));
-            Repository.Remove(entity);
+            TEntity entity = RepositoryContext.Single(e => e.Id.Equals(id));
+            RepositoryContext.Remove(entity);
             return entity;
         }
 
@@ -30,7 +30,7 @@ namespace Turquoise.Administration.Infrastructure.SQL.Service
         /// <returns></returns>
         public virtual TEntity Insert(TEntity entity)
         {
-            return Repository.Add(entity).Entity;
+            return RepositoryContext.Add(entity).Entity;
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Turquoise.Administration.Infrastructure.SQL.Service
         /// <returns></returns>
         public virtual TEntity Update(TEntity entity)
         {
-            DbContext.Entry(entity).State = EntityState.Modified;
+            DatabaseContext.Entry(entity).State = EntityState.Modified;
             return entity;
 
         }
@@ -52,7 +52,7 @@ namespace Turquoise.Administration.Infrastructure.SQL.Service
         /// <returns></returns>
         public virtual TEntity Get(Guid id)
         {
-            return Repository.SingleOrDefault(e => e.Id.Equals(id));
+            return RepositoryContext.AsNoTracking().SingleOrDefault(e => e.Id.Equals(id));
         }
 
         /// <summary>
@@ -64,7 +64,8 @@ namespace Turquoise.Administration.Infrastructure.SQL.Service
         public virtual TEntity[] Get(Expression<Func<TEntity, bool>> expression = null, Pagination pagination = null)
         {
             var (skip, rows) = ((pagination.Page - 1) * pagination.Rows, pagination.Rows);
-            return Repository.Where(expression)
+            return RepositoryContext.AsNoTracking()
+                .Where(expression)
                 .Skip(skip)
                 .Take(rows)
                 .ToArray();

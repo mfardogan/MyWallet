@@ -3,7 +3,7 @@
     using Turquoise.Administration.Domain;
     public class BaseService
     {
-        public Database DbContext { get; private set; }
-        public BaseService() => DbContext = Dependency.Get<Database>();
+        protected Database DatabaseContext { get; }
+        public BaseService() => DatabaseContext = Dependency.Get<Database>();
     }
 }

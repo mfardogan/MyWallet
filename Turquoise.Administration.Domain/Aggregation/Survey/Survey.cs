@@ -8,6 +8,7 @@ namespace Turquoise.Administration.Domain.Aggregation.Survey
     using Turquoise.Administration.Domain.Aggregation.Common;
     using Turquoise.Administration.Domain.Aggregation.ChoiceGroup;
     using Turquoise.Administration.Domain.Aggregation.Branch;
+    using System.Collections.Generic;
 
     [Table("survey", Schema = Schamas.SURVEY)]
     public class Survey : Concurrency<Guid>, IAggregateRoot, ICreationAt
@@ -37,5 +38,10 @@ namespace Turquoise.Administration.Domain.Aggregation.Survey
         [ForeignKey(nameof(Branch))]
         public Guid? BranchId { get; set; }
         public virtual Branch Branch { get; set; }
+
+        /// <summary>
+        /// Survey branches
+        /// </summary>
+        public ICollection<SurveyBranch> SurveyBranches { get; set; } = new HashSet<SurveyBranch>();
     }
 }

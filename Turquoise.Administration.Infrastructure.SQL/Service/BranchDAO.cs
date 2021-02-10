@@ -5,6 +5,5 @@ namespace Turquoise.Administration.Infrastructure.SQL.Service
 {
     public class BranchDAO : CrudService<Branch, Guid>, IBranchDAO
     {
-
     }
 }

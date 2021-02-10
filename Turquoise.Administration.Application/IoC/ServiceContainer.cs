@@ -25,9 +25,7 @@ namespace Turquoise.Administration.Application.IoC
             .As<IMapper>()
             .InstancePerLifetimeScope();
 
-            builder.Register(x => new MapperConfiguration(x => x.AddMaps(typeof(ViewModel).Assembly)))
-                .AsSelf()
-                .SingleInstance();
+            builder.Register(x => new MapperConfiguration(x => x.AddMaps(typeof(ViewModel).Assembly))).AsSelf().SingleInstance();
 
             builder.RegisterType<Rfc2898>().As<IPasswordHasher>().SingleInstance();
             builder.RegisterType<SaltFactory>().As<ISaltFactory>().SingleInstance();
