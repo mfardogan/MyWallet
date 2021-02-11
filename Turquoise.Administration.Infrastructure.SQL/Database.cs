@@ -22,9 +22,10 @@ namespace Turquoise.Administration.Infrastructure.SQL
 
     public class Database : DbContext
     {
-        public Database() { }
-        public Database([NotNull] DbContextOptions options) : base(options) { }
-
+        public Database([NotNull] DbContextOptions options) : base(options)
+        {
+            ChangeTracker.LazyLoadingEnabled = default;
+        }
 
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Branch> Branches { get; set; }
@@ -149,7 +150,7 @@ namespace Turquoise.Administration.Infrastructure.SQL
                     .Property(propertyName)
                     .HasDefaultValueSql(defaultSqlValue);
                 });
-        } 
+        }
         #endregion
     }
 }

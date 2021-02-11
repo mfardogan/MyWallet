@@ -10,7 +10,7 @@ using Turquoise.Administration.Infrastructure.SQL;
 namespace Turquoise.Administration.Infrastructure.SQL.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20210210180041_Initial")]
+    [Migration("20210211185747_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -412,6 +412,10 @@ namespace Turquoise.Administration.Infrastructure.SQL.Migrations
                         .IsRequired()
                         .HasColumnType("varchar")
                         .HasColumnName("coordinates");
+
+                    b.Property<byte>("DrawingType")
+                        .HasColumnType("smallint")
+                        .HasColumnName("drawing_type");
 
                     b.Property<Guid?>("RowGuid")
                         .ValueGeneratedOnAdd()

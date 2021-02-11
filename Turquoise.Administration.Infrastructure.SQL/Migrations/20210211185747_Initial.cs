@@ -200,6 +200,7 @@ namespace Turquoise.Administration.Infrastructure.SQL.Migrations
                     survey_answer_id = table.Column<Guid>(type: "uuid", nullable: false),
                     choice_id = table.Column<Guid>(type: "uuid", nullable: false),
                     coordinates = table.Column<string>(type: "varchar", nullable: false),
+                    drawing_type = table.Column<byte>(type: "smallint", nullable: false),
                     row_guid = table.Column<Guid>(type: "uuid", nullable: true, defaultValueSql: "uuid_generate_v4()"),
                     xmin = table.Column<uint>(type: "xid", rowVersion: true, nullable: false)
                 },

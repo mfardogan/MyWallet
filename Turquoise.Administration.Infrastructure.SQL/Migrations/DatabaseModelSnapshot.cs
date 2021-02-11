@@ -411,6 +411,10 @@ namespace Turquoise.Administration.Infrastructure.SQL.Migrations
                         .HasColumnType("varchar")
                         .HasColumnName("coordinates");
 
+                    b.Property<byte>("DrawingType")
+                        .HasColumnType("smallint")
+                        .HasColumnName("drawing_type");
+
                     b.Property<Guid?>("RowGuid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")

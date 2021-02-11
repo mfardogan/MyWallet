@@ -15,6 +15,8 @@ namespace Turquoise.Administration.Infrastructure.SQL.Service
         public override Survey Get(Guid id)
         {
             return RepositoryContext.Include(e => e.SurveyBranches)
+                .Include(e => e.ChoiceGroup)
+                .ThenInclude(e => e.Choices)
                 .AsNoTracking()
                 .SingleOrDefault(e => e.Id == id);
         }
