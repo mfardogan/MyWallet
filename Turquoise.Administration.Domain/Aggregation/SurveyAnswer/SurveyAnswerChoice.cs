@@ -22,5 +22,8 @@ namespace Turquoise.Administration.Domain.Aggregation.SurveyAnswer
         [Required]
         [Column("coordinates", TypeName = "varchar")]
         public string Corrdinates { get; set; }
+
+        [Column("drawing_type")]
+        public DrawingType DrawingType { get; set; }
     }
 }
