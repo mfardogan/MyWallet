@@ -19,6 +19,6 @@ namespace Turquoise.Administration.Domain.Abstraction
         /// Create expressions
         /// </summary>
         /// <returns></returns>
-        public abstract Expression<Func<TEntity, bool>> GetFilters();
+        public abstract Expression<Func<TEntity, bool>> GetExpressions();
     }
 }

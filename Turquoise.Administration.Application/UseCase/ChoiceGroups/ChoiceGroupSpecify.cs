@@ -17,7 +17,7 @@ namespace Turquoise.Administration.Application.UseCase.ChoiceGroups
         /// Get expressions
         /// </summary>
         /// <returns></returns>
-        public override Expression<Func<ChoiceGroup, bool>> GetFilters()
+        public override Expression<Func<ChoiceGroup, bool>> GetExpressions()
         {
             return filter => IsThereNoFilter() ||
                 (string.IsNullOrEmpty(FilterClause.Name) || filter.Name == FilterClause.Name) &&

@@ -36,7 +36,7 @@ namespace Turquoise.Administration.Application.UseCase.ChoiceGroups
         {
             ChoiceGroupSpecify specify = new ChoiceGroupSpecify(request.Filters);
             ChoiceGroupViewModel[] choiceGroups =
-                dAO.Get(specify.GetFilters(), request.Pagination)
+                dAO.Get(specify.GetExpressions(), request.Pagination)
                 .Map<ChoiceGroupViewModel>()
                 .ToArray();
 

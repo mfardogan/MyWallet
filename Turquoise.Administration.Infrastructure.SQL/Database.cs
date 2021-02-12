@@ -22,6 +22,8 @@ namespace Turquoise.Administration.Infrastructure.SQL
 
     public class Database : DbContext
     {
+        public Database() { }
+
         public Database([NotNull] DbContextOptions options) : base(options)
         {
             ChangeTracker.LazyLoadingEnabled = default;

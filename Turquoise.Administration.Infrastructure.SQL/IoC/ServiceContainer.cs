@@ -10,6 +10,7 @@ namespace Turquoise.Administration.Infrastructure.SQL.IoC
     using Turquoise.Administration.Domain.Aggregation.Branch;
     using Turquoise.Administration.Domain.Aggregation.ChoiceGroup;
     using Turquoise.Administration.Domain.Aggregation.Survey;
+    using Turquoise.Administration.Domain.Aggregation.SurveyAnswer;
     using Turquoise.Administration.Infrastructure.SQL.Service;
 
     public class ServiceContainer : Module
@@ -33,6 +34,7 @@ namespace Turquoise.Administration.Infrastructure.SQL.IoC
             builder.RegisterType<BranchDAO>().As<IBranchDAO>().InstancePerLifetimeScope();
             builder.RegisterType<SurveyDAO>().As<ISurveyDAO>().InstancePerLifetimeScope();
             builder.RegisterType<ChoiceGroupDAO>().As<IChoiceGroupDAO>().InstancePerLifetimeScope();
+            builder.RegisterType<SurveyAnswerDAO>().As<ISurveyAnsewerDAO>().InstancePerLifetimeScope();
 
             base.Load(builder);
         }

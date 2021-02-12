@@ -36,7 +36,7 @@ namespace Turquoise.Administration.Application.UseCase.Surveys
             var specify = new SurveySpecify(request.Filters);
 
             SurveyViewModel[] surveyViewModels =
-                dAO.Get(specify.GetFilters(), pagination)
+                dAO.Get(specify.GetExpressions(), pagination)
                 .Map<SurveyViewModel>()
                 .ToArray();
             return service.Success(surveyViewModels);

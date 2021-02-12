@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Turquoise.Administration.Infrastructure.SQL;
@@ -9,9 +10,10 @@ using Turquoise.Administration.Infrastructure.SQL;
 namespace Turquoise.Administration.Infrastructure.SQL.Migrations
 {
     [DbContext(typeof(Database))]
-    partial class DatabaseModelSnapshot : ModelSnapshot
+    [Migration("20210212230250_InitialSet")]
+    partial class InitialSet
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -388,15 +390,9 @@ namespace Turquoise.Administration.Infrastructure.SQL.Migrations
                         .HasColumnName("row_guid")
                         .HasDefaultValueSql("uuid_generate_v4()");
 
-                    b.Property<Guid>("SurveyId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("survey_id");
-
                     b.HasKey("Id");
 
                     b.HasIndex("DoctorId");
-
-                    b.HasIndex("SurveyId");
 
                     b.ToTable("survey_answer", "survey");
                 });
@@ -521,15 +517,7 @@ namespace Turquoise.Administration.Infrastructure.SQL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Turquoise.Administration.Domain.Aggregation.Survey.Survey", "Survey")
-                        .WithMany()
-                        .HasForeignKey("SurveyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Doctor");
-
-                    b.Navigation("Survey");
                 });
 
             modelBuilder.Entity("Turquoise.Administration.Domain.Aggregation.SurveyAnswer.SurveyAnswerChoice", b =>

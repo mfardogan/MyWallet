@@ -36,7 +36,7 @@ namespace Turquoise.Administration.Application.UseCase.Branches
         {
             BranchSpecify specify = new BranchSpecify(request.Filters);
             BranchViewModel[] branches =
-               dAO.Get(specify.GetFilters(), request.Pagination)
+               dAO.Get(specify.GetExpressions(), request.Pagination)
                .Map<BranchViewModel>()
                .ToArray();
 

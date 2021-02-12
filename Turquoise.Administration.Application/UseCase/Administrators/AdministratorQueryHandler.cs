@@ -38,7 +38,7 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
                 new AdministratorSpecify(request.Filters);
 
             AdministratorViewModel[] administrators =
-               dAO.Get(specify.GetFilters(), request.Pagination)
+               dAO.Get(specify.GetExpressions(), request.Pagination)
                .Map<AdministratorViewModel>()
                .ToArray();
 

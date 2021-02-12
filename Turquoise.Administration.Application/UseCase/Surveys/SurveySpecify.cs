@@ -16,7 +16,7 @@ namespace Turquoise.Administration.Application.UseCase.Surveys
         /// Get expressions
         /// </summary>
         /// <returns></returns>
-        public override Expression<Func<Survey, bool>> GetFilters()
+        public override Expression<Func<Survey, bool>> GetExpressions()
         {
             return e => IsThereNoFilter() || 
             (string.IsNullOrEmpty(FilterClause.Title) || e.Title.Contains(FilterClause.Title)) &&

@@ -18,7 +18,7 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
         /// Create filter
         /// </summary>
         /// <returns></returns>
-        public override Expression<Func<Administrator, bool>> GetFilters()
+        public override Expression<Func<Administrator, bool>> GetExpressions()
         {
             return filter => IsThereNoFilter() || 
             filter.Name == FilterClause.Name || string.IsNullOrEmpty(FilterClause.Name);
