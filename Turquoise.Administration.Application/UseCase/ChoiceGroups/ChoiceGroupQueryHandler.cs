@@ -35,12 +35,12 @@ namespace Turquoise.Administration.Application.UseCase.ChoiceGroups
         public Task<ChoiceGroupViewModel[]> Handle(SearchChoiceGroups request, CancellationToken cancellationToken)
         {
             ChoiceGroupSpecify specify = new ChoiceGroupSpecify(request.Filters);
-            ChoiceGroupViewModel[] choiceGroups =
+            ChoiceGroupViewModel[] choiceGroupViewModels =
                 dAO.Get(specify.GetExpressions(), request.Pagination)
                 .Map<ChoiceGroupViewModel>()
                 .ToArray();
 
-            return service.Success(choiceGroups);
+            return service.Success(choiceGroupViewModels);
         }
     }
 }

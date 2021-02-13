@@ -35,8 +35,6 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
 
             dAO.Insert(administrator);
             await service.SaveAsync();
-
-            //await service.HandleEvent(new GenericEvent<IEnumerable<Choice>>(null));
             return service.Success();
         }
 

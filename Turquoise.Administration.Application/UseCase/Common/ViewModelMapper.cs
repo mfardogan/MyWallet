@@ -8,6 +8,9 @@ namespace Turquoise.Administration.Application.UseCase
 
     public static class Mapper
     {
+        private static readonly IMapper mapper;
+        static Mapper() => mapper = Dependency.Get<IMapper>();
+
         /// <summary>
         /// Map
         /// </summary>
@@ -16,8 +19,9 @@ namespace Turquoise.Administration.Application.UseCase
         /// <returns></returns>
         static public T Map<T>(this object obj) where T : class
         {
-            var mapper = Dependency.Get<IMapper>();
-            return (obj is null) ? null : (T)mapper.Map(obj, obj.GetType(), typeof(T));
+            return (obj is null) ? null : 
+                (T)mapper.Map(obj, obj.GetType(), 
+                    typeof(T));
         }
 
         /// <summary>
@@ -47,8 +51,9 @@ namespace Turquoise.Administration.Application.UseCase
         /// <returns></returns>
         static public IEnumerable<T> Map<T>(this IEnumerable<object> vs) where T : class
         {
-            var mapper = Dependency.Get<IMapper>();
-            return (vs is null) ? null : (IEnumerable<T>)mapper.Map(vs, vs.GetType(), typeof(IEnumerable<T>));
+            return (vs is null) ? null : 
+                (IEnumerable<T>)mapper.Map(vs, vs.GetType(), 
+                    typeof(IEnumerable<T>));
         }
 
         /// <summary>
@@ -59,13 +64,15 @@ namespace Turquoise.Administration.Application.UseCase
         /// <returns></returns>
         static public IEnumerable<T> Map<T>(this IEnumerable<object> vs, Action<T> action) where T : class
         {
-            var mapper = Dependency.Get<IMapper>();
             if (vs is null)
             {
                 return null;
             }
 
-            IEnumerable<T> collection = (IEnumerable<T>)mapper.Map(vs, vs.GetType(), typeof(IEnumerable<T>));
+            IEnumerable<T> collection = 
+                (IEnumerable<T>)mapper.Map(vs, vs.GetType(),
+                    typeof(IEnumerable<T>));
+
             foreach (var item in collection)
             {
                 action(item);
