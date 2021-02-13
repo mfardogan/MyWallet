@@ -19,7 +19,7 @@ namespace Turquoise.Administration.API.Controllers.SurveyAnswers
         [HttpGet("{id}")]
         public async Task<SurveyAnswerViewModel> GetById(Guid id)
         {
-            return await ExecuteQueryAsync(new GetSurveyAnswerById(id));
+            return await ExecuteQueryAsync(new GetSurveyAnswerByIdQuery(id));
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Turquoise.Administration.API.Controllers.SurveyAnswers
         /// <param name="searchQuery"></param>
         /// <returns></returns>
         [HttpPut("search")]
-        public async Task<SurveyAnswerViewModel[]> Search([FromBody] SearchSurveyAnswers searchQuery)
+        public async Task<SurveyAnswerViewModel[]> Search([FromBody] SearchSurveyAnswersQuery searchQuery)
         {
             return await ExecuteQueryAsync(searchQuery);
         }
@@ -42,7 +42,7 @@ namespace Turquoise.Administration.API.Controllers.SurveyAnswers
             HttpPost,
             ValidationFilter
         ]
-        public async Task Insert([FromBody] InsertSurveyAnswer insertCommand)
+        public async Task Insert([FromBody] InsertSurveyAnswerCommand insertCommand)
         {
             await ExecuteCommandAsync(insertCommand);
         }
@@ -56,7 +56,7 @@ namespace Turquoise.Administration.API.Controllers.SurveyAnswers
             HttpPut,
             ValidationFilter
         ]
-        public async Task Update([FromBody] UpdateSurveyAnswer updateCommand)
+        public async Task Update([FromBody] UpdateSurveyAnswerCommand updateCommand)
         {
             await ExecuteCommandAsync(updateCommand);
         }
@@ -69,7 +69,7 @@ namespace Turquoise.Administration.API.Controllers.SurveyAnswers
         [HttpDelete("{id}")]
         public async Task Update(Guid id)
         {
-            await ExecuteCommandAsync(new DeleteSurveyAnswer(id));
+            await ExecuteCommandAsync(new DeleteSurveyAnswerCommand(id));
         }
     }
 }

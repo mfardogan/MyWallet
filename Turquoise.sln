@@ -31,7 +31,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turquoise.Authentication.Do
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turquoise.Authentication.Application", "Turquoise.Authentication.Application\Turquoise.Authentication.Application.csproj", "{09E5DE2A-0027-4E8B-8E89-985538E54792}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turquoise.Authentication.Infrastructure", "Turquoise.Authentication.Infrastructure\Turquoise.Authentication.Infrastructure.csproj", "{36699812-8EA3-409E-B29D-B71DB709786D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turquoise.Authentication.Infrastructure.SQL", "Turquoise.Authentication.Infrastructure.SQL\Turquoise.Authentication.Infrastructure.SQL.csproj", "{36699812-8EA3-409E-B29D-B71DB709786D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{925191DB-7BB9-41A5-B5F1-62030570E91D}"
 EndProject

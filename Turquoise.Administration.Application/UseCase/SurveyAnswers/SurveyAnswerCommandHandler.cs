@@ -7,9 +7,9 @@ namespace Turquoise.Administration.Application.UseCase.SurveyAnswers
     using Turquoise.Administration.Domain.Aggregation.SurveyAnswer;
     using Turquoise.Administration.Application.UseCase.SurveyAnswers.CQ;
     public partial class SurveyAnswerCQHandler :
-        IRequestHandler<InsertSurveyAnswer>,
-        IRequestHandler<UpdateSurveyAnswer>,
-        IRequestHandler<DeleteSurveyAnswer>
+        IRequestHandler<InsertSurveyAnswerCommand>,
+        IRequestHandler<UpdateSurveyAnswerCommand>,
+        IRequestHandler<DeleteSurveyAnswerCommand>
     {
         private readonly ISurveyAnsewerDAO dAO;
         private readonly ServiceProxy<ISurveyAnsewerDAO> service;
@@ -25,7 +25,7 @@ namespace Turquoise.Administration.Application.UseCase.SurveyAnswers
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<Unit> Handle(InsertSurveyAnswer request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(InsertSurveyAnswerCommand request, CancellationToken cancellationToken)
         {
             dAO.Insert(request.SurveyAnswerViewModel);
             await service.SaveAsync();
@@ -38,7 +38,7 @@ namespace Turquoise.Administration.Application.UseCase.SurveyAnswers
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<Unit> Handle(UpdateSurveyAnswer request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(UpdateSurveyAnswerCommand request, CancellationToken cancellationToken)
         {
             dAO.Update(request.SurveyAnswerViewModel);
             await service.SaveAsync();
@@ -51,7 +51,7 @@ namespace Turquoise.Administration.Application.UseCase.SurveyAnswers
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<Unit> Handle(DeleteSurveyAnswer request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteSurveyAnswerCommand request, CancellationToken cancellationToken)
         {
             dAO.Delete(request.SurveyAnswerId);
             await service.SaveAsync();

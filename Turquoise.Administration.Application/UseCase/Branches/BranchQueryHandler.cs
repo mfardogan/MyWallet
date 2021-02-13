@@ -10,8 +10,8 @@ namespace Turquoise.Administration.Application.UseCase.Branches
     using Turquoise.Administration.Application.UseCase.Branches.DTO;
 
     public partial class BranchCQHandler :
-        IRequestHandler<GetBranchById, BranchViewModel>,
-        IRequestHandler<SearchBranches, BranchViewModel[]>
+        IRequestHandler<GetBranchByIdQuery, BranchViewModel>,
+        IRequestHandler<SearchBranchesQuery, BranchViewModel[]>
     {
         /// <summary>
         /// Get by id
@@ -19,7 +19,7 @@ namespace Turquoise.Administration.Application.UseCase.Branches
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<BranchViewModel> Handle(GetBranchById request, CancellationToken cancellationToken)
+        public Task<BranchViewModel> Handle(GetBranchByIdQuery request, CancellationToken cancellationToken)
         {
             Branch branch = dAO.Get(request.BranchId);
             BranchViewModel branchViewModel = branch.Map<BranchViewModel>();
@@ -32,7 +32,7 @@ namespace Turquoise.Administration.Application.UseCase.Branches
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<BranchViewModel[]> Handle(SearchBranches request, CancellationToken cancellationToken)
+        public Task<BranchViewModel[]> Handle(SearchBranchesQuery request, CancellationToken cancellationToken)
         {
             BranchSpecify specify = new BranchSpecify(request.Filters);
             BranchViewModel[] branchViewModels =

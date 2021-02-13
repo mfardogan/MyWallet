@@ -8,9 +8,9 @@ namespace Turquoise.Administration.Application.UseCase.ChoiceGroups
     using Turquoise.Administration.Application.UseCase.ChoiceGroups.CQ;
 
     public partial class ChoiceGroupCQHandler:
-        IRequestHandler<InsertChoiceGroup>,
-        IRequestHandler<UpdateChoiceGroup>,
-        IRequestHandler<DeleteChoiceGroup>
+        IRequestHandler<InsertChoiceGroupCommand>,
+        IRequestHandler<UpdateChoiceGroupCommand>,
+        IRequestHandler<DeleteChoiceGroupCommand>
     {
         private readonly IChoiceGroupDAO dAO;
         private readonly ServiceProxy<IChoiceGroupDAO> service;
@@ -26,7 +26,7 @@ namespace Turquoise.Administration.Application.UseCase.ChoiceGroups
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<Unit> Handle(InsertChoiceGroup request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(InsertChoiceGroupCommand request, CancellationToken cancellationToken)
         {
             dAO.Insert(request.ChoiceGroupViewModel);
             await service.SaveAsync();
@@ -39,7 +39,7 @@ namespace Turquoise.Administration.Application.UseCase.ChoiceGroups
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<Unit> Handle(UpdateChoiceGroup request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(UpdateChoiceGroupCommand request, CancellationToken cancellationToken)
         {
             dAO.Update(request.ChoiceGroupViewModel);
             await service.SaveAsync();
@@ -52,7 +52,7 @@ namespace Turquoise.Administration.Application.UseCase.ChoiceGroups
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public async Task<Unit> Handle(DeleteChoiceGroup request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteChoiceGroupCommand request, CancellationToken cancellationToken)
         {
             dAO.Delete(request.ChoiceGroupId);
             await service.SaveAsync();

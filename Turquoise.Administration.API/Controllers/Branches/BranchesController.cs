@@ -19,7 +19,7 @@ namespace Turquoise.Administration.API.Controllers.Branches
         [HttpGet("{id}")]
         public async Task<BranchViewModel> GetById(Guid id)
         {
-            return await ExecuteQueryAsync(new GetBranchById(id));
+            return await ExecuteQueryAsync(new GetBranchByIdQuery(id));
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Turquoise.Administration.API.Controllers.Branches
         /// <param name="searchQuery"></param>
         /// <returns></returns>
         [HttpPut("search")]
-        public async Task<BranchViewModel[]> Search([FromBody] SearchBranches searchQuery)
+        public async Task<BranchViewModel[]> Search([FromBody] SearchBranchesQuery searchQuery)
         {
             return await ExecuteQueryAsync(searchQuery);
         }
@@ -42,7 +42,7 @@ namespace Turquoise.Administration.API.Controllers.Branches
             HttpPost,
             ValidationFilter
         ]
-        public async Task Insert([FromBody] InsertBranch insertCommand)
+        public async Task Insert([FromBody] InsertBranchCommand insertCommand)
         {
             await ExecuteCommandAsync(insertCommand);
         }
@@ -56,7 +56,7 @@ namespace Turquoise.Administration.API.Controllers.Branches
             HttpPut,
             ValidationFilter
         ]
-        public async Task Update([FromBody] UpdateBranch updateCommand)
+        public async Task Update([FromBody] UpdateBranchCommand updateCommand)
         {
             await ExecuteCommandAsync(updateCommand);
         }
@@ -69,7 +69,7 @@ namespace Turquoise.Administration.API.Controllers.Branches
         [HttpDelete("{id}")]
         public async Task Update(Guid id)
         {
-            await ExecuteCommandAsync(new DeleteBranch(id));
+            await ExecuteCommandAsync(new DeleteBranchCommand(id));
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Turquoise.Administration.API.Controllers.ChoiceGroups
         [HttpGet("{id}")]
         public async Task<ChoiceGroupViewModel> GetById(Guid id)
         {
-            return await ExecuteQueryAsync(new GetChoiceGroupById(id));
+            return await ExecuteQueryAsync(new GetChoiceGroupByIdQuery(id));
         }
 
         /// <summary>
@@ -28,7 +28,7 @@ namespace Turquoise.Administration.API.Controllers.ChoiceGroups
         /// <param name="searchQuery"></param>
         /// <returns></returns>
         [HttpPut("search")]
-        public async Task<ChoiceGroupViewModel[]> Search([FromBody] SearchChoiceGroups searchQuery)
+        public async Task<ChoiceGroupViewModel[]> Search([FromBody] SearchChoiceGroupsQuery searchQuery)
         {
             return await ExecuteQueryAsync(searchQuery);
         }
@@ -42,7 +42,7 @@ namespace Turquoise.Administration.API.Controllers.ChoiceGroups
             HttpPost,
             ValidationFilter
         ]
-        public async Task Insert([FromBody] InsertChoiceGroup insertCommand)
+        public async Task Insert([FromBody] InsertChoiceGroupCommand insertCommand)
         {
             await ExecuteCommandAsync(insertCommand);
         }
@@ -56,7 +56,7 @@ namespace Turquoise.Administration.API.Controllers.ChoiceGroups
             HttpPut,
             ValidationFilter
         ]
-        public async Task Update([FromBody] UpdateChoiceGroup updateCommand)
+        public async Task Update([FromBody] UpdateChoiceGroupCommand updateCommand)
         {
             await ExecuteCommandAsync(updateCommand);
         }
@@ -69,7 +69,7 @@ namespace Turquoise.Administration.API.Controllers.ChoiceGroups
         [HttpDelete("{id}")]
         public async Task Update(Guid id)
         {
-            await ExecuteCommandAsync(new DeleteChoiceGroup(id));
+            await ExecuteCommandAsync(new DeleteChoiceGroupCommand(id));
         }
     }
 }

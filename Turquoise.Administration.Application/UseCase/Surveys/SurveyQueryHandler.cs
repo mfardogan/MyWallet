@@ -9,8 +9,8 @@ namespace Turquoise.Administration.Application.UseCase.Surveys
     using Turquoise.Administration.Application.UseCase.Surveys.DTO;
 
     public partial class SurveyCQHandler :
-        IRequestHandler<GetSurveyById, SurveyViewModel>,
-        IRequestHandler<SearchSurveys, SurveyViewModel[]>
+        IRequestHandler<GetSurveyByIdQuery, SurveyViewModel>,
+        IRequestHandler<SearchSurveysQuery, SurveyViewModel[]>
     {
         /// <summary>
         /// Get by id
@@ -18,7 +18,7 @@ namespace Turquoise.Administration.Application.UseCase.Surveys
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<SurveyViewModel> Handle(GetSurveyById request, CancellationToken cancellationToken)
+        public Task<SurveyViewModel> Handle(GetSurveyByIdQuery request, CancellationToken cancellationToken)
         {
             SurveyViewModel surveyViewModel = dAO.Get(request.SurveyId).Map<SurveyViewModel>();
             return service.Success(surveyViewModel);
@@ -30,7 +30,7 @@ namespace Turquoise.Administration.Application.UseCase.Surveys
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<SurveyViewModel[]> Handle(SearchSurveys request, CancellationToken cancellationToken)
+        public Task<SurveyViewModel[]> Handle(SearchSurveysQuery request, CancellationToken cancellationToken)
         {
             var pagination = request.Pagination;
             var specify = new SurveySpecify(request.Filters);

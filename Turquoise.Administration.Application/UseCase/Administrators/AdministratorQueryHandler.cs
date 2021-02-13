@@ -11,8 +11,8 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
     using Turquoise.Administration.Application.UseCase.Administrators.CQ;
 
     public partial class AdministratorCQHandler :
-        IRequestHandler<GetAdministratorById, AdministratorViewModel>,
-        IRequestHandler<SearchAdministrators, AdministratorViewModel[]>
+        IRequestHandler<GetAdministratorByIdQuery, AdministratorViewModel>,
+        IRequestHandler<SearchAdministratorsQuery, AdministratorViewModel[]>
     {    
         /// <summary>
         /// Get by id
@@ -20,7 +20,7 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<AdministratorViewModel> Handle(GetAdministratorById request, CancellationToken cancellationToken)
+        public Task<AdministratorViewModel> Handle(GetAdministratorByIdQuery request, CancellationToken cancellationToken)
         {
             Administrator administrator = dAO.Get(request.Id);
             return service.Success(administrator.Map<AdministratorViewModel>());
@@ -32,7 +32,7 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<AdministratorViewModel[]> Handle(SearchAdministrators request, CancellationToken cancellationToken)
+        public Task<AdministratorViewModel[]> Handle(SearchAdministratorsQuery request, CancellationToken cancellationToken)
         {
             Specification<Administrator, AdministratorViewModel> specify =
                 new AdministratorSpecify(request.Filters);
