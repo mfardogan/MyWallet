@@ -7,7 +7,7 @@ namespace Turquoise.Administration.Domain.Aggregation.Administrator
     using Turquoise.Administration.Domain.Aggregation.Common;
 
     [Table("administrator_password", Schema = Schamas.USERS)]
-    public class AdministratorPassword : Entity<Guid>
+    public class AdministratorPassword : Poco<Guid>
     {
         /// <summary>
         /// Fk

@@ -7,10 +7,10 @@ namespace Turquoise.Administration.Infrastructure.SQL
 {
     using Turquoise.Administration.Domain.Abstraction;
 
-    public sealed class TransactionScope : ITransaction
+    public sealed class Transaction : ITransaction
     {
         private readonly IDbContextTransaction scope;
-        public TransactionScope([NotNull] Database context)
+        public Transaction([NotNull] Database context)
         {
             scope = context.Database.BeginTransaction();
         }

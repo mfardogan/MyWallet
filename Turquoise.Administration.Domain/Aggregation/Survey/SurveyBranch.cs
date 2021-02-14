@@ -7,7 +7,7 @@ namespace Turquoise.Administration.Domain.Aggregation.Survey
     using Turquoise.Administration.Domain.Aggregation.Branch;
 
     [Table("survey_branch", Schema = Schamas.SURVEY)]
-    public class SurveyBranch : Concurrency<Guid>
+    public class SurveyBranch : ConcurrencyPoco<Guid>
     {
         [Column("survey_id")]
         [ForeignKey(nameof(Survey))]

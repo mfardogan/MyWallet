@@ -7,7 +7,7 @@ namespace Turquoise.Administration.Domain.Aggregation.ChoiceGroup
     using Turquoise.Administration.Domain.Aggregation.Common;
 
     [Table("choice", Schema = Schamas.SURVEY)]
-    public class Choice : Concurrency<Guid>
+    public class Choice : ConcurrencyPoco<Guid>
     {
         [Required]
         [Column("name", TypeName = "varchar(20)")]

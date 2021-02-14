@@ -11,7 +11,7 @@ namespace Turquoise.Administration.Domain.Aggregation.Survey
     using System.Collections.Generic;
 
     [Table("survey", Schema = Schamas.SURVEY)]
-    public class Survey : Concurrency<Guid>, IAggregateRoot, ICreationAt
+    public class Survey : ConcurrencyPoco<Guid>, IAggregateRoot, ICreationAt
     {
         [Column("status")]
         public SurveyStatus Status { get; set; }

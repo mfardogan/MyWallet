@@ -9,7 +9,7 @@ namespace Turquoise.Administration.Domain.Aggregation.SurveyAnswer
     using Turquoise.Administration.Domain.Aggregation.Common;
 
     [Table("survey_answer_choice", Schema = Schamas.SURVEY)]
-    public class SurveyAnswerChoice : Concurrency<Guid>, IAggregateRoot
+    public class SurveyAnswerChoice : ConcurrencyPoco<Guid>, IAggregateRoot
     {
         [Column("survey_answer_id")]
         public Guid SurveyAnswerId { get; set; }

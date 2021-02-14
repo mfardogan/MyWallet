@@ -1,25 +1,13 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using MyWallet.Administration.Domain.Abstraction;
 
 namespace Turquoise.Administration.Domain.Aggregation.Common
 {
-    public abstract class Entity<TPk> : DbObject
+    public abstract class Entity
     {
-        public Entity() { }
-        public Entity(TPk id) => Id = id;
-
         /// <summary>
-        /// Primary key column
+        /// Accept visitor
         /// </summary>
-        [Key]
-        [Column("id", Order = 0)]
-        public virtual TPk Id { get; set; }
-
-        /// <summary>
-        /// Row guid
-        /// </summary>
-        [Column("row_guid",TypeName = "uuid", Order = 1)]
-        public Guid? RowGuid { get; set; }
+        /// <param name="visitor"></param>
+        public void Accept(IDbVisitor visitor) => visitor.Visit(this);
     }
 }

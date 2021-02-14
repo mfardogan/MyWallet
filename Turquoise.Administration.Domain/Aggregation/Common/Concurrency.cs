@@ -3,14 +3,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Turquoise.Administration.Domain.Aggregation.Common
 {
-    public abstract class Concurrency<TPk> : Entity<TPk>
+    public abstract class ConcurrencyPoco<TPk> : Poco<TPk>
     {
         /// <summary>
         /// Concurrency token
         /// </summary>
-        [ConcurrencyCheck]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        [Column(name: "xmin", TypeName = "xid", Order = 2)]
+        [
+            ConcurrencyCheck,
+            Column(name: "xmin", TypeName = "xid", Order = 2),
+            DatabaseGenerated(DatabaseGeneratedOption.Computed)
+        ]
         public uint ConcurrencyToken { get; set; }
     }
 }

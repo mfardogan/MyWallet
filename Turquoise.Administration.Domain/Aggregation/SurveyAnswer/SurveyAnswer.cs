@@ -11,7 +11,7 @@ namespace Turquoise.Administration.Domain.Aggregation.SurveyAnswer
 
 
     [Table("survey_answer", Schema = Schamas.SURVEY)]
-    public class SurveyAnswer : Concurrency<Guid>, IAggregateRoot, ICreationAt
+    public class SurveyAnswer : ConcurrencyPoco<Guid>, IAggregateRoot, ICreationAt
     {
         [Column("creation_at")]
         public DateTime? CreationAt { get; set; }

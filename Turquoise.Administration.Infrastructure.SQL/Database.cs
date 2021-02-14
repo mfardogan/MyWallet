@@ -71,24 +71,24 @@ namespace Turquoise.Administration.Infrastructure.SQL
             ConcurrencyTokens(modelBuilder);
 
             ApplyDefaultSql(modelBuilder,
-                e => e.ClrType.BaseType == typeof(Entity<Guid>),
-                nameof(Entity<Guid>.Id),
+                e => e.ClrType.BaseType == typeof(Poco<Guid>),
+                nameof(Poco<Guid>.Id),
                 "uuid_generate_v4()"
                );
 
             ApplyDefaultSql(modelBuilder,
-                e => e.ClrType.BaseType == typeof(Concurrency<>),
-                nameof(Concurrency<Guid>.RowGuid),
+                e => e.ClrType.BaseType == typeof(ConcurrencyPoco<>),
+                nameof(ConcurrencyPoco<Guid>.RowGuid),
                 "uuid_generate_v4()");
 
             ApplyDefaultSql(modelBuilder,
-                e => e.ClrType.BaseType.IsGenericType && e.ClrType.BaseType.GetGenericTypeDefinition() == typeof(Entity<>),
-                nameof(Entity<object>.RowGuid),
+                e => e.ClrType.BaseType.IsGenericType && e.ClrType.BaseType.GetGenericTypeDefinition() == typeof(Poco<>),
+                nameof(Poco<object>.RowGuid),
                 "uuid_generate_v4()");
 
             ApplyDefaultSql(modelBuilder,
-                e => e.ClrType.BaseType.IsGenericType && e.ClrType.BaseType.GetGenericTypeDefinition() == typeof(Concurrency<>),
-                nameof(Entity<object>.RowGuid),
+                e => e.ClrType.BaseType.IsGenericType && e.ClrType.BaseType.GetGenericTypeDefinition() == typeof(ConcurrencyPoco<>),
+                nameof(Poco<object>.RowGuid),
                 "uuid_generate_v4()");
 
             ApplyDefaultSql(modelBuilder,
@@ -123,10 +123,10 @@ namespace Turquoise.Administration.Infrastructure.SQL
         public static void ConcurrencyTokens(ModelBuilder modelBuilder)
         {
             modelBuilder.Model.GetEntityTypes()
-                .Where(e => e.ClrType.BaseType == typeof(Concurrency<>))
+                .Where(e => e.ClrType.BaseType == typeof(ConcurrencyPoco<>))
                 .Select(e => e.ClrType)
                 .ToList()
-                .ForEach(e => modelBuilder.Entity(e).Property(nameof(Concurrency<object>.ConcurrencyToken))
+                .ForEach(e => modelBuilder.Entity(e).Property(nameof(ConcurrencyPoco<object>.ConcurrencyToken))
                      .HasColumnName("xmin")
                          .HasColumnType("xid")
                               .ValueGeneratedOnAddOrUpdate()

@@ -8,7 +8,7 @@ namespace Turquoise.Administration.Domain.Aggregation.Administrator
     using Turquoise.Administration.Domain.Aggregation.Common;
 
     [Table("administrator", Schema = Schamas.USERS)]
-    public class Administrator : Concurrency<Guid>, IAggregateRoot, ICreationAt
+    public class Administrator : ConcurrencyPoco<Guid>, IAggregateRoot, ICreationAt
     {
         [Required]
         [Column("name", TypeName = "varchar(20)")]

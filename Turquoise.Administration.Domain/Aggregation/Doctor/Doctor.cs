@@ -9,7 +9,7 @@ namespace Turquoise.Administration.Domain.Aggregation.Doctor
     using Turquoise.Administration.Domain.Aggregation.Branch;
 
     [Table("doctor", Schema = Schamas.USERS)]
-    public class Doctor : Concurrency<Guid>, IAggregateRoot, ICreationAt
+    public class Doctor : ConcurrencyPoco<Guid>, IAggregateRoot, ICreationAt
     {
         [Required]
         [Column("name", TypeName = "varchar(20)")]

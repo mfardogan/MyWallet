@@ -17,15 +17,15 @@ namespace Turquoise.Administration.Infrastructure.SQL
         /// <summary>
         /// Get service
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TDAO"></typeparam>
         /// <returns></returns>
-        public T ServiceAs<T>() where T : IDataAccessObject => Dependency.Get<T>();
+        public TDAO ServiceAs<TDAO>() where TDAO : IDataAccessObject => Dependency.Get<TDAO>();
 
         /// <summary>
         /// Begin new transaction
         /// </summary>
         /// <returns></returns>
-        public ITransaction BeginTransaction() => new TransactionScope(_context);
+        public ITransaction BeginTransaction() => new Transaction(_context);
 
         /// <summary>
         /// Save async
