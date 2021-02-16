@@ -1,8 +1,12 @@
 ﻿namespace Turquoise.Administration.Infrastructure.Cache
 {
     using Turquoise.Administration.Domain.Abstraction;
-    public sealed class DistributedMemoryCache : IDistributeMemoryCache
+    public sealed class RedisKernel : Cache, IDistributeMemoryCache
     {
+        public RedisKernel(int database = -1) : base(database)
+        {
+        }
+
         /// <summary>
         /// Get string
         /// </summary>
@@ -10,9 +14,7 @@
         /// <returns></returns>
         string IDistributeMemoryCache.GetString(string key)
         {
-            return ConnectionFactory.Connection
-                .GetDatabase()
-                .StringGet(key);
+            return Database.StringGet(key);
         }
 
         /// <summary>
@@ -22,9 +24,7 @@
         /// <param name="value"></param>
         void IDistributeMemoryCache.SetString(string key, string value)
         {
-            ConnectionFactory.Connection
-                .GetDatabase()
-                .StringSet(key, value);
+            _ = Database.StringSet(key, value);
         }
     }
 }

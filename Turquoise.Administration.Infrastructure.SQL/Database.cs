@@ -126,11 +126,12 @@ namespace Turquoise.Administration.Infrastructure.SQL
                 .Where(e => e.ClrType.BaseType == typeof(ConcurrencyPoco<>))
                 .Select(e => e.ClrType)
                 .ToList()
-                .ForEach(e => modelBuilder.Entity(e).Property(nameof(ConcurrencyPoco<object>.ConcurrencyToken))
-                     .HasColumnName("xmin")
-                         .HasColumnType("xid")
-                              .ValueGeneratedOnAddOrUpdate()
-                                     .IsConcurrencyToken());
+                .ForEach(e => modelBuilder.Entity(e)
+                .Property(nameof(ConcurrencyPoco<object>.ConcurrencyToken))
+                .HasColumnName("xmin")
+                .HasColumnType("xid")
+                .ValueGeneratedOnAddOrUpdate()
+                .IsConcurrencyToken());
         }
 
         /// <summary>
