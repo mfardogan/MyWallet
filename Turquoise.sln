@@ -25,19 +25,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Turquoise.Gateway", "Turquo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentication", "{81864A9C-BF69-4AED-8E70-E013569B3637}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turquoise.Authentication.API", "Turquoise.Authentication.API\Turquoise.Authentication.API.csproj", "{0E049023-94E3-4C20-8833-6310DE8DFF18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Turquoise.Authentication.API", "Turquoise.Authentication.API\Turquoise.Authentication.API.csproj", "{0E049023-94E3-4C20-8833-6310DE8DFF18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turquoise.Authentication.Domain", "Turquoise.Authentication.Domain\Turquoise.Authentication.Domain.csproj", "{0B8B06DB-A14A-4BCE-B046-EC63C49639D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Turquoise.Authentication.Domain", "Turquoise.Authentication.Domain\Turquoise.Authentication.Domain.csproj", "{0B8B06DB-A14A-4BCE-B046-EC63C49639D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turquoise.Authentication.Application", "Turquoise.Authentication.Application\Turquoise.Authentication.Application.csproj", "{09E5DE2A-0027-4E8B-8E89-985538E54792}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Turquoise.Authentication.Application", "Turquoise.Authentication.Application\Turquoise.Authentication.Application.csproj", "{09E5DE2A-0027-4E8B-8E89-985538E54792}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turquoise.Authentication.Infrastructure.SQL", "Turquoise.Authentication.Infrastructure.SQL\Turquoise.Authentication.Infrastructure.SQL.csproj", "{36699812-8EA3-409E-B29D-B71DB709786D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Turquoise.Authentication.Infrastructure.SQL", "Turquoise.Authentication.Infrastructure.SQL\Turquoise.Authentication.Infrastructure.SQL.csproj", "{36699812-8EA3-409E-B29D-B71DB709786D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{925191DB-7BB9-41A5-B5F1-62030570E91D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turquoise.Authentication.UnitTest", "Turquoise.Authentication.UnitTest\Turquoise.Authentication.UnitTest.csproj", "{1E920341-2F33-4FEE-A585-97E60788B3F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Turquoise.Authentication.UnitTest", "Turquoise.Authentication.UnitTest\Turquoise.Authentication.UnitTest.csproj", "{1E920341-2F33-4FEE-A585-97E60788B3F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turquoise.Authentication.IntegrationTest", "Turquoise.Authentication.IntegrationTest\Turquoise.Authentication.IntegrationTest.csproj", "{2E2C5863-E86C-4E8D-BC6F-AD392140F81A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Turquoise.Authentication.IntegrationTest", "Turquoise.Authentication.IntegrationTest\Turquoise.Authentication.IntegrationTest.csproj", "{2E2C5863-E86C-4E8D-BC6F-AD392140F81A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turquoise.Administration.Infrastructure.MQ", "Turquoise.Administration.Infrastructure.MQ\Turquoise.Administration.Infrastructure.MQ.csproj", "{44A352C5-5B3F-40A0-93D5-55FB21EDF795}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Turquoise.Administration.Infrastructure.Cache", "Turquoise.Administration.Infrastructure.Cache\Turquoise.Administration.Infrastructure.Cache.csproj", "{84FAB400-9917-4B6E-93F6-10CEDF7B1CEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +101,14 @@ Global
 		{2E2C5863-E86C-4E8D-BC6F-AD392140F81A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E2C5863-E86C-4E8D-BC6F-AD392140F81A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E2C5863-E86C-4E8D-BC6F-AD392140F81A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44A352C5-5B3F-40A0-93D5-55FB21EDF795}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44A352C5-5B3F-40A0-93D5-55FB21EDF795}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44A352C5-5B3F-40A0-93D5-55FB21EDF795}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44A352C5-5B3F-40A0-93D5-55FB21EDF795}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84FAB400-9917-4B6E-93F6-10CEDF7B1CEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84FAB400-9917-4B6E-93F6-10CEDF7B1CEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84FAB400-9917-4B6E-93F6-10CEDF7B1CEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84FAB400-9917-4B6E-93F6-10CEDF7B1CEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,6 +131,8 @@ Global
 		{925191DB-7BB9-41A5-B5F1-62030570E91D} = {81864A9C-BF69-4AED-8E70-E013569B3637}
 		{1E920341-2F33-4FEE-A585-97E60788B3F7} = {925191DB-7BB9-41A5-B5F1-62030570E91D}
 		{2E2C5863-E86C-4E8D-BC6F-AD392140F81A} = {925191DB-7BB9-41A5-B5F1-62030570E91D}
+		{44A352C5-5B3F-40A0-93D5-55FB21EDF795} = {9D5D0025-8E34-4605-9BCC-D9FFC70356F7}
+		{84FAB400-9917-4B6E-93F6-10CEDF7B1CEF} = {9D5D0025-8E34-4605-9BCC-D9FFC70356F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C9F31E59-F7FC-4227-A8BE-EFE5E3954C7E}

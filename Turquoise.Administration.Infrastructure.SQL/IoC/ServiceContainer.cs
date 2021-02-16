@@ -30,6 +30,9 @@ namespace Turquoise.Administration.Infrastructure.SQL.IoC
             }).InstancePerLifetimeScope();
 
             builder.RegisterType<UnitOfWork>().As<IUoW>().InstancePerLifetimeScope();
+            builder.RegisterType<Transaction>().As<ITransaction>().InstancePerLifetimeScope();
+
+            //Data access objects:
             builder.RegisterType<AdministratorDAO>().As<IAdministratorDAO>().InstancePerLifetimeScope();
             builder.RegisterType<BranchDAO>().As<IBranchDAO>().InstancePerLifetimeScope();
             builder.RegisterType<SurveyDAO>().As<ISurveyDAO>().InstancePerLifetimeScope();

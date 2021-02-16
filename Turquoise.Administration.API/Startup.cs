@@ -70,9 +70,10 @@ namespace Turquoise.Administration.API
         /// <param name="builder"></param>
         public void ConfigureContainer(ContainerBuilder builder)
         {
-            Dependency.Instance.SetContainerBuilder(builder)
-                .Register(new Application.IoC.ServiceContainer())
-                .Register(new Infrastructure.SQL.IoC.ServiceContainer());
+            Dependency.Instance.SetContainerBuilder(builder).Register(
+                new Application.IoC.ServiceContainer()).Register(
+                    new Infrastructure.SQL.IoC.ServiceContainer()).Register(
+                        new Infrastructure.Cache.IoC.ServiceContainer());
         }
 
         /// <summary>
