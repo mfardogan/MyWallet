@@ -27,8 +27,7 @@ namespace Turquoise.Administration.Application.UseCase.Surveys
         /// <returns></returns>
         public async Task<Unit> Handle(InsertSurveyCommand request, CancellationToken cancellationToken)
         {
-            Survey survey = request.SurveyViewModel;
-            dAO.Insert(survey);
+            dAO.Insert(request.SurveyViewModel);
             await service.SaveAsync();
             return service.Success();
         }
@@ -41,8 +40,7 @@ namespace Turquoise.Administration.Application.UseCase.Surveys
         /// <returns></returns>
         public async Task<Unit> Handle(UpdateSurveyCommand request, CancellationToken cancellationToken)
         {
-            Survey survey = request.SurveyViewModel;
-            dAO.Update(survey);
+            dAO.Update(request.SurveyViewModel);
             await service.SaveAsync();
             return service.Success();
         }

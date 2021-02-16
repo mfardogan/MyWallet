@@ -25,7 +25,7 @@ namespace Turquoise.Administration.Infrastructure.SQL.IoC
                 .Build();
 
                 var options = new DbContextOptionsBuilder<Database>();
-                options.UseNpgsql(root.GetConnectionString("TurquoiseLocal"));
+                options.UseNpgsql(root.GetConnectionString("turquoise_ubuntu"));
                 return new Database(options.Options);
             }).InstancePerLifetimeScope();
 

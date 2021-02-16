@@ -54,7 +54,7 @@ namespace Turquoise.Administration.Infrastructure.SQL
                    .SetBasePath(Directory.GetCurrentDirectory())
                    .AddJsonFile("appsettings.json")
                    .Build();
-                optionsBuilder.UseNpgsql(configuration.GetConnectionString("TurquoiseLocal"));
+                optionsBuilder.UseNpgsql(configuration.GetConnectionString("turquoise_ubuntu"));
             }
 
             base.OnConfiguring(optionsBuilder);
