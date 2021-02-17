@@ -23,7 +23,7 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
         public Task<AdministratorViewModel> Handle(GetAdministratorByIdQuery request, CancellationToken cancellationToken)
         {
             Administrator administrator = dAO.Get(request.Id);
-            return service.Success(administrator.Map<AdministratorViewModel>());
+            return bussines.Success(administrator.Map<AdministratorViewModel>());
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
                .Map<AdministratorViewModel>()
                .ToArray();
 
-            return service.Success(administrators);
+            return bussines.Success(administrators);
         }
     }
 }

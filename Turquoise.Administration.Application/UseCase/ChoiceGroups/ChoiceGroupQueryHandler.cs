@@ -23,7 +23,7 @@ namespace Turquoise.Administration.Application.UseCase.ChoiceGroups
         {
             ChoiceGroup choiceGroup = dAO.Get(request.ChoiceGroupId);
             ChoiceGroupViewModel choiceGroupViewModel = choiceGroup.Map<ChoiceGroupViewModel>();
-            return service.Success(choiceGroupViewModel);
+            return bussines.Success(choiceGroupViewModel);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Turquoise.Administration.Application.UseCase.ChoiceGroups
                 .Map<ChoiceGroupViewModel>()
                 .ToArray();
 
-            return service.Success(choiceGroupViewModels);
+            return bussines.Success(choiceGroupViewModels);
         }
     }
 }

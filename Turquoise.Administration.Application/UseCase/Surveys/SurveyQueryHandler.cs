@@ -21,7 +21,7 @@ namespace Turquoise.Administration.Application.UseCase.Surveys
         public Task<SurveyViewModel> Handle(GetSurveyByIdQuery request, CancellationToken cancellationToken)
         {
             SurveyViewModel surveyViewModel = dAO.Get(request.SurveyId).Map<SurveyViewModel>();
-            return service.Success(surveyViewModel);
+            return bussines.Success(surveyViewModel);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Turquoise.Administration.Application.UseCase.Surveys
                 dAO.Get(specify.GetExpressions(), pagination)
                 .Map<SurveyViewModel>()
                 .ToArray();
-            return service.Success(surveyViewModels);
+            return bussines.Success(surveyViewModels);
         }
     }
 }

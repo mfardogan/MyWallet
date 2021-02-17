@@ -13,10 +13,19 @@ namespace Turquoise.Administration.Application.UseCase
             new Lazy<IIdentity>(() => Dependency.Get<IIdentity>(),
                 isThreadSafe: false);
 
+        private readonly Lazy<ICacheService> cacheProvider =
+            new Lazy<ICacheService>(()=> Dependency.Get<ICacheService>(), 
+                isThreadSafe: false);
+
         /// <summary>
         /// User
         /// </summary>
         public IIdentity Identity => identity.Value;
+
+        /// <summary>
+        /// Cache provider
+        /// </summary>
+        public ICacheService DistributedMemoryCache => cacheProvider.Value;
 
         /// <summary>
         /// Completed task with data

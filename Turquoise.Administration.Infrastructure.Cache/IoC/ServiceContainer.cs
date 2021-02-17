@@ -11,7 +11,7 @@ namespace Turquoise.Administration.Infrastructure.Cache.IoC
         /// <param name="builder"></param>
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<RedisKernel>().As<IDistributeMemoryCache>().InstancePerLifetimeScope();
+            builder.RegisterType<RedisMemoryCache>().As<ICacheService>().InstancePerLifetimeScope();
             base.Load(builder);
         }
     }

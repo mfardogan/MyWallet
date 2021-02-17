@@ -14,11 +14,11 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
         IRequestHandler<DeleteAdministratorCommand>
     {
         private readonly IAdministratorDAO dAO;
-        private readonly ServiceProxy<IAdministratorDAO> service;
+        private readonly ServiceProxy<IAdministratorDAO> bussines;
         public AdministratorCQHandler()
         {
             var proxy = new ServiceProxy<IAdministratorDAO>();
-            (service, dAO) = (proxy, proxy.DataAccessObject);
+            (bussines, dAO) = (proxy, proxy.DataAccessObject);
         }
 
         /// <summary>
@@ -34,8 +34,8 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
             administrator.AddPassword(salt, hash);
 
             dAO.Insert(administrator);
-            await service.SaveAsync();
-            return service.Success();
+            await bussines.SaveAsync();
+            return bussines.Success();
         }
 
         /// <summary>
@@ -47,8 +47,8 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
         public async Task<Unit> Handle(DeleteAdministratorCommand request, CancellationToken cancellationToken)
         {
             dAO.Delete(request.AdministratorId);
-            await service.SaveAsync();
-            return service.Success();
+            await bussines.SaveAsync();
+            return bussines.Success();
         }
 
         /// <summary>
@@ -60,8 +60,8 @@ namespace Turquoise.Administration.Application.UseCase.Administrators
         public async Task<Unit> Handle(UpdateAdministratorCommand request, CancellationToken cancellationToken)
         {
             dAO.Update(request.ViewModel);
-            await service.SaveAsync();
-            return service.Success();
+            await bussines.SaveAsync();
+            return bussines.Success();
         }
 
         /// <summary>

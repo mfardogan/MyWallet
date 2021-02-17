@@ -23,7 +23,7 @@ namespace Turquoise.Administration.Application.UseCase.Branches
         {
             Branch branch = dAO.Get(request.BranchId);
             BranchViewModel branchViewModel = branch.Map<BranchViewModel>();
-            return service.Success(branchViewModel);
+            return bussines.Success(branchViewModel);
         }
 
         /// <summary>
@@ -34,13 +34,20 @@ namespace Turquoise.Administration.Application.UseCase.Branches
         /// <returns></returns>
         public Task<BranchViewModel[]> Handle(SearchBranchesQuery request, CancellationToken cancellationToken)
         {
-            BranchSpecify specify = new BranchSpecify(request.Filters);
+            if (bussines.DistributedMemoryCache.TryGet("branches", out BranchViewModel[] models))
+            {
+                return bussines.Success(models);
+            }
+
+            var specify = new BranchSpecify(request.Filters);
             BranchViewModel[] branchViewModels =
                dAO.Get(specify.GetExpressions(), request.Pagination)
                .Map<BranchViewModel>()
                .ToArray();
 
-            return service.Success(branchViewModels);
+            bussines.DistributedMemoryCache.Set("branches", branchViewModels);
+            return bussines.Success(branchViewModels);
+
         }
     }
 }

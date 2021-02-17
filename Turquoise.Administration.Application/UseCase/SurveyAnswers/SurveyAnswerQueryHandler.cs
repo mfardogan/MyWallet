@@ -23,7 +23,7 @@ namespace Turquoise.Administration.Application.UseCase.SurveyAnswers
         {
             SurveyAnswer surveyAnswer = dAO.Get(request.SurveyAnswerId);
             SurveyAnswerViewModel surveyAnswerViewModel = surveyAnswer.Map<SurveyAnswerViewModel>();
-            return service.Success(surveyAnswerViewModel);
+            return bussines.Success(surveyAnswerViewModel);
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace Turquoise.Administration.Application.UseCase.SurveyAnswers
                 dAO.Get(specify.GetExpressions(), pagination)
                 .Map<SurveyAnswerViewModel>()
                 .ToArray();
-            return service.Success(surveyAnswerViewModels);
+            return bussines.Success(surveyAnswerViewModels);
         }
     }
 }

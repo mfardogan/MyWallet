@@ -12,12 +12,9 @@ namespace Turquoise.Administration.Infrastructure.SQL.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public override Administrator Get(Guid id)
-        {
-            return RepositoryContext
-                .Include(e => e.Password)
-                .AsNoTracking()
-                .SingleOrDefault(e => e.Id == id);
-        }
+        public override Administrator Get(Guid id) => RepositoryContext
+            .Include(e => e.Password)
+            .AsNoTracking()
+            .SingleOrDefault(e => e.Id == id);
     }
 }

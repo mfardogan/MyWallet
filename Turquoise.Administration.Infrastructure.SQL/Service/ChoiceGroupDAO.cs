@@ -13,12 +13,10 @@ namespace Turquoise.Administration.Infrastructure.SQL.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public override ChoiceGroup Get(Guid id)
-        {
-            return RepositoryContext.Include(e => e.Choices)
-                .AsNoTracking()
-                .SingleOrDefault(e => e.Id == id);
-        }
+        public override ChoiceGroup Get(Guid id) => RepositoryContext
+            .Include(e => e.Choices)
+            .AsNoTracking()
+            .SingleOrDefault(e => e.Id == id);
 
         /// <summary>
         /// Update

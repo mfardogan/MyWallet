@@ -13,11 +13,11 @@ namespace Turquoise.Administration.Application.UseCase.ChoiceGroups
         IRequestHandler<DeleteChoiceGroupCommand>
     {
         private readonly IChoiceGroupDAO dAO;
-        private readonly ServiceProxy<IChoiceGroupDAO> service;
+        private readonly ServiceProxy<IChoiceGroupDAO> bussines;
         public ChoiceGroupCQHandler()
         {
             var proxy = new ServiceProxy<IChoiceGroupDAO>();
-            (service, dAO) = (proxy, proxy.DataAccessObject);
+            (bussines, dAO) = (proxy, proxy.DataAccessObject);
         }
 
         /// <summary>
@@ -29,8 +29,8 @@ namespace Turquoise.Administration.Application.UseCase.ChoiceGroups
         public async Task<Unit> Handle(InsertChoiceGroupCommand request, CancellationToken cancellationToken)
         {
             dAO.Insert(request.ChoiceGroupViewModel);
-            await service.SaveAsync();
-            return service.Success();
+            await bussines.SaveAsync();
+            return bussines.Success();
         }
 
         /// <summary>
@@ -42,8 +42,8 @@ namespace Turquoise.Administration.Application.UseCase.ChoiceGroups
         public async Task<Unit> Handle(UpdateChoiceGroupCommand request, CancellationToken cancellationToken)
         {
             dAO.Update(request.ChoiceGroupViewModel);
-            await service.SaveAsync();
-            return service.Success();
+            await bussines.SaveAsync();
+            return bussines.Success();
         }
 
         /// <summary>
@@ -55,8 +55,8 @@ namespace Turquoise.Administration.Application.UseCase.ChoiceGroups
         public async Task<Unit> Handle(DeleteChoiceGroupCommand request, CancellationToken cancellationToken)
         {
             dAO.Delete(request.ChoiceGroupId);
-            await service.SaveAsync();
-            return service.Success();
+            await bussines.SaveAsync();
+            return bussines.Success();
         }
     }
 }

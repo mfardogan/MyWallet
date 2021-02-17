@@ -12,11 +12,11 @@ namespace Turquoise.Administration.Application.UseCase.SurveyAnswers
         IRequestHandler<DeleteSurveyAnswerCommand>
     {
         private readonly ISurveyAnsewerDAO dAO;
-        private readonly ServiceProxy<ISurveyAnsewerDAO> service;
+        private readonly ServiceProxy<ISurveyAnsewerDAO> bussines;
         public SurveyAnswerCQHandler()
         {
             var proxy = new ServiceProxy<ISurveyAnsewerDAO>();
-            (service, dAO) = (proxy, proxy.DataAccessObject);
+            (bussines, dAO) = (proxy, proxy.DataAccessObject);
         }
 
         /// <summary>
@@ -28,8 +28,8 @@ namespace Turquoise.Administration.Application.UseCase.SurveyAnswers
         public async Task<Unit> Handle(InsertSurveyAnswerCommand request, CancellationToken cancellationToken)
         {
             dAO.Insert(request.SurveyAnswerViewModel);
-            await service.SaveAsync();
-            return service.Success();
+            await bussines.SaveAsync();
+            return bussines.Success();
         }
 
         /// <summary>
@@ -41,8 +41,8 @@ namespace Turquoise.Administration.Application.UseCase.SurveyAnswers
         public async Task<Unit> Handle(UpdateSurveyAnswerCommand request, CancellationToken cancellationToken)
         {
             dAO.Update(request.SurveyAnswerViewModel);
-            await service.SaveAsync();
-            return service.Success();
+            await bussines.SaveAsync();
+            return bussines.Success();
         }
 
         /// <summary>
@@ -54,8 +54,8 @@ namespace Turquoise.Administration.Application.UseCase.SurveyAnswers
         public async Task<Unit> Handle(DeleteSurveyAnswerCommand request, CancellationToken cancellationToken)
         {
             dAO.Delete(request.SurveyAnswerId);
-            await service.SaveAsync();
-            return service.Success();
+            await bussines.SaveAsync();
+            return bussines.Success();
         }
     }
 }
