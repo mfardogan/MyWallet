@@ -33,12 +33,23 @@ namespace Turquoise.Administration.Application.UseCase.Branches
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         public Task<BranchViewModel[]> Handle(SearchBranchesQuery request, CancellationToken cancellationToken)
-        {          
+        {
+            var pagination = request.Pagination;
             var specify = new BranchSpecify(request.Filters);
+            var (skip, rows) = ((pagination.Page - 1) * pagination.Rows, pagination.Rows);
+
+            var query = dAO.GetQueryableBranches()
+                .Where(specify.GetExpressions())
+                .Skip(skip).Take(rows)
+                .Select(e => new
+                {
+                    Branch = e,
+                    Doctors = e.Doctors.Count
+                }).ToArray();
+
             BranchViewModel[] branchViewModels =
-               dAO.Get(specify.GetExpressions(), request.Pagination)
-               .Map<BranchViewModel>()
-               .ToArray();
+                query.Select(e => e.Branch.Map<BranchViewModel>(viewModel => viewModel.Doctors = e.Doctors))
+                .ToArray();
 
             return bussines.Success(branchViewModels);
         }

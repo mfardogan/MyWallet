@@ -25,20 +25,15 @@ namespace Turquoise.Administration.Infrastructure.SQL.Service
         /// <returns></returns>
         public override ChoiceGroup Update(ChoiceGroup entity)
         {
-            var comparer = new ChoiceEquality();
-            Choice[] currentChoices = DatabaseContext.Choices.Where(e => e.ChoiceGroupId == entity.Id).ToArray();
-            Choice[] addChoices = entity.Choices.Except(currentChoices, comparer).ToArray();
-            Choice[] removeChoices = currentChoices.Except(entity.Choices, comparer).ToArray();
-            Choice[] updateChoices = currentChoices.Intersect(entity.Choices, comparer).ToArray();
+            Choice[] currents = DatabaseContext.Choices.Where(e => e.ChoiceGroupId == entity.Id).ToArray();
 
-            DatabaseContext.Choices.AddRange(addChoices);
-            DatabaseContext.Choices.RemoveRange(removeChoices);
+            ComparationBuilder<Choice> builder = new ComparationBuilder<Choice>()
+                .AddCurrents(currents)
+                .AddNews(entity.Choices)
+                .AddEqualityComparer(new ChoiceEquality())
+                .AddActionForNews(e => e.ChoiceGroupId = entity.Id);
 
-            foreach (Choice choice in updateChoices)
-            {
-                DatabaseContext.Choices.Update(choice);
-            }
-
+            ComplexUpdate<Choice, Guid>(builder);
             return base.Update(entity);
         }
     }

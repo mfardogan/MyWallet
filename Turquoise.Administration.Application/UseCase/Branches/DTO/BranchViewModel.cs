@@ -7,6 +7,7 @@ namespace Turquoise.Administration.Application.UseCase.Branches.DTO
     {
         public string Name { get; set; }
         public string Code { get; set; }
+        public int Doctors { get; set; }
         public uint ConcurrencyToken { get; set; }
     }
 }

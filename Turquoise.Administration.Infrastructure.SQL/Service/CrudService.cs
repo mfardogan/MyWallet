@@ -70,5 +70,19 @@ namespace Turquoise.Administration.Infrastructure.SQL.Service
                 .Take(rows)
                 .ToArray();
         }
+
+        /// <summary>
+        /// Complex update
+        /// </summary>
+        /// <typeparam name="TOtherEntity"></typeparam>
+        /// <typeparam name="TOtherPk"></typeparam>
+        /// <param name="builder"></param>
+        internal virtual void ComplexUpdate<TOtherEntity, TOtherPk>(ComparationBuilder<TOtherEntity> builder) where TOtherEntity : Poco<TOtherPk>
+        {
+            var (insert, upadate, remove) = builder.BuildTuple();
+            DatabaseContext.Set<TOtherEntity>().AddRange(insert);
+            DatabaseContext.Set<TOtherEntity>().RemoveRange(remove);
+            DatabaseContext.Set<TOtherEntity>().UpdateRange(upadate);
+        }
     }
 }

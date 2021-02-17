@@ -2,6 +2,7 @@
 
 namespace Turquoise.Administration.Domain.Aggregate.Branch
 {
+    using System.Linq;
     using Turquoise.Administration.Domain.Abstract;
     using Turquoise.Administration.Domain.Aggregate.Common;
 
@@ -9,5 +10,6 @@ namespace Turquoise.Administration.Domain.Aggregate.Branch
         ICommand<Branch, Guid>, 
         IQuery<Branch, Guid>
     {
+        IQueryable<Branch> GetQueryableBranches();
     }
 }

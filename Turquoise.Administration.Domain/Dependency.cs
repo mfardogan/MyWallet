@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using System;
 
 namespace Turquoise.Administration.Domain
 {
@@ -6,33 +7,18 @@ namespace Turquoise.Administration.Domain
     {
         private Dependency() { }
 
-        private static Dependency dependency;
         private static ILifetimeScope lifetimeScope;
         private static ContainerBuilder containerBuilder;
-        private static readonly object _sync = new object();
+
+        private static readonly Lazy<Dependency> dependency =
+            new Lazy<Dependency>(() => new Dependency(),
+                isThreadSafe: true);
 
         /// <summary>
         /// Get shared singleton instance
         /// </summary>
         /// <returns></returns>
-        public static Dependency Instance
-        {
-            get
-            {
-                lock (_sync)
-                {
-                    if (dependency is null)
-                    {
-                        lock (_sync)
-                        {
-                            dependency = new Dependency();
-                        }
-                    }
-                }
-                return dependency;
-            }
-        }
-
+        public static Dependency Instance => dependency.Value;
         /// <summary>
         /// Set builder
         /// </summary>
