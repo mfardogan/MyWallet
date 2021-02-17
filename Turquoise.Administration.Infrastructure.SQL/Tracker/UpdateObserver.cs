@@ -5,8 +5,8 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Turquoise.Administration.Infrastructure.SQL.Tracker
 {
-    using Turquoise.Administration.Domain.Abstraction;
-    using Turquoise.Administration.Domain.Aggregation.Common;
+    using Turquoise.Administration.Domain.Abstract;
+    using Turquoise.Administration.Domain.Aggregate.Common;
 
     internal sealed class UpdateObserver : IObserver<IEnumerable<EntityEntry>>
     {

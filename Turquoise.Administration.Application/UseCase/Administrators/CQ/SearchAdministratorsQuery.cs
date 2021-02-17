@@ -2,7 +2,7 @@
 
 namespace Turquoise.Administration.Application.UseCase.Administrators.CQ
 {
-    using Turquoise.Administration.Domain.Aggregation.Common;
+    using Turquoise.Administration.Domain.Aggregate.Common;
     using Turquoise.Administration.Application.UseCase.Administrators.DTO;
 
     public class SearchAdministratorsQuery : IRequest<AdministratorViewModel[]>

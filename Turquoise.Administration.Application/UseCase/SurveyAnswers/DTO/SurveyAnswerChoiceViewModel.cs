@@ -2,7 +2,7 @@
 
 namespace Turquoise.Administration.Application.UseCase.SurveyAnswers.DTO
 {
-    using Turquoise.Administration.Domain.Aggregation.SurveyAnswer;
+    using Turquoise.Administration.Domain.Aggregate.SurveyAnswer;
     using Turquoise.Administration.Application.UseCase.ChoiceGroups.DTO;
     public class SurveyAnswerChoiceViewModel : EntityViewModelPersistent<Guid, SurveyAnswerChoice>
     {

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Turquoise.Administration.Application.UseCase.SurveyAnswers
 {
-    using Turquoise.Administration.Domain.Aggregation.SurveyAnswer;
+    using Turquoise.Administration.Domain.Aggregate.SurveyAnswer;
     using Turquoise.Administration.Application.UseCase.SurveyAnswers.CQ;
     public partial class SurveyAnswerCQHandler :
         IRequestHandler<InsertSurveyAnswerCommand>,

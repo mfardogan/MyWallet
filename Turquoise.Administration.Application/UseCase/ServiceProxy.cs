@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace Turquoise.Administration.Application.UseCase
 {
     using Turquoise.Administration.Domain;
-    using Turquoise.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain.Abstract;
 
     public class ServiceProxy<TDAO> : ServiceStub where TDAO : IDataAccessObject
     {

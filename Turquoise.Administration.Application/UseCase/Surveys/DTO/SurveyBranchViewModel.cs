@@ -2,7 +2,7 @@
 
 namespace Turquoise.Administration.Application.UseCase.Surveys.DTO
 {
-    using Turquoise.Administration.Domain.Aggregation.Survey;
+    using Turquoise.Administration.Domain.Aggregate.Survey;
     using Turquoise.Administration.Application.UseCase.Branches.DTO;
     public class SurveyBranchViewModel : EntityViewModelPersistent<Guid, SurveyBranch>
     {

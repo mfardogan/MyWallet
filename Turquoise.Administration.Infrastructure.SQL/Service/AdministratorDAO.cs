@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Turquoise.Administration.Infrastructure.SQL.Service
 {
-    using Turquoise.Administration.Domain.Aggregation.Administrator;
+    using Turquoise.Administration.Domain.Aggregate.Administrator;
     public class AdministratorDAO : CrudService<Administrator, Guid>, IAdministratorDAO
     {
         /// <summary>

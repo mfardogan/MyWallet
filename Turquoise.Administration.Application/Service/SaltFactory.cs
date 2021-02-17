@@ -1,8 +1,8 @@
 ﻿using System.Security.Cryptography;
-using Turquoise.Administration.Domain.Abstraction;
 
 namespace Turquoise.Administration.Application.Service
 {
+    using Turquoise.Administration.Domain.Abstract;
     public sealed class SaltFactory : ISaltFactory
     {
         /// <summary>

@@ -2,7 +2,7 @@
 
 namespace Turquoise.Administration.Application.UseCase.Surveys.CQ
 {
-    using Turquoise.Administration.Domain.Aggregation.Common;
+    using Turquoise.Administration.Domain.Aggregate.Common;
     using Turquoise.Administration.Application.UseCase.Surveys.DTO;
     public sealed class SearchSurveysQuery : IRequest<SurveyViewModel[]>
     {

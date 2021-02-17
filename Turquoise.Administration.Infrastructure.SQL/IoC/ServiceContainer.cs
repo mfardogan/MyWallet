@@ -5,12 +5,12 @@ using Microsoft.Extensions.Configuration;
 
 namespace Turquoise.Administration.Infrastructure.SQL.IoC
 {
-    using Turquoise.Administration.Domain.Abstraction;
-    using Turquoise.Administration.Domain.Aggregation.Administrator;
-    using Turquoise.Administration.Domain.Aggregation.Branch;
-    using Turquoise.Administration.Domain.Aggregation.ChoiceGroup;
-    using Turquoise.Administration.Domain.Aggregation.Survey;
-    using Turquoise.Administration.Domain.Aggregation.SurveyAnswer;
+    using Turquoise.Administration.Domain.Abstract;
+    using Turquoise.Administration.Domain.Aggregate.Administrator;
+    using Turquoise.Administration.Domain.Aggregate.Branch;
+    using Turquoise.Administration.Domain.Aggregate.ChoiceGroup;
+    using Turquoise.Administration.Domain.Aggregate.Survey;
+    using Turquoise.Administration.Domain.Aggregate.SurveyAnswer;
     using Turquoise.Administration.Infrastructure.SQL.Service;
 
     public class ServiceContainer : Module

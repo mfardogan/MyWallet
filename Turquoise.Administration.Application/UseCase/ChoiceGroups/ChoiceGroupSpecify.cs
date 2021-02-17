@@ -3,8 +3,8 @@ using System.Linq.Expressions;
 
 namespace Turquoise.Administration.Application.UseCase.ChoiceGroups
 {
-    using Turquoise.Administration.Domain.Abstraction;
-    using Turquoise.Administration.Domain.Aggregation.ChoiceGroup;
+    using Turquoise.Administration.Domain.Abstract;
+    using Turquoise.Administration.Domain.Aggregate.ChoiceGroup;
     using Turquoise.Administration.Application.UseCase.ChoiceGroups.DTO;
 
     public sealed class ChoiceGroupSpecify : Specification<ChoiceGroup, ChoiceGroupViewModel>

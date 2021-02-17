@@ -2,7 +2,7 @@
 
 namespace Turquoise.Administration.Application.UseCase.ChoiceGroups.DTO
 {
-    using Turquoise.Administration.Domain.Aggregation.ChoiceGroup;
+    using Turquoise.Administration.Domain.Aggregate.ChoiceGroup;
 
     public class ChoiceViewModel : EntityViewModelPersistent<Guid, Choice>
     {

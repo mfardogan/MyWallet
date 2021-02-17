@@ -4,8 +4,7 @@ using System.Threading.Tasks;
 
 namespace Turquoise.Administration.Application.UseCase.Branches
 {
-    using Turquoise.Administration.Domain.Abstraction;
-    using Turquoise.Administration.Domain.Aggregation.Branch;
+    using Turquoise.Administration.Domain.Aggregate.Branch;
     using Turquoise.Administration.Application.UseCase.Branches.CQ;
 
     public partial class BranchCQHandler :

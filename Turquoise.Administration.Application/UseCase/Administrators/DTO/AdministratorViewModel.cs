@@ -3,7 +3,7 @@
 namespace Turquoise.Administration.Application.UseCase.Administrators.DTO
 {
     using Turquoise.Administration.Application.UseCase;
-    using Turquoise.Administration.Domain.Aggregation.Administrator;
+    using Turquoise.Administration.Domain.Aggregate.Administrator;
 
     public class AdministratorViewModel : EntityViewModelPersistent<Guid, Administrator>
     {

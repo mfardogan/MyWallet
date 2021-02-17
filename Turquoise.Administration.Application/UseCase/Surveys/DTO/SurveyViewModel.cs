@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Turquoise.Administration.Application.UseCase.Surveys.DTO
 {
-    using Turquoise.Administration.Domain.Aggregation.Survey;
+    using Turquoise.Administration.Domain.Aggregate.Survey;
     using Turquoise.Administration.Application.UseCase.Branches.DTO;
     using Turquoise.Administration.Application.UseCase.ChoiceGroups.DTO;
 

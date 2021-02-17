@@ -7,7 +7,7 @@ namespace Turquoise.Administration.Application.UseCase.SurveyAnswers
     using System.Linq;
     using Turquoise.Administration.Application.UseCase.SurveyAnswers.CQ;
     using Turquoise.Administration.Application.UseCase.SurveyAnswers.DTO;
-    using Turquoise.Administration.Domain.Aggregation.SurveyAnswer;
+    using Turquoise.Administration.Domain.Aggregate.SurveyAnswer;
 
     public partial class SurveyAnswerCQHandler :
         IRequestHandler<GetSurveyAnswerByIdQuery, SurveyAnswerViewModel>,

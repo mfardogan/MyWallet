@@ -2,7 +2,9 @@
 
 namespace Turquoise.Administration.Infrastructure.Cache.IoC
 {
-    using Turquoise.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain.Abstract;
+    using Turquoise.Administration.Infrastructure.Cache.Service;
+
     public class ServiceContainer : Module
     {
         /// <summary>
@@ -11,7 +13,10 @@ namespace Turquoise.Administration.Infrastructure.Cache.IoC
         /// <param name="builder"></param>
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<RedisMemoryCache>().As<ICacheService>().InstancePerLifetimeScope();
+            builder.RegisterType<RedisMemoryCache>()
+                .As<ICacheService>()
+                .InstancePerLifetimeScope();
+
             base.Load(builder);
         }
     }

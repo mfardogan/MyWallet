@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Turquoise.Administration.Application.UseCase.ChoiceGroups.DTO
 {
-    using Turquoise.Administration.Domain.Aggregation.ChoiceGroup;
+    using Turquoise.Administration.Domain.Aggregate.ChoiceGroup;
     public class ChoiceGroupViewModel : EntityViewModelPersistent<Guid, ChoiceGroup>
     {
         public string Name { get; set; }

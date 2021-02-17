@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Turquoise.Administration.Infrastructure.SQL.Tracker
 {
-    using Turquoise.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain.Abstract;
     public class ModelWatcherSubject : IObserverSubject<IEnumerable<EntityEntry>>
     {
         private readonly HashSet<IObserver<IEnumerable<EntityEntry>>> observers =

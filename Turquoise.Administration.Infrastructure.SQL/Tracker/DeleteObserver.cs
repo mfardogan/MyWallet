@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Turquoise.Administration.Infrastructure.SQL.Tracker
 {
-    using Turquoise.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain.Abstract;
     internal sealed class DeleteObserver : IObserver<IEnumerable<EntityEntry>>
     {
         public void Subscribe(IEnumerable<EntityEntry> parameter)

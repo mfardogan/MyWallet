@@ -2,7 +2,7 @@
 
 namespace Turquoise.Administration.Application.UseCase.Surveys.DTO
 {
-    using Turquoise.Administration.Domain.Aggregation.Survey;
+    using Turquoise.Administration.Domain.Aggregate.Survey;
     public sealed class SurveyViewModelMapper : Profile
     {
         public SurveyViewModelMapper()

@@ -4,9 +4,9 @@ using MediatR.Extensions.Autofac.DependencyInjection;
 
 namespace Turquoise.Administration.Application.IoC
 {
+    using Turquoise.Administration.Domain.Abstract;
     using Turquoise.Administration.Application.Service;
     using Turquoise.Administration.Application.UseCase;
-    using Turquoise.Administration.Domain.Abstraction;
 
     public class ServiceContainer : Module
     {

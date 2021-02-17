@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Turquoise.Administration.Infrastructure.SQL.Service
 {
-    using Turquoise.Administration.Domain.Aggregation.Common;
+    using Turquoise.Administration.Domain.Aggregate.Common;
     public abstract class CrudService<TEntity, TPk> : BaseService where TEntity : Poco<TPk>
     {
         protected DbSet<TEntity> RepositoryContext { get; set; }

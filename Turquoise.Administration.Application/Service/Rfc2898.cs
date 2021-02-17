@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 
 namespace Turquoise.Administration.Application.Service
 {
-    using Turquoise.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain.Abstract;
     public sealed class Rfc2898 : IPasswordHasher
     {
         /// <summary>

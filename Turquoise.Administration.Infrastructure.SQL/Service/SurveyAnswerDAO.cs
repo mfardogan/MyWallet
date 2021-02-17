@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Turquoise.Administration.Infrastructure.SQL.Service
 {
-    using Turquoise.Administration.Domain.Aggregation.SurveyAnswer;
+    using Turquoise.Administration.Domain.Aggregate.SurveyAnswer;
     public class SurveyAnswerDAO : CrudService<SurveyAnswer, Guid>, ISurveyAnsewerDAO
     {
         /// <summary>

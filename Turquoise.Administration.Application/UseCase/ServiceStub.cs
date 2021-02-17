@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace Turquoise.Administration.Application.UseCase
 {
     using Turquoise.Administration.Domain;
-    using Turquoise.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain.Abstract;
     public class ServiceStub
     {
         private readonly Lazy<IIdentity> identity =

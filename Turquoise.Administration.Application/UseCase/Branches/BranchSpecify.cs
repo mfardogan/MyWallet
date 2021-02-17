@@ -3,8 +3,8 @@ using System.Linq.Expressions;
 
 namespace Turquoise.Administration.Application.UseCase.Branches
 {
-    using Turquoise.Administration.Domain.Abstraction;
-    using Turquoise.Administration.Domain.Aggregation.Branch;
+    using Turquoise.Administration.Domain.Abstract;
+    using Turquoise.Administration.Domain.Aggregate.Branch;
     using Turquoise.Administration.Application.UseCase.Branches.DTO;
     public sealed class BranchSpecify : Specification<Branch, BranchViewModel>
     {

@@ -12,13 +12,13 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 namespace Turquoise.Administration.Infrastructure.SQL
 {
     using Turquoise.Administration.Infrastructure.SQL.Tracker;
-    using Turquoise.Administration.Domain.Aggregation.Common;
-    using Turquoise.Administration.Domain.Aggregation.Branch;
-    using Turquoise.Administration.Domain.Aggregation.ChoiceGroup;
-    using Turquoise.Administration.Domain.Aggregation.Doctor;
-    using Turquoise.Administration.Domain.Aggregation.Administrator;
-    using Turquoise.Administration.Domain.Aggregation.Survey;
-    using Turquoise.Administration.Domain.Aggregation.SurveyAnswer;
+    using Turquoise.Administration.Domain.Aggregate.Common;
+    using Turquoise.Administration.Domain.Aggregate.Branch;
+    using Turquoise.Administration.Domain.Aggregate.ChoiceGroup;
+    using Turquoise.Administration.Domain.Aggregate.Doctor;
+    using Turquoise.Administration.Domain.Aggregate.Administrator;
+    using Turquoise.Administration.Domain.Aggregate.Survey;
+    using Turquoise.Administration.Domain.Aggregate.SurveyAnswer;
 
     public class Database : DbContext
     {

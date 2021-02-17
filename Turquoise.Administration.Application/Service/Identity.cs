@@ -2,7 +2,7 @@
 
 namespace Turquoise.Administration.Application.Service
 {
-    using Turquoise.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain.Abstract;
 
     public sealed class Identity : IIdentity
     {

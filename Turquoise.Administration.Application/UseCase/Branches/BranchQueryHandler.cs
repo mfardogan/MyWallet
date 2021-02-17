@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Turquoise.Administration.Application.UseCase.Branches
 {
-    using Turquoise.Administration.Domain.Aggregation.Branch;
+    using Turquoise.Administration.Domain.Aggregate.Branch;
     using Turquoise.Administration.Application.UseCase.Branches.CQ;
     using Turquoise.Administration.Application.UseCase.Branches.DTO;
 
@@ -47,7 +47,6 @@ namespace Turquoise.Administration.Application.UseCase.Branches
 
             bussines.DistributedMemoryCache.Set("branches", branchViewModels);
             return bussines.Success(branchViewModels);
-
         }
     }
 }

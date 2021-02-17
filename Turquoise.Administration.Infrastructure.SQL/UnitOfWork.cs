@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 namespace Turquoise.Administration.Infrastructure.SQL
 {
     using Turquoise.Administration.Domain;
-    using Turquoise.Administration.Domain.Abstraction;
+    using Turquoise.Administration.Domain.Abstract;
 
     public class UnitOfWork : IUoW
     {

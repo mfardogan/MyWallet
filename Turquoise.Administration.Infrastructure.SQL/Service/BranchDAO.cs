@@ -1,5 +1,5 @@
 ﻿using System;
-using Turquoise.Administration.Domain.Aggregation.Branch;
+using Turquoise.Administration.Domain.Aggregate.Branch;
 
 namespace Turquoise.Administration.Infrastructure.SQL.Service
 {

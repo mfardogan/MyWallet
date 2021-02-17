@@ -9,28 +9,25 @@ namespace Turquoise.Administration.Infrastructure.Cache
     {
         static ConnectionFactory()
         {
-            static (string host, string port) _getConfiguration()
-            {
-                var root = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.json").Build()
-                    .GetSection("Redis");
-
-                var host = root.GetSection("Host");
-                var port = root.GetSection("Port");
-                return (host.Value, port.Value);
-            }
-
-            multiplexer = new Lazy<ConnectionMultiplexer>(
-                () => ConnectionMultiplexer.Connect(_getConfiguration().host),
-                         isThreadSafe: true);
+            var root = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json").Build()
+                .GetSection("Redis");
+            Configuration = (root.GetSection("Host").Value, root.GetSection("Port").Value);
         }
 
-        private static readonly Lazy<ConnectionMultiplexer> multiplexer;
-
+        private static readonly Lazy<ConnectionMultiplexer> muxer = 
+            new Lazy<ConnectionMultiplexer>(
+                () => ConnectionMultiplexer.Connect(Configuration.host),
+                         isThreadSafe: true);
         /// <summary>
         /// Get Redis connection
         /// </summary>
         /// <returns></returns>
-        public static ConnectionMultiplexer Multiplexer => multiplexer.Value;
+        public static ConnectionMultiplexer ConnectionMultiplexer => muxer.Value;
+
+        /// <summary>
+        /// Redis host
+        /// </summary>
+        public static (string host, string port) Configuration { get; }
     }
 }

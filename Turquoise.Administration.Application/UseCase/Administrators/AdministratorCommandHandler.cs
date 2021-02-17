@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 namespace Turquoise.Administration.Application.UseCase.Administrators
 {
     using Turquoise.Administration.Domain;
-    using Turquoise.Administration.Domain.Abstraction;
-    using Turquoise.Administration.Domain.Aggregation.Administrator;
+    using Turquoise.Administration.Domain.Abstract;
+    using Turquoise.Administration.Domain.Aggregate.Administrator;
     using Turquoise.Administration.Application.UseCase.Administrators.CQ;
     public partial class AdministratorCQHandler :
         IRequestHandler<InsertAdministratorCommand>,

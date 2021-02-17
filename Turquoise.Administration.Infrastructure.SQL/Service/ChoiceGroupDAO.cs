@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Turquoise.Administration.Infrastructure.SQL.Service
 {
-    using Turquoise.Administration.Domain.Aggregation.ChoiceGroup;
+    using Turquoise.Administration.Domain.Aggregate.ChoiceGroup;
 
     public class ChoiceGroupDAO : CrudService<ChoiceGroup, Guid>, IChoiceGroupDAO
     {

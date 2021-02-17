@@ -3,8 +3,8 @@ using System.Linq.Expressions;
 
 namespace Turquoise.Administration.Application.UseCase.SurveyAnswers
 {
-    using Turquoise.Administration.Domain.Abstraction;
-    using Turquoise.Administration.Domain.Aggregation.SurveyAnswer;
+    using Turquoise.Administration.Domain.Abstract;
+    using Turquoise.Administration.Domain.Aggregate.SurveyAnswer;
     using Turquoise.Administration.Application.UseCase.SurveyAnswers.DTO;
 
     public sealed class SurveyAnswerSpecify : Specification<SurveyAnswer, SurveyAnswerViewModel>

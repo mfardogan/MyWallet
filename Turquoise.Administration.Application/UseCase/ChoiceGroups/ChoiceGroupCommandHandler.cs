@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Turquoise.Administration.Application.UseCase.ChoiceGroups
 {
-    using Turquoise.Administration.Domain.Aggregation.ChoiceGroup;
+    using Turquoise.Administration.Domain.Aggregate.ChoiceGroup;
     using Turquoise.Administration.Application.UseCase.ChoiceGroups.CQ;
 
     public partial class ChoiceGroupCQHandler:
