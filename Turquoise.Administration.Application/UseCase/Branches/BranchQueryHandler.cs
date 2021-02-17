@@ -33,19 +33,13 @@ namespace Turquoise.Administration.Application.UseCase.Branches
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         public Task<BranchViewModel[]> Handle(SearchBranchesQuery request, CancellationToken cancellationToken)
-        {
-            if (bussines.DistributedMemoryCache.TryGet("branches", out BranchViewModel[] models))
-            {
-                return bussines.Success(models);
-            }
-
+        {          
             var specify = new BranchSpecify(request.Filters);
             BranchViewModel[] branchViewModels =
                dAO.Get(specify.GetExpressions(), request.Pagination)
                .Map<BranchViewModel>()
                .ToArray();
 
-            bussines.DistributedMemoryCache.Set("branches", branchViewModels);
             return bussines.Success(branchViewModels);
         }
     }

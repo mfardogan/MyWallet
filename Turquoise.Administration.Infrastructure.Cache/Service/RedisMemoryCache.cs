@@ -3,7 +3,7 @@
 namespace Turquoise.Administration.Infrastructure.Cache.Service
 {
     using Turquoise.Administration.Domain.Abstract;
-    public sealed class RedisMemoryCache : CacheService, ICacheService
+    public sealed class RedisMemoryCache : CacheService, IDistributedMemory
     {
         public RedisMemoryCache() : base(database: -1)
         {

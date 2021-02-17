@@ -1,6 +1,6 @@
 ﻿namespace Turquoise.Administration.Domain.Abstract
 {
-    public interface ICacheService
+    public interface IDistributedMemory
     {
         /// <summary>
         /// Get value

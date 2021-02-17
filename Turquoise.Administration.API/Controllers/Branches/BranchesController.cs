@@ -30,9 +30,16 @@ namespace Turquoise.Administration.API.Controllers.Branches
         [HttpPut("search")]
         public async Task<BranchViewModel[]> Search([FromBody] SearchBranchesQuery searchQuery)
         {
-            return await ExecuteQueryAsync(searchQuery);
+            if (DistributedMemory.TryGet("branches", out BranchViewModel[] viewModels))
+            {
+                return viewModels;
+            }
+
+            viewModels = await ExecuteQueryAsync(searchQuery);
+            DistributedMemory.Set("branches", viewModels);
+            return viewModels;
         }
-    
+
         /// <summary>
         /// Insert
         /// </summary>
